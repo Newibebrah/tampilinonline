@@ -75,28 +75,3 @@
     scroll-behavior: auto !important;
   }
 }
-
-/* Tanpa JavaScript: scrollytelling tampil sebagai section biasa
-   (les de fallback untuk README 9.3). */
-@media (scripting: none) {
-  [data-scrolly-wrapper] {
-    position: static !important;
-    height: auto !important;
-  }
-  [data-scrolly-sticky] {
-    position: static !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-  [data-scrolly-beat] {
-    position: static !important;
-    opacity: 1 !important;
-    transform: none !important;
-    clip-path: none !important;
-    min-height: auto !important;
-    padding: 4rem 0 !important;
-  }
-  [data-scrolly-dots] {
-    display: none !important;
-  }
-}
