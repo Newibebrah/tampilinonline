@@ -1,0 +1,103 @@
+import { Check, MessageCircle } from "lucide-react";
+import { SectionHeading } from "@/components/shared/SectionHeading";
+import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { cn } from "@/lib/utils";
+import { buildWhatsAppUrl, packageMessage } from "@/lib/whatsapp";
+import { packages } from "@/data/packages";
+import type { Package } from "@/types";
+
+/**
+ * Bento Grid paket (README 10):
+ * - Desktop: CSS Grid 4 kolom via .bento-grid + grid-area per card.
+ * - Mobile: stack 1 kolom, order mengikuti urutan data.
+ * - UMKM = featured (card terbesar, bg yellow).
+ * CTA per paket → WhatsApp dengan pesan pre-filled.
+ */
+export function PackagesBento() {
+  return (
+    <section id="paket" aria-labelledby="paket-heading" className="container py-16 md:py-24">
+      <ScrollReveal>
+        <SectionHeading
+          eyebrow="Paket & Harga"
+          title="Pilih paket yang pas untuk tahap usaha Anda."
+          description="Semua paket sudah termasuk desain responsif dan pengerjaan sesuai kesepakatan. Perlu fitur custom? Bisa dibahas setelah paket."
+        />
+      </ScrollReveal>
+
+      <ScrollReveal className="mt-10 md:mt-14">
+        <div className="bento-grid">
+          {packages.map((pkg) => (
+            <PackageCard key={pkg.id} pkg={pkg} />
+          ))}
+        </div>
+      </ScrollReveal>
+    </section>
+  );
+}
+
+function PackageCard({ pkg }: { pkg: Package }) {
+  return (
+    <article
+      style={{ gridArea: pkg.gridArea }}
+      className={cn(
+        "flex flex-col rounded-card p-6 shadow-brutal transition-[transform,box-shadow] duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm",
+        pkg.featured
+          ? "border-[3px] border-ink bg-yellow"
+          : "border-2 border-ink bg-white",
+      )}
+    >
+      <header className="flex flex-wrap items-center gap-2">
+        <h3 className="mr-auto font-display text-xl font-bold">{pkg.name}</h3>
+        {pkg.badge ? (
+          <span
+            className={cn(
+              "rounded-pill border-2 border-ink px-3 py-0.5 font-display text-xs font-bold",
+              pkg.badge === "Terpopuler" ? "bg-orange" : "bg-cream",
+            )}
+          >
+            {pkg.badge}
+          </span>
+        ) : null}
+      </header>
+
+      <p className="mt-3">
+        <span
+          className={cn(
+            "font-display text-2xl font-extrabold",
+            pkg.featured ? "text-ink" : "bg-yellow px-1",
+          )}
+        >
+          {pkg.priceLabel.replace("Mulai dari ", "")}
+        </span>
+      </p>
+      <p className="text-sm text-ink/60">Target: {pkg.target}</p>
+
+      <ul className="mt-4 flex flex-1 flex-col gap-2">
+        {pkg.features.map((feature) => (
+          <li key={feature} className="flex items-start gap-2 text-sm">
+            <Check
+              aria-hidden="true"
+              className="mt-0.5 h-4 w-4 shrink-0 stroke-[3]"
+            />
+            {feature}
+          </li>
+        ))}
+      </ul>
+
+      <a
+        href={buildWhatsAppUrl(packageMessage(pkg.name))}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(
+          "mt-6 inline-flex items-center justify-center gap-2 rounded-card font-display font-bold transition-transform cursor-pointer",
+          pkg.featured
+            ? "border-[3px] border-ink bg-ink px-4 py-3 text-cream hover:translate-x-[2px] hover:translate-y-[2px]"
+            : "border-[3px] border-ink bg-yellow px-4 py-3 shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px]",
+        )}
+      >
+        <MessageCircle aria-hidden="true" className="h-5 w-5" />
+        Pilih Paket
+      </a>
+    </article>
+  );
+}

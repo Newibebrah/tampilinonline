@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Contoh website e-commerce dengan keranjang belanja dan alur checkout">
+  <rect width="800" height="600" fill="#F5F0E8"/>
+  <!-- browser -->
+  <rect x="90" y="70" width="620" height="460" rx="20" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="14"/>
+  <line x1="90" y1="150" x2="710" y2="150" stroke="#1A1A1A" stroke-width="10"/>
+  <circle cx="130" cy="110" r="10" fill="#1A1A1A"/>
+  <circle cx="162" cy="110" r="10" fill="#1A1A1A"/>
+  <circle cx="194" cy="110" r="10" fill="#1A1A1A"/>
+  <!-- pencarian -->
+  <rect x="240" y="98" width="260" height="26" rx="999" fill="#F5F0E8" stroke="#1A1A1A" stroke-width="6"/>
+  <!-- ikon keranjang + badge -->
+  <g stroke="#1A1A1A" stroke-width="8" fill="#FFFFFF">
+    <path d="M600 100 h14 l10 30 h30 l-8 22 h-48"/>
+    <circle cx="618" cy="138" r="5"/>
+    <circle cx="644" cy="138" r="5"/>
+  </g>
+  <circle cx="650" cy="104" r="12" fill="#FF6B35" stroke="#1A1A1A" stroke-width="6"/>
+  <!-- sidebar kategori -->
+  <g fill="#F5F0E8" stroke="#1A1A1A" stroke-width="6">
+    <rect x="115" y="180" width="120" height="28" rx="8"/>
+    <rect x="115" y="224" width="120" height="28" rx="8"/>
+    <rect x="115" y="268" width="120" height="28" rx="8"/>
+  </g>
+  <!-- grid produk -->
+  <g stroke="#1A1A1A" stroke-width="8" fill="#FFFFFF">
+    <rect x="268" y="185" width="120" height="130" rx="10"/>
+    <rect x="408" y="185" width="120" height="130" rx="10"/>
+    <rect x="548" y="185" width="120" height="130" rx="10"/>
+    <rect x="268" y="340" width="120" height="130" rx="10"/>
+    <rect x="408" y="340" width="120" height="130" rx="10"/>
+  </g>
+  <g fill="#FFD23F" stroke="#1A1A1A" stroke-width="5">
+    <rect x="288" y="205" width="60" height="42" rx="8"/>
+    <rect x="428" y="205" width="60" height="42" rx="8"/>
+    <rect x="568" y="205" width="60" height="42" rx="8"/>
+    <rect x="288" y="360" width="60" height="42" rx="8"/>
+    <rect x="428" y="360" width="60" height="42" rx="8"/>
+  </g>
+  <!-- tombol checkout -->
+  <rect x="548" y="392" width="120" height="36" rx="999" fill="#FF6B35" stroke="#1A1A1A" stroke-width="6"/>
+  <rect x="548" y="340" width="120" height="36" rx="999" fill="#FFD23F" stroke="#1A1A1A" stroke-width="6"/>
+</svg>

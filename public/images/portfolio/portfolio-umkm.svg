@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Contoh desain website UMKM dengan katalog produk dan tombol WhatsApp">
+  <rect width="800" height="600" fill="#F5F0E8"/>
+  <!-- frame ponsel -->
+  <rect x="300" y="40" width="200" height="520" rx="36" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="14"/>
+  <!-- hero UMKM -->
+  <rect x="322" y="90" width="156" height="110" rx="10" fill="#FFD23F" stroke="#1A1A1A" stroke-width="8"/>
+  <rect x="336" y="110" width="90" height="16" rx="8" fill="#1A1A1A"/>
+  <rect x="336" y="134" width="120" height="10" rx="5" fill="#1A1A1A"/>
+  <rect x="336" y="152" width="100" height="10" rx="5" fill="#1A1A1A"/>
+  <!-- grid produk 2x2 -->
+  <g stroke="#1A1A1A" stroke-width="8">
+    <rect x="322" y="222" width="70" height="70" rx="8" fill="#FFFFFF"/>
+    <rect x="408" y="222" width="70" height="70" rx="8" fill="#FFFFFF"/>
+    <rect x="322" y="308" width="70" height="70" rx="8" fill="#FFFFFF"/>
+    <rect x="408" y="308" width="70" height="70" rx="8" fill="#FFFFFF"/>
+  </g>
+  <g fill="#1A1A1A">
+    <rect x="330" y="300" width="54" height="8" rx="4"/>
+    <rect x="416" y="300" width="54" height="8" rx="4"/>
+    <rect x="330" y="386" width="54" height="8" rx="4"/>
+    <rect x="416" y="386" width="54" height="8" rx="4"/>
+  </g>
+  <g fill="#FF6B35" stroke="#1A1A1A" stroke-width="6">
+    <rect x="330" y="262" width="30" height="14" rx="7"/>
+    <rect x="416" y="262" width="30" height="14" rx="7"/>
+    <rect x="330" y="348" width="30" height="14" rx="7"/>
+    <rect x="416" y="348" width="30" height="14" rx="7"/>
+  </g>
+  <!-- tombol WA -->
+  <rect x="322" y="400" width="156" height="44" rx="999" fill="#FFD23F" stroke="#1A1A1A" stroke-width="8"/>
+  <!-- dekorasi latar -->
+  <circle cx="160" cy="140" r="60" fill="#FFD23F" stroke="#1A1A1A" stroke-width="10"/>
+  <circle cx="650" cy="470" r="46" fill="#FF6B35" stroke="#1A1A1A" stroke-width="10"/>
+  <rect x="120" y="400" width="130" height="90" rx="12" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="10"/>
+  <rect x="560" y="90" width="120" height="80" rx="12" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="10"/>
+</svg>

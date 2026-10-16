@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Favicon: jendela browser kuning dengan border teal ala neo-brutalism -->
+  <rect width="512" height="512" rx="96" fill="#F5F0E8"/>
+  <rect x="72" y="112" width="368" height="288" rx="24" fill="#FFD23F" stroke="#1A1A1A" stroke-width="20"/>
+  <line x1="92" y1="176" x2="420" y2="176" stroke="#1A1A1A" stroke-width="20"/>
+  <circle cx="128" cy="144" r="10" fill="#1A1A1A"/>
+  <circle cx="164" cy="144" r="10" fill="#1A1A1A"/>
+  <circle cx="200" cy="144" r="10" fill="#1A1A1A"/>
+  <rect x="116" y="212" width="130" height="64" rx="8" fill="#1A1A1A"/>
+  <rect x="116" y="296" width="220" height="16" rx="8" fill="#1A1A1A"/>
+  <rect x="116" y="328" width="160" height="16" rx="8" fill="#1A1A1A"/>
+  <rect x="292" y="228" width="116" height="52" rx="999" fill="#FF6B35" stroke="#1A1A1A" stroke-width="12"/>
+</svg>

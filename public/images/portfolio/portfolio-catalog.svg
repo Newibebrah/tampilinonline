@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Contoh website katalog online dengan grid produk dan tombol pesan WhatsApp">
+  <rect width="800" height="600" fill="#F5F0E8"/>
+  <!-- browser -->
+  <rect x="70" y="80" width="430" height="440" rx="20" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="14"/>
+  <line x1="70" y1="150" x2="500" y2="150" stroke="#1A1A1A" stroke-width="10"/>
+  <circle cx="110" cy="115" r="10" fill="#1A1A1A"/>
+  <circle cx="142" cy="115" r="10" fill="#1A1A1A"/>
+  <circle cx="174" cy="115" r="10" fill="#1A1A1A"/>
+  <!-- filter kategori -->
+  <g stroke="#1A1A1A" stroke-width="6" fill="#FFD23F">
+    <rect x="100" y="175" width="70" height="26" rx="999"/>
+    <rect x="184" y="175" width="70" height="26" rx="999"/>
+    <rect x="268" y="175" width="70" height="26" rx="999"/>
+  </g>
+  <!-- grid produk -->
+  <g stroke="#1A1A1A" stroke-width="8" fill="#FFFFFF">
+    <rect x="100" y="225" width="112" height="120" rx="10"/>
+    <rect x="228" y="225" width="112" height="120" rx="10"/>
+    <rect x="356" y="225" width="112" height="120" rx="10"/>
+    <rect x="100" y="368" width="112" height="120" rx="10"/>
+    <rect x="228" y="368" width="112" height="120" rx="10"/>
+    <rect x="356" y="368" width="112" height="120" rx="10"/>
+  </g>
+  <g fill="#FF6B35" stroke="#1A1A1A" stroke-width="5">
+    <rect x="112" y="325" width="40" height="12" rx="6"/>
+    <rect x="240" y="325" width="40" height="12" rx="6"/>
+    <rect x="368" y="325" width="40" height="12" rx="6"/>
+    <rect x="112" y="468" width="40" height="12" rx="6"/>
+    <rect x="240" y="468" width="40" height="12" rx="6"/>
+    <rect x="368" y="468" width="40" height="12" rx="6"/>
+  </g>
+  <g fill="#FFD23F" stroke="#1A1A1A" stroke-width="5">
+    <rect x="118" y="245" width="60" height="40" rx="8"/>
+    <rect x="246" y="245" width="60" height="40" rx="8"/>
+    <rect x="374" y="245" width="60" height="40" rx="8"/>
+    <rect x="118" y="388" width="60" height="40" rx="8"/>
+    <rect x="246" y="388" width="60" height="40" rx="8"/>
+    <rect x="374" y="388" width="60" height="40" rx="8"/>
+  </g>
+  <!-- ponsel order -->
+  <rect x="540" y="120" width="190" height="380" rx="30" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="12"/>
+  <rect x="560" y="170" width="150" height="80" rx="10" fill="#FFD23F" stroke="#1A1A1A" stroke-width="8"/>
+  <g fill="#1A1A1A">
+    <rect x="560" y="270" width="120" height="12" rx="6"/>
+    <rect x="560" y="292" width="90" height="10" rx="5"/>
+  </g>
+  <!-- tombol pesan pada produk -->
+  <rect x="560" y="320" width="150" height="42" rx="999" fill="#FF6B35" stroke="#1A1A1A" stroke-width="8"/>
+  <rect x="560" y="380" width="150" height="42" rx="999" fill="#FFD23F" stroke="#1A1A1A" stroke-width="8"/>
+  <!-- dekorasi -->
+  <circle cx="640" cy="60" r="0"/>
+</svg>

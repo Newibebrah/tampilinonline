@@ -1,0 +1,107 @@
+import type { Package } from "@/types";
+
+/**
+ * 6 paket layanan — order array = urutan tampil di mobile (stack vertikal).
+ * gridArea dipakai untuk layout bento desktop (lihat globals.css .bento-grid).
+ */
+export const packages: Package[] = [
+  {
+    id: "sales",
+    name: "Sales Landing Page",
+    price: 499000,
+    priceLabel: "Mulai dari Rp499.000",
+    target: "Sales, marketer, affiliate",
+    features: [
+      "Landing page 1 halaman",
+      "Max 6 bagian utama",
+      "Hero + CTA WhatsApp",
+      "Profil singkat & produk",
+      "SEO dasar & responsif",
+      "Deployment hosting",
+    ],
+    gridArea: "sales",
+  },
+  {
+    id: "portfolio",
+    name: "Portofolio Personal",
+    price: 499000,
+    priceLabel: "Mulai dari Rp499.000",
+    target: "Fresh graduate, freelancer",
+    features: [
+      "Portofolio 1 halaman",
+      "Profil & pengalaman",
+      "Galeri max 6 proyek",
+      "Tombol unduh CV",
+      "LinkedIn & sosmed",
+      "SEO dasar & responsif",
+    ],
+    gridArea: "portfolio",
+  },
+  {
+    id: "umkm",
+    name: "Website UMKM",
+    price: 899000,
+    priceLabel: "Mulai dari Rp899.000",
+    target: "UMKM, usaha lokal",
+    features: [
+      "Landing page max 8 sections",
+      "Max 12 produk/layanan",
+      "Galeri max 10 gambar",
+      "Google Maps & jam operasional",
+      "Testimoni & FAQ",
+      "WA otomatis & SEO dasar",
+    ],
+    badge: "Terpopuler",
+    featured: true,
+    gridArea: "umkm",
+  },
+  {
+    id: "company",
+    name: "Company Profile",
+    price: 1699000,
+    priceLabel: "Mulai dari Rp1.699.000",
+    target: "Perusahaan, agensi, organisasi",
+    features: [
+      "Max 5 halaman",
+      "Beranda, Tentang, Layanan, Portofolio, Kontak",
+      "Profil & visi misi",
+      "Form kontak + Google Maps",
+      "SEO on-page per halaman",
+      "Navigasi konsisten",
+    ],
+    badge: "Best Value",
+    gridArea: "company",
+  },
+  {
+    id: "catalog",
+    name: "Katalog Online",
+    price: 1999000,
+    priceLabel: "Mulai dari Rp1.999.000",
+    target: "Toko, distributor, fashion",
+    features: [
+      "Katalog max 20 produk",
+      "Kategori & detail produk",
+      "Pencarian/filter",
+      "WA order dengan nama produk",
+      "SEO dasar & responsif",
+      "Deployment hosting",
+    ],
+    gridArea: "catalog",
+  },
+  {
+    id: "ecommerce",
+    name: "E-Commerce Template",
+    price: 3499000,
+    priceLabel: "Mulai dari Rp3.499.000",
+    target: "Bisnis online, toko",
+    features: [
+      "Toko online lengkap",
+      "Keranjang & checkout",
+      "Penyimpanan pesanan",
+      "Dashboard produk (jika template mendukung)",
+      "Payment gateway (tergantung implementasi)",
+      "SEO dasar & responsif",
+    ],
+    gridArea: "ecommerce",
+  },
+];

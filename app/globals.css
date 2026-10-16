@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --cream: #f5f0e8;
+    --ink: #1a1a1a;
+    --yellow: #ffd23f;
+    --orange: #ff6b35;
+  }
+
+  html {
+    /* Offset anchor agar tidak tertutup sticky navbar. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-yellow text-ink;
+  }
+
+  /* fokus utama navigasi — harus terlihat jelas (WCAG 2.4.7). */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    @apply outline-none;
+    outline: 3px solid var(--orange);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Bento grid paket — mobile stack 1 kolom, desktop 4 kolom asimetris. */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    grid-template-areas:
+      "sales"
+      "portfolio"
+      "umkm"
+      "company"
+      "catalog"
+      "ecommerce";
+  }
+
+  @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-areas:
+        "sales    sales    portfolio portfolio"
+        "umkm     umkm     umkm      company"
+        "catalog  catalog  ecommerce ecommerce";
+    }
+  }
+}
+
+/* Hormati preferensi pengguna: matikan animasi & transisi. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tanpa JavaScript: scrollytelling tampil sebagai section biasa
+   (les de fallback untuk README 9.3). */
+@media (scripting: none) {
+  [data-scrolly-wrapper] {
+    position: static !important;
+    height: auto !important;
+  }
+  [data-scrolly-sticky] {
+    position: static !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  [data-scrolly-beat] {
+    position: static !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    min-height: auto !important;
+    padding: 4rem 0 !important;
+  }
+  [data-scrolly-dots] {
+    display: none !important;
+  }
+}

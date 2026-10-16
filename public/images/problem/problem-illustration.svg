@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Ilustrasi pemilik usaha kesulitan ditemukan online sementara kompetitor lebih mudah diakses">
+  <rect width="800" height="800" fill="#1A1A1A"/>
+  <circle cx="360" cy="300" r="150" fill="#2A2A2A"/>
+
+  <!-- toko silau: kelapangan kosong -->
+  <g stroke="#F5F0E8" stroke-width="12">
+    <rect x="180" y="300" width="280" height="240" rx="12" fill="#2A2A2A"/>
+    <rect x="285" y="420" width="70" height="120" fill="#1A1A1A"/>
+    <rect x="200" y="340" width="60" height="50" fill="#3A3A3A"/>
+    <rect x="380" y="340" width="60" height="50" fill="#3A3A3A"/>
+  </g>
+
+  <!-- siluet pemilik usaha -->
+  <g fill="#F5F0E8">
+    <circle cx="60" cy="520" r="34"/>
+    <path d="M10 640 a50 50 0 0 1 100 0 v40 h-100 z"/>
+  </g>
+
+  <!-- toko kompetitor: terang -->
+  <g stroke="#1A1A1A" stroke-width="12">
+    <rect x="470" y="470" width="280" height="230" rx="12" fill="#FFD23F"/>
+    <rect x="575" y="580" width="70" height="120" fill="#FF6B35"/>
+    <rect x="490" y="510" width="60" height="50" fill="#F5F0E8"/>
+    <rect x="670" y="510" width="60" height="50" fill="#F5F0E8"/>
+  </g>
+
+  <!-- pencarian & tanda tanya -->
+  <g stroke="#FFD23F" stroke-width="14" fill="none" stroke-linecap="round">
+    <circle cx="180" cy="150" r="55"/>
+    <line x1="220" y1="190" x2="270" y2="240"/>
+  </g>
+  <g fill="#FF6B35">
+    <text x="330" y="200" font-family="sans-serif" font-size="110" font-weight="bold">?</text>
+    <text x="560" y="330" font-family="sans-serif" font-size="90" font-weight="bold">?</text>
+    <text x="150" y="380" font-family="sans-serif" font-size="70" font-weight="bold">?</text>
+  </g>
+</svg>
