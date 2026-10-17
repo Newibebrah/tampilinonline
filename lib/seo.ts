@@ -91,5 +91,11 @@ export function generateSitemapEntries(): Array<{
       changeFrequency: "monthly",
       priority: 0.2,
     },
+    {
+      url: siteUrl("/about"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
   ];
 }

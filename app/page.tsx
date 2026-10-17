@@ -7,6 +7,7 @@ import { Process } from "@/components/sections/Process";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { PriceSimulator } from "@/components/sections/PriceSimulator";
 import { FAQ } from "@/components/sections/FAQ";
+import { AboutTeaser } from "@/components/sections/AboutTeaser";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import {
   organizationSchema,
@@ -49,6 +50,7 @@ export default function HomePage() {
         <Process />
         <Portfolio />
         <PriceSimulator />
+        <AboutTeaser />
         <FAQ />
         <FinalCTA />
       </main>
