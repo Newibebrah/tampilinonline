@@ -16,6 +16,7 @@ export const NAV_LINKS = [
   { label: "Masalah", href: "#masalah" },
   { label: "Solusi", href: "#solusi" },
   { label: "Paket", href: "#paket" },
+  { label: "Proses", href: "#proses" },
   { label: "Portofolio", href: "#portofolio" },
   { label: "Simulasi", href: "#simulasi" },
   { label: "FAQ", href: "#faq" },

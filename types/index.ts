@@ -29,9 +29,5 @@ export type PortfolioItem = {
   alt: string;
 };
 
-/** Langkah proses kerja timeline. */
-export type ProcessStep = {
-  step: number;
-  title: string;
-  desc: string;
-};
+/** Langkah proses kerja — definisi tipe di data/process.ts (satu sumber kebenaran). */
+export type { ProcessStep } from "@/data/process";
