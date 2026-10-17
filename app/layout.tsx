@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Press_Start_2P, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SITE, DEFAULT_KEYWORDS, BRAND_ICONS } from "@/lib/seo";
 import { Navbar } from "@/components/layout/Navbar";
@@ -18,6 +18,15 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// --font-press-start: font arcade 8-bit untuk halaman /about (H1 bait).
+// Weight tunggal 400 — chunky by nature, TIDAK diberi font-black.
+const pressStart2P = Press_Start_2P({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-press-start",
   display: "swap",
 });
 
@@ -93,7 +102,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="id" className={`${spaceGrotesk.variable} ${inter.variable} ${pressStart2P.variable}`}>
       <body>
         <Navbar />
         {children}

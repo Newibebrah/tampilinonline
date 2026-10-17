@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { SkipForward, ChevronRight, Flag } from "lucide-react";
+import { Play, SkipForward, ChevronRight, Flag } from "lucide-react";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { Button } from "@/components/ui/Button";
+import { SectionHeading } from "@/components/shared/SectionHeading";
 import {
   aboutScenes,
   parseHighlightTokens,
@@ -14,23 +15,25 @@ import { useTypewriter } from "@/hooks/useTypewriter";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 /**
- * Visual Novel "Kenalan Sama Ananta" (Soft Neo-Brutalism × retro RPG).
+ * Visual Novel "Kenalan Sama Ananta" (Soft Neo-Brutalism × retro arcade).
  *
- * Struktur per feedback user (revisi 2):
- * - Ilustrasi karakter PAKEM fix di atas (zona tinggi tetap, tidak ikut
- *   bergeser/menggecil saat teks tumbuh) — mobile & desktop sama pola.
- * - Teks mengetik top-anchored: tumbuh KE BAWAH di kotak yang ikut
- *   mengembang (tanpa overflow/reset). Halaman bisa di-scroll bebas;
- *   scroll otomatis sticky-bottom ala chat — baris terbaru selalu terlihat,
- *   tapi kalau user scroll ke atas, halaman TIDAK diseret paksa.
- * - Tombol eksplisit di bawah kotak: "Lewati ⏵" saat mengetik,
- *   "Lanjut ▶" saat teks penuh, "Selesai" di scene terakhir (tetap dipasang
- *   supaya jelas di mobile; kotak dialog juga tetap bisa diketuk).
- * - Scene 7 selesai → teks game hilang, tampil "bait" header halaman:
- *   foto profile.png besar TANPA border + H1 gradient teks
- *   "Just a story about me, making my dreams come true." lalu transkrip
- *   7 kartu + CTA. Refresh → kembali ke scene 1 (state tidak dipersist).
+ * Alur 3 fase (permintaan user):
+ * - "start"  → profile index / start screen: foto pixel besar TANPA border +
+ *   H1 font arcade Press Start 2P (gradient, TIDAK bold) + sub judul ala
+ *   section lain + tombol "Mulai mendengarkan cerita" kedip pudar-jelas-pudar
+ *   (animate-blink, dimatikan oleh prefers-reduced-motion).
+ * - "playing" → ilustrasi pakem fix di atas, teks top-anchored tumbuh ke
+ *   bawah, tombol eksplisit Lewati/Lanjut/Selesai. Halaman bebas di-scroll;
+ *   auto-scroll sticky-bottom ala chat yang bisa dilepas user.
+ * - "finished" → transkrip RAME: bubble chat (avatar di kolom samping di
+ *   LUAR bubble, align top sinkron dengan baris pertama) — gambar & teks
+ *   bukan satu kartu grid. Diakhiri CTA WhatsApp + kembali ke profil.
+ *
+ * Emoji TIDAK ada di narasi — emosi digambarkan ikon per scene.
+ * Refresh → kembali ke fase "start" (state tidak dipersist, memang disengaja).
  */
+
+type Phase = "start" | "playing" | "finished";
 
 /** Render token hasil parser menjadi span berwarna. */
 function HighlightedSpans({ tokens }: { tokens: HighlightToken[] }) {
@@ -57,10 +60,33 @@ function HighlightedSpans({ tokens }: { tokens: HighlightToken[] }) {
   );
 }
 
+/**
+ * Bait pembuka halaman /about: foto besar (tanpa border) + judul arcade.
+ * `font-pixel` = Press Start 2P (weight 400 — chunky, jadi TANPA bold tambah),
+ * gradient warna brand + hard shadow ink ala neo-brutalism.
+ */
+function StoryBait() {
+  return (
+    <header className="flex flex-col items-center gap-7 text-center md:flex-row md:items-center md:gap-10 md:text-left">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/images/aboutme_pixel/profile.png"
+        alt="Ananta, pembuat Tampilin.online, sedang menikmati kopi"
+        width={240}
+        height={240}
+        className="h-36 w-36 shrink-0 rounded-full object-cover [image-rendering:pixelated] md:h-52 md:w-52"
+      />
+      <h1 className="font-pixel bg-gradient-to-br from-yellow to-orange bg-clip-text text-sm leading-[2] text-transparent [filter:drop-shadow(3px_3px_0_#1A1A1A)] sm:text-base md:text-lg">
+        Just a story about me, making my dreams come true.
+      </h1>
+    </header>
+  );
+}
+
 export function AboutGame() {
+  const [phase, setPhase] = useState<Phase>("start");
   const [currentScene, setCurrentScene] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
-  const [isGameFinished, setIsGameFinished] = useState(false);
   const reducedMotion = useReducedMotion();
   // Sticky-bottom ala chat: true = user "menempel" di dasar halaman →
   // saat teks tumbuh, otomatis ikut ke baris terbaru.
@@ -68,14 +94,16 @@ export function AboutGame() {
 
   const scene = aboutScenes[currentScene];
   const isLastScene = currentScene === aboutScenes.length - 1;
-  const { typed, done } = useTypewriter(scene.text, 24, !isTyping);
+  const playing = phase === "playing";
+  // instant=true di luar fase playing supaya hook tidak mengetik di background.
+  const { typed, done } = useTypewriter(scene.text, 24, !playing || !isTyping);
   const tokens = parseHighlightTokens(typed);
 
   // Sinkronkan isTyping dengan kondisi selesai mengetik natural
   // (supaya indikator ▼ & tombol "Lanjut" muncul tanpa perlu diketuk).
   useEffect(() => {
-    if (done && isTyping) setIsTyping(false);
-  }, [done, isTyping]);
+    if (playing && done && isTyping) setIsTyping(false);
+  }, [playing, done, isTyping]);
 
   // Pantau posisi user: menempel dasar halaman atau sedang scroll ke atas.
   useEffect(() => {
@@ -90,21 +118,21 @@ export function AboutGame() {
 
   // Teks tumbuh → ikut ke baris terbaru HANYA kalau user masih di dasar.
   useEffect(() => {
-    if (stickBottom.current) {
+    if (playing && stickBottom.current) {
       window.scrollTo({ top: document.documentElement.scrollHeight });
     }
-  }, [typed]);
+  }, [typed, playing]);
 
-  // End game: tampilkan bait header dari atas halaman.
-  useEffect(() => {
-    if (isGameFinished) {
-      stickBottom.current = true;
-      window.scrollTo({ top: 0 });
-    }
-  }, [isGameFinished]);
+  const startGame = () => {
+    setCurrentScene(0);
+    setIsTyping(true);
+    stickBottom.current = true;
+    setPhase("playing");
+    window.scrollTo({ top: 0 });
+  };
 
   const handleTap = () => {
-    if (isGameFinished) return;
+    if (!playing) return;
     if (isTyping && !done) {
       setIsTyping(false); // tekan ke-1: skip typing → tampil penuh
       return;
@@ -114,18 +142,59 @@ export function AboutGame() {
       setIsTyping(true);
       return;
     }
-    setIsGameFinished(true); // dialog terakhir selesai → end game
-  };
-
-  const restart = () => {
-    setCurrentScene(0);
-    setIsTyping(true);
-    setIsGameFinished(false);
+    setPhase("finished"); // dialog terakhir selesai → transkrip
+    stickBottom.current = true;
     window.scrollTo({ top: 0 });
   };
 
-  /* ---------------- END GAME: header + transkrip vertikal ---------------- */
-  if (isGameFinished) {
+  const backToProfile = () => {
+    setCurrentScene(0);
+    setIsTyping(true);
+    setPhase("start");
+    window.scrollTo({ top: 0 });
+  };
+
+  /* ---------------- START: profile index + start screen ---------------- */
+  if (phase === "start") {
+    return (
+      <div className="flex flex-col items-center px-4 pb-20 pt-10 text-center md:pb-28 md:pt-16">
+        <motion.div
+          initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+          className="flex w-full max-w-3xl flex-col items-center gap-10 md:gap-12"
+        >
+          <StoryBait />
+
+          <SectionHeading
+            align="center"
+            eyebrow="Tentang"
+            title="Kenalan Sama Ananta"
+            description="Orang di balik layar Tampilin.online — dengarkan ceritanya seperti membuka game, satu bagian demi satu bagian."
+          />
+
+          <div className="flex flex-col items-center gap-3">
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={startGame}
+              aria-label="Mulai mendengarkan cerita"
+              className="animate-blink"
+            >
+              <Play aria-hidden="true" className="h-5 w-5" />
+              Mulai mendengarkan cerita
+            </Button>
+            <p className="text-xs font-medium text-ink/50">
+              {aboutScenes.length} bagian cerita · bisa dilewati kapan saja
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
+  /* ---------------- FINISHED: bubble chat ---------------- */
+  if (phase === "finished") {
     return (
       <motion.div
         initial={reducedMotion ? false : { opacity: 0, y: 24 }}
@@ -133,56 +202,47 @@ export function AboutGame() {
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="mx-auto w-full max-w-3xl px-4 pb-16"
       >
-        {/* Bait pembuka halaman: foto besar (tanpa border) + H1 gradient */}
-        <header className="flex flex-col items-center gap-8 py-10 text-center md:flex-row md:items-center md:gap-12 md:py-16 md:text-left">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/aboutme_pixel/profile.png"
-            alt="Ananta, pembuat Tampilin.online, sedang menikmati kopi"
-            width={240}
-            height={240}
-            className="h-40 w-40 shrink-0 rounded-full object-cover [image-rendering:pixelated] md:h-56 md:w-56"
-          />
-          <h1 className="font-display bg-gradient-to-br from-yellow to-orange bg-clip-text text-3xl font-black leading-[1.15] text-transparent [filter:drop-shadow(4px_4px_0_#1A1A1A)] md:text-5xl">
-            Just a story about me, making my dreams come true.
-          </h1>
-        </header>
+        <StoryBait />
 
-        <div className="space-y-6">
+        <div className="mt-10 space-y-5 md:mt-12">
           {aboutScenes.map((s) => (
             <article
               key={s.id}
-              className="flex items-start gap-4 rounded-card border-2 border-ink bg-cream p-4 shadow-brutal md:p-6"
+              className="flex items-start gap-3 md:gap-4"
             >
+              {/* Avatar di kolom samping — LUAR bubble, align top sinkron
+                  dengan baris pertama narasi */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={s.image}
                 alt={`Ananta — ilustrasi bagian ${s.id}`}
-                width={120}
-                height={120}
+                width={96}
+                height={96}
                 loading={s.id === 1 ? "eager" : "lazy"}
-                className="h-16 w-16 shrink-0 rounded-card border-2 border-ink bg-white md:h-20 md:w-20 [image-rendering:pixelated]"
+                className="h-12 w-12 shrink-0 rounded-full border-2 border-ink bg-white [image-rendering:pixelated] md:h-16 md:w-16"
               />
-              <p className="text-base leading-relaxed text-ink/80">
-                <HighlightedSpans tokens={parseHighlightTokens(s.text)} />
-              </p>
+              <div className="min-w-0 flex-1 rounded-card rounded-tl-none border-[3px] border-ink bg-white p-4 shadow-brutal md:p-5">
+                <p className="text-base leading-relaxed text-ink/85 md:text-lg">
+                  <HighlightedSpans tokens={parseHighlightTokens(s.text)} />
+                </p>
+              </div>
             </article>
           ))}
         </div>
 
         <div className="flex flex-col items-center gap-4 pt-10">
           <WhatsAppButton size="lg" />
-          <Button variant="secondary" size="md" onClick={restart}>
-            Ulangi cerita dari awal
+          <Button variant="secondary" size="md" onClick={backToProfile}>
+            Kembali ke profil
           </Button>
         </div>
       </motion.div>
     );
   }
 
-  /* -------- GAME SCREEN: gambar fix di atas, teks tumbuh ke bawah -------- */
+  /* ---------- PLAYING: gambar fix di atas, teks tumbuh ke bawah ---------- */
   return (
-    <div className="flex flex-col items-center px-4 pb-20 pt-6 md:pb-24 md:pt-10">
+    <div className="flex flex-col items-center px-4 pb-20 pt-6 md:pb-24">
       {/* Zona karakter — tinggi TETAP supaya posisinya pakem walau teks tumbuh */}
       <div className="flex h-48 w-full max-w-xl items-center justify-center md:h-72">
         <AnimatePresence mode="wait" initial={false}>

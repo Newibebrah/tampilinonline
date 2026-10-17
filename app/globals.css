@@ -75,3 +75,18 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Blink ala start screen game: pudar → jelas → pudar (opacity soft).
+   Otomatis dimatikan oleh blok prefers-reduced-motion di atas. */
+@keyframes tampilin-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.animate-blink {
+  animation: tampilin-blink 1.6s ease-in-out infinite;
+}

@@ -23,6 +23,7 @@ const config: Config = {
       fontFamily: {
         display: ["var(--font-space-grotesk)", "sans-serif"],
         sans: ["var(--font-inter)", "sans-serif"],
+        pixel: ["var(--font-press-start)", "monospace"],
       },
       borderRadius: {
         card: "8px",

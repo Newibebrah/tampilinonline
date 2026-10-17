@@ -22,7 +22,8 @@ export const NAV_LINKS = [
   { label: "Proses", href: "#proses" },
   { label: "Portofolio", href: "#portofolio" },
   { label: "Simulasi", href: "#simulasi" },
+  // Tentang → teaser "Kenalan Sama Ananta" (section di atas FAQ — runtut
+  // dengan urutan konten homepage). Dari teaser, tombol menuju /about.
+  { label: "Tentang", href: "#tentang" },
   { label: "FAQ", href: "#faq" },
-  // Halaman /about (visual novel) — href PENUH, bukan anchor section.
-  { label: "Tentang", href: "/about" },
 ] as const;

@@ -20,12 +20,12 @@ export const aboutScenes: AboutScene[] = [
   {
     id: 2,
     image: "/images/aboutme_pixel/2-thumbsup.png",
-    text: "Aku berasal dari **Surakarta** dan sekarang sedang menjalani kehidupan sebagai mahasiswa rantau yang menempuh studi **S1 Teknik Informatika**. Seperti kebanyakan mahasiswa rantau lainnya, ada banyak hal yang harus dipikirkan: tugas kuliah, kebutuhan sehari-hari, biaya hidup, sampai urusan **jajan** yang ternyata nggak bisa dianggap sepele. 😭 Dari situlah muncul keinginanku untuk mencari **penghasilan tambahan**. Tapi, aku juga nggak ingin sekadar mendapatkan uang. Aku ingin mencoba menerapkan apa yang kupelajari di bangku kuliah ke dalam sesuatu yang benar-benar bisa digunakan orang lain.",
+    text: "Aku berasal dari **Surakarta** dan sekarang sedang menjalani kehidupan sebagai mahasiswa rantau yang menempuh studi **S1 Teknik Informatika**. Seperti kebanyakan mahasiswa rantau lainnya, ada banyak hal yang harus dipikirkan: tugas kuliah, kebutuhan sehari-hari, biaya hidup, sampai urusan **jajan** yang ternyata nggak bisa dianggap sepele. Dari situlah muncul keinginanku untuk mencari **penghasilan tambahan**. Tapi, aku juga nggak ingin sekadar mendapatkan uang. Aku ingin mencoba menerapkan apa yang kupelajari di bangku kuliah ke dalam sesuatu yang benar-benar bisa digunakan orang lain.",
   },
   {
     id: 3,
     image: "/images/aboutme_pixel/3-stressed-laptop.png",
-    text: "Lucunya, perjalanan ini cukup jauh dari bayanganku sendiri. Bayangkan saja, aku yang dulunya menghabiskan masa SMA sebagai **anak IPS** dan merasa cukup dekat dengan dunia sosial, tiba-tiba harus berhadapan dengan **syntax**, logika pemrograman, **error** yang entah datang dari mana, dan kode yang rasanya sudah benar, tetapi ternyata masih salah. Kadang bikin frustrasi, kadang bikin **ingin menutup laptop saja**. 😂",
+    text: "Lucunya, perjalanan ini cukup jauh dari bayanganku sendiri. Bayangkan saja, aku yang dulunya menghabiskan masa SMA sebagai **anak IPS** dan merasa cukup dekat dengan dunia sosial, tiba-tiba harus berhadapan dengan **syntax**, logika pemrograman, **error** yang entah datang dari mana, dan kode yang rasanya sudah benar, tetapi ternyata masih salah. Kadang bikin frustrasi, kadang bikin **ingin menutup laptop saja**.",
   },
   {
     id: 4,
@@ -40,12 +40,12 @@ export const aboutScenes: AboutScene[] = [
   {
     id: 6,
     image: "/images/aboutme_pixel/6-headphone.png",
-    text: "Oh iya, kalau sedang mulai **burnout** karena terlalu lama menatap layar, biasanya musik jadi jalan ninjaku untuk menenangkan pikiran. Ada yang suka mendengarkan **Hindia** juga di sini? Kalau iya, sepertinya kita punya satu topik obrolan tambahan, nih. Hehe. 🎧",
+    text: "Oh iya, kalau sedang mulai **burnout** karena terlalu lama menatap layar, biasanya musik jadi jalan ninjaku untuk menenangkan pikiran. Ada yang suka mendengarkan **Hindia** juga di sini? Kalau iya, sepertinya kita punya satu topik obrolan tambahan, nih. Hehe.",
   },
   {
     id: 7,
     image: "/images/aboutme_pixel/7-reachout.png",
-    text: "Pada akhirnya, aku membangun brand ini bukan hanya untuk mencari penghasilan tambahan, tetapi juga sebagai **ruang untuk bertumbuh**, mengasah kemampuan, dan membuktikan bahwa ilmu yang sedang kupelajari bisa memberi manfaat di dunia nyata. Aku mungkin belum menjadi developer yang hebat, tetapi aku selalu berusaha memberikan perhatian, usaha, dan pelayanan terbaik dalam setiap pekerjaan yang kuambil. Terima kasih sudah meluangkan waktu untuk membaca cerita kecilku sampai akhir. **Salam kenal, dan semoga kita bisa menciptakan sesuatu yang hebat bersama!** ☕💻",
+    text: "Pada akhirnya, aku membangun brand ini bukan hanya untuk mencari penghasilan tambahan, tetapi juga sebagai **ruang untuk bertumbuh**, mengasah kemampuan, dan membuktikan bahwa ilmu yang sedang kupelajari bisa memberi manfaat di dunia nyata. Aku mungkin belum menjadi developer yang hebat, tetapi aku selalu berusaha memberikan perhatian, usaha, dan pelayanan terbaik dalam setiap pekerjaan yang kuambil. Terima kasih sudah meluangkan waktu untuk membaca cerita kecilku sampai akhir. **Salam kenal, dan semoga kita bisa menciptakan sesuatu yang hebat bersama!**",
   },
 ];
 
