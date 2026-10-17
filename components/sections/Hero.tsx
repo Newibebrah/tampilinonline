@@ -36,24 +36,26 @@ export function Hero() {
             profesional di internet — mulai Rp499.000.
           </p>
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          {/* CTA (mobile: pindah ke bawah list 3 poin via order; desktop: urutan normal) */}
+          <div className="order-4 flex flex-col gap-3 sm:order-none sm:flex-row sm:items-center">
             <WhatsAppButton size="lg" />
             <ButtonLink href="#paket" variant="secondary" size="lg">
               Lihat Paket
             </ButtonLink>
           </div>
 
-          <ul className="flex flex-wrap gap-4 text-base font-medium text-ink/70">
+          {/* 3 poin: mobile = 1 baris ke samping TEPAT DI ATAS button; desktop = di bawah CTA. */}
+          <ul className="order-3 flex flex-nowrap items-center justify-center gap-2 whitespace-nowrap text-xs sm:order-none sm:justify-start sm:gap-4 sm:text-base">
             <li className="flex items-center gap-1.5">
-              <Brush aria-hidden="true" className="h-4 w-4" />
+              <Brush aria-hidden="true" className="hidden h-4 w-4 sm:inline" />
               Desain sesuai brand
             </li>
             <li className="flex items-center gap-1.5">
-              <Server aria-hidden="true" className="h-4 w-4" />
+              <Server aria-hidden="true" className="hidden h-4 w-4 sm:inline" />
               Deployment hosting
             </li>
             <li className="flex items-center gap-1.5">
-              <LifeBuoy aria-hidden="true" className="h-4 w-4" />
+              <LifeBuoy aria-hidden="true" className="hidden h-4 w-4 sm:inline" />
               2 putaran revisi
             </li>
           </ul>
