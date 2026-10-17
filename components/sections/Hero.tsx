@@ -14,11 +14,14 @@ export function Hero() {
       <div className="container grid items-center gap-12 pb-8 pt-10 md:grid-cols-2 md:pb-12 md:pt-16 lg:gap-16 lg:pt-20">
         {/* Kiri: teks + CTA */}
         <ScrollReveal className="flex flex-col items-start gap-6">
-          <Badge variant="orange">Jasa Pembuatan Website</Badge>
+          {/* Badge + H1: center di mobile (<768px), kiri di desktop (permintaan user). */}
+          <Badge variant="orange" className="self-center text-center md:self-start md:text-left">
+            Jasa Pembuatan Website
+          </Badge>
 
           <h1
             id="hero-heading"
-            className="text-balance font-display text-[clamp(2rem,8vw,3.5rem)] font-extrabold leading-[1.08] tracking-tight"
+            className="text-balance text-center font-display text-[clamp(2rem,8vw,3.5rem)] font-extrabold leading-[1.08] tracking-tight md:text-left"
           >
             Semua usaha{" "}
             <span className="inline-block bg-yellow px-2 leading-[1.25] shadow-brutal-sm">
