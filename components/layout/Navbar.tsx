@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, MessageCircle } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { buildWhatsAppUrl, DEFAULT_WA_MESSAGE } from "@/lib/whatsapp";
@@ -16,6 +17,11 @@ import { MobileMenu } from "@/components/layout/MobileMenu";
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Anchor "#…" hanya valid dari homepage — dari halaman lain harus "/#…".
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const resolveHref = (href: string) =>
+    href.startsWith("#") && !isHome ? `/${href}` : href;
   const activeId = useScrollSpy(
     NAV_LINKS.map((link) => link.href.replace("#", "")),
   );
@@ -40,7 +46,11 @@ export function Navbar() {
         aria-label="Navigasi utama"
         className="container flex h-16 items-center justify-between gap-4 md:h-20"
       >
-        <a href="#" aria-label="Tampilin.online — kembali ke atas" className="rounded-sm">
+        <a
+          href={isHome ? "#" : "/"}
+          aria-label="Tampilin.online — kembali ke atas"
+          className="rounded-sm"
+        >
           <Wordmark className="text-2xl md:text-3xl" />
         </a>
 
@@ -51,7 +61,7 @@ export function Navbar() {
             return (
               <li key={link.href}>
                 <a
-                  href={link.href}
+                  href={resolveHref(link.href)}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "rounded-pill px-3 py-2 font-display text-sm font-bold transition-colors hover:bg-yellow",

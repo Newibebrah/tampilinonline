@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { X, MessageCircle } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { buildWhatsAppUrl, DEFAULT_WA_MESSAGE } from "@/lib/whatsapp";
@@ -17,6 +18,11 @@ export function MobileMenu({
   onClose: () => void;
 }) {
   const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
+  // Anchor "#…" hanya valid dari homepage — dari halaman lain harus "/#…".
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const resolveHref = (href: string) =>
+    href.startsWith("#") && !isHome ? `/${href}` : href;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -67,7 +73,7 @@ export function MobileMenu({
             <li key={link.href}>
               <a
                 ref={index === 0 ? firstLinkRef : undefined}
-                href={link.href}
+                href={resolveHref(link.href)}
                 onClick={onClose}
                 className="block rounded-card border-2 border-transparent px-4 py-3 font-display text-lg font-bold hover:border-ink hover:bg-yellow"
               >

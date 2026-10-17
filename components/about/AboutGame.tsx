@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { SkipForward, ChevronRight, Flag } from "lucide-react";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { Button } from "@/components/ui/Button";
 import {
@@ -11,18 +12,24 @@ import {
 } from "@/data/aboutNarrative";
 import { useTypewriter } from "@/hooks/useTypewriter";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { cn } from "@/lib/utils";
 
 /**
  * Visual Novel "Kenalan Sama Ananta" (Soft Neo-Brutalism × retro RPG).
  *
- * Mekanik tap (README interactif):
- * - Tap saat teks masih mengetik → skip, tampil penuh.
- * - Tap lagi saat teks penuh → lanjut dialog berikutnya.
- * - Dialog ke-7 selesai → game finished: layar unlock, transkrip 7 paragraf
- *   tampil vertical (chat log) + CTA WhatsApp di akhir.
- * - Refresh halaman → state kembali ke scene 1 (tanpa persistensi — memang
- *   perilaku yang diinginkan).
+ * Struktur per feedback user (revisi 2):
+ * - Ilustrasi karakter PAKEM fix di atas (zona tinggi tetap, tidak ikut
+ *   bergeser/menggecil saat teks tumbuh) — mobile & desktop sama pola.
+ * - Teks mengetik top-anchored: tumbuh KE BAWAH di kotak yang ikut
+ *   mengembang (tanpa overflow/reset). Halaman bisa di-scroll bebas;
+ *   scroll otomatis sticky-bottom ala chat — baris terbaru selalu terlihat,
+ *   tapi kalau user scroll ke atas, halaman TIDAK diseret paksa.
+ * - Tombol eksplisit di bawah kotak: "Lewati ⏵" saat mengetik,
+ *   "Lanjut ▶" saat teks penuh, "Selesai" di scene terakhir (tetap dipasang
+ *   supaya jelas di mobile; kotak dialog juga tetap bisa diketuk).
+ * - Scene 7 selesai → teks game hilang, tampil "bait" header halaman:
+ *   foto profile.png besar TANPA border + H1 gradient teks
+ *   "Just a story about me, making my dreams come true." lalu transkrip
+ *   7 kartu + CTA. Refresh → kembali ke scene 1 (state tidak dipersist).
  */
 
 /** Render token hasil parser menjadi span berwarna. */
@@ -55,32 +62,55 @@ export function AboutGame() {
   const [isTyping, setIsTyping] = useState(true);
   const [isGameFinished, setIsGameFinished] = useState(false);
   const reducedMotion = useReducedMotion();
-  const dialogRef = useRef<HTMLDivElement>(null);
+  // Sticky-bottom ala chat: true = user "menempel" di dasar halaman →
+  // saat teks tumbuh, otomatis ikut ke baris terbaru.
+  const stickBottom = useRef(true);
 
   const scene = aboutScenes[currentScene];
+  const isLastScene = currentScene === aboutScenes.length - 1;
   const { typed, done } = useTypewriter(scene.text, 24, !isTyping);
   const tokens = parseHighlightTokens(typed);
 
   // Sinkronkan isTyping dengan kondisi selesai mengetik natural
-  // (supaya indikator ▼ muncul tanpa perlu diketuk dulu).
+  // (supaya indikator ▼ & tombol "Lanjut" muncul tanpa perlu diketuk).
   useEffect(() => {
     if (done && isTyping) setIsTyping(false);
   }, [done, isTyping]);
 
-  //.proj Auto-scroll kotak dialog mengikuti teks yang baru diketik (feel VN).
+  // Pantau posisi user: menempel dasar halaman atau sedang scroll ke atas.
   useEffect(() => {
-    const el = dialogRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
+    const onScroll = () => {
+      const doc = document.documentElement;
+      stickBottom.current =
+        window.innerHeight + window.scrollY >= doc.scrollHeight - 160;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Teks tumbuh → ikut ke baris terbaru HANYA kalau user masih di dasar.
+  useEffect(() => {
+    if (stickBottom.current) {
+      window.scrollTo({ top: document.documentElement.scrollHeight });
+    }
   }, [typed]);
+
+  // End game: tampilkan bait header dari atas halaman.
+  useEffect(() => {
+    if (isGameFinished) {
+      stickBottom.current = true;
+      window.scrollTo({ top: 0 });
+    }
+  }, [isGameFinished]);
 
   const handleTap = () => {
     if (isGameFinished) return;
     if (isTyping && !done) {
-      setIsTyping(false); // tap ke-1: skip typing → tampil penuh
+      setIsTyping(false); // tekan ke-1: skip typing → tampil penuh
       return;
     }
-    if (currentScene < aboutScenes.length - 1) {
-      setCurrentScene((c) => c + 1); // tap ke-2: dialog berikutnya
+    if (!isLastScene) {
+      setCurrentScene((c) => c + 1); // tekan ke-2: dialog berikutnya
       setIsTyping(true);
       return;
     }
@@ -91,42 +121,56 @@ export function AboutGame() {
     setCurrentScene(0);
     setIsTyping(true);
     setIsGameFinished(false);
+    window.scrollTo({ top: 0 });
   };
 
-  /* ---------------- END GAME: transkrip vertikal ---------------- */
+  /* ---------------- END GAME: header + transkrip vertikal ---------------- */
   if (isGameFinished) {
     return (
       <motion.div
         initial={reducedMotion ? false : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="mx-auto w-full max-w-2xl space-y-6 py-12"
+        className="mx-auto w-full max-w-3xl px-4 pb-16"
       >
-        <p className="text-center font-display text-sm font-bold uppercase tracking-wide text-ink/60">
-          Transkrip lengkap
-        </p>
+        {/* Bait pembuka halaman: foto besar (tanpa border) + H1 gradient */}
+        <header className="flex flex-col items-center gap-8 py-10 text-center md:flex-row md:items-center md:gap-12 md:py-16 md:text-left">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/aboutme_pixel/profile.png"
+            alt="Ananta, pembuat Tampilin.online, sedang menikmati kopi"
+            width={240}
+            height={240}
+            className="h-40 w-40 shrink-0 rounded-full object-cover [image-rendering:pixelated] md:h-56 md:w-56"
+          />
+          <h1 className="font-display bg-gradient-to-br from-yellow to-orange bg-clip-text text-3xl font-black leading-[1.15] text-transparent [filter:drop-shadow(4px_4px_0_#1A1A1A)] md:text-5xl">
+            Just a story about me, making my dreams come true.
+          </h1>
+        </header>
 
-        {aboutScenes.map((s) => (
-          <article
-            key={s.id}
-            className="flex items-start gap-4 rounded-card border-2 border-ink bg-cream p-4 shadow-brutal md:p-6"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={s.image}
-              alt={`Ananta — ilustrasi bagian ${s.id}`}
-              width={120}
-              height={120}
-              loading={s.id === 1 ? "eager" : "lazy"}
-              className="h-16 w-16 shrink-0 rounded-card border-2 border-ink bg-white md:h-20 md:w-20 [image-rendering:pixelated]"
-            />
-            <p className="text-base leading-relaxed text-ink/80">
-              <HighlightedSpans tokens={parseHighlightTokens(s.text)} />
-            </p>
-          </article>
-        ))}
+        <div className="space-y-6">
+          {aboutScenes.map((s) => (
+            <article
+              key={s.id}
+              className="flex items-start gap-4 rounded-card border-2 border-ink bg-cream p-4 shadow-brutal md:p-6"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={s.image}
+                alt={`Ananta — ilustrasi bagian ${s.id}`}
+                width={120}
+                height={120}
+                loading={s.id === 1 ? "eager" : "lazy"}
+                className="h-16 w-16 shrink-0 rounded-card border-2 border-ink bg-white md:h-20 md:w-20 [image-rendering:pixelated]"
+              />
+              <p className="text-base leading-relaxed text-ink/80">
+                <HighlightedSpans tokens={parseHighlightTokens(s.text)} />
+              </p>
+            </article>
+          ))}
+        </div>
 
-        <div className="flex flex-col items-center gap-4 pt-2">
+        <div className="flex flex-col items-center gap-4 pt-10">
           <WhatsAppButton size="lg" />
           <Button variant="secondary" size="md" onClick={restart}>
             Ulangi cerita dari awal
@@ -136,26 +180,11 @@ export function AboutGame() {
     );
   }
 
-  /* ---------------- GAME SCREEN (locked layar penuh) ---------------- */
+  /* -------- GAME SCREEN: gambar fix di atas, teks tumbuh ke bawah -------- */
   return (
-    <div
-      role="button"
-      tabIndex={0}
-      aria-label="Ketuk untuk melanjutkan dialog"
-      onClick={handleTap}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handleTap();
-        }
-      }}
-      className={cn(
-        "flex cursor-pointer select-none flex-col items-center justify-center px-4 pb-6 pt-4 text-center focus-visible:outline-2 focus-visible:outline-yellow focus-visible:outline-offset-2",
-        "h-dvh overflow-hidden", // LOCKED sampai game selesai
-      )}
-    >
-      {/* Karakter */}
-      <div className="flex flex-1 items-center justify-center">
+    <div className="flex flex-col items-center px-4 pb-20 pt-6 md:pb-24 md:pt-10">
+      {/* Zona karakter — tinggi TETAP supaya posisinya pakem walau teks tumbuh */}
+      <div className="flex h-48 w-full max-w-xl items-center justify-center md:h-72">
         <AnimatePresence mode="wait" initial={false}>
           <motion.img
             key={scene.id}
@@ -167,22 +196,24 @@ export function AboutGame() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? undefined : { opacity: 0, y: -20 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="max-h-[32dvh] w-auto max-w-[280px] rounded-full border-[3px] border-ink bg-white p-1 shadow-brutal md:max-w-[380px] [image-rendering:pixelated]"
+            className="max-h-full w-auto max-w-[280px] rounded-full border-[3px] border-ink bg-white p-1 shadow-brutal md:max-w-[380px] [image-rendering:pixelated]"
           />
         </AnimatePresence>
       </div>
 
-      {/* Kotak dialog */}
-      <div className="relative mt-6 w-full max-w-2xl">
-        <span className="absolute -top-4 left-1/2 z-10 -translate-x-1/2 rounded-pill border-2 border-ink bg-yellow px-4 py-1 font-display text-sm font-bold text-ink shadow-brutal-sm">
+      {/* Kotak dialog — mengembang mengikuti isi; teks menumpuk ke bawah.
+          Area ini + karakter bisa diketuk (skip/lanjut), tombol di bawah
+          sebagai kontrol eksplisit. */}
+      <div
+        onClick={handleTap}
+        className="relative mt-8 w-full max-w-xl cursor-pointer select-none"
+      >
+        <span className="absolute -top-4 left-4 z-10 rounded-pill border-2 border-ink bg-yellow px-4 py-1 font-display text-sm font-bold text-ink shadow-brutal-sm">
           Ananta
         </span>
 
-        <div
-          ref={dialogRef}
-          className="relative max-h-[42dvh] overflow-y-auto rounded-card border-[3px] border-ink bg-cream p-6 [box-shadow:8px_8px_0_#1A1A1A]"
-        >
-          <p className="pr-6 text-left text-base leading-relaxed text-ink/85">
+        <div className="relative min-h-[200px] rounded-card border-[3px] border-ink bg-cream p-5 pt-7 shadow-brutal md:min-h-[240px] md:p-6 md:pt-7">
+          <p className="text-left text-base leading-relaxed text-ink/85 md:text-lg">
             <HighlightedSpans tokens={tokens} />
           </p>
 
@@ -196,11 +227,41 @@ export function AboutGame() {
             </span>
           ) : null}
         </div>
+      </div>
 
-        <p className="mt-3 text-xs font-medium text-ink/50">
-          {isTyping
-            ? "Ketuk untuk melompati teks"
-            : `Bagian ${currentScene + 1} dari ${aboutScenes.length} — ketuk untuk lanjut`}
+      {/* Kontrol eksplisit (mobile-first, selalu terlihat) */}
+      <div className="mt-4 flex flex-col items-center gap-2">
+        <Button
+          variant="primary"
+          size="md"
+          onClick={handleTap}
+          aria-label={
+            isTyping && !done
+              ? "Lewati efek mengetik"
+              : isLastScene
+                ? "Selesaikan cerita"
+                : "Lanjut ke dialog berikutnya"
+          }
+        >
+          {isTyping && !done ? (
+            <>
+              Lewati
+              <SkipForward aria-hidden="true" className="h-4 w-4" />
+            </>
+          ) : isLastScene ? (
+            <>
+              Selesai
+              <Flag aria-hidden="true" className="h-4 w-4" />
+            </>
+          ) : (
+            <>
+              Lanjut
+              <ChevronRight aria-hidden="true" className="h-4 w-4" />
+            </>
+          )}
+        </Button>
+        <p className="text-xs font-medium text-ink/50">
+          Bagian {currentScene + 1} dari {aboutScenes.length}
         </p>
       </div>
     </div>

@@ -23,4 +23,6 @@ export const NAV_LINKS = [
   { label: "Portofolio", href: "#portofolio" },
   { label: "Simulasi", href: "#simulasi" },
   { label: "FAQ", href: "#faq" },
+  // Halaman /about (visual novel) — href PENUH, bukan anchor section.
+  { label: "Tentang", href: "/about" },
 ] as const;
