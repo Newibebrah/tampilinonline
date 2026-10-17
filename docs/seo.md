@@ -81,16 +81,15 @@ Lokasi schema di kode: `lib/schema.ts`. Semua node `@id` absolut + referensi
 ## 5. Test OG Image & Sharing
 - **Facebook/LinkedIn**: https://developers.facebook.com/tools/debug/ → paste URL →
   Scrape Again (untuk purge cache).
-- **Twitter/X**: gunakan `curl -A "Twitterbot" https://www.tampilin.online` atau
-  Post Inspector LinkedIn.
-- OG dinamis di-build otomatis: `app/opengraph-image.tsx` (1200×630 PNG saat build).
-- **Copy statis** di `public/images/og/og-image.png` — di-refresh dari hasil dynamic
-  route saat build; perintah manual:
-  ```bash
-  curl -s https://www.tampilin.online/opengraph-image -o public/images/og/og-image.png
-  ```
-  Berguna untuk LinkedIn/testing yang tak menghormati dynamic routes atau embed
-  langsung file statis. Referensi config: `SITE.ogImage` di `lib/seo.ts`.
+- **WhatsApp**: preview link pakai Open Graph (`og:title`, `og:description`, `og:image`).
+  WhatsApp men-cache preview per-URL agresif; test dengan URL frisch (tambahkan query,
+  mis. `?v=2`) bila gambar lama masih muncul.
+- **OG image saat ini**: file statis `public/images/og/og-image.png` (1200×630, ±200 KB)
+  — komposisi logo brand + wordmark + tagline, disusun via PIL, referensinya eksplisit
+  di `app/layout.tsx` (`metadata.openGraph.images`). WhatsApp TIDAK mendukung SVG —
+  selalu PNG/JPG < ~600 KB.
+- Update logo: ganti file `og-image.png` (rasio 1.91:1, ukuran aman < 600 KB) → push →
+  tak ada perubahan kode.
 
 ---
 

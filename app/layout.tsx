@@ -40,8 +40,16 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: SITE.title,
     description: SITE.description,
-    // OG image di-inject otomatis oleh app/opengraph-image.tsx (dynamic, 1200×630).
-    // Copy statis juga ada di public/images/og/og-image.png (lihat docs/seo.md).
+    // OG image statis pakai logo brand (1200×630, < 300KB) — WhatsApp/FB/LinkedIn friendly.
+    // Update file di public/images/og/og-image.png saat logo berganti.
+    images: [
+      {
+        url: SITE.ogImage, // /images/og/og-image.png → absolut via metadataBase
+        width: 1200,
+        height: 630,
+        alt: `${SITE.name} — Jasa pembuatan website mulai Rp499.000`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
