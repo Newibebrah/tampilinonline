@@ -63,7 +63,7 @@ export function Process() {
                 {processContent.preparationItems.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-2 text-sm text-ink/80"
+                    className="flex items-start gap-2 text-ink/80"
                   >
                     <CheckCircle
                       aria-hidden="true"
@@ -91,7 +91,7 @@ export function Process() {
                 {processContent.exclusionsItems.map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-2 text-sm text-ink/80"
+                    className="flex items-start gap-2 text-ink/80"
                   >
                     <X
                       aria-hidden="true"

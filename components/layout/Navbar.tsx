@@ -41,7 +41,7 @@ export function Navbar() {
         className="container flex h-16 items-center justify-between gap-4 md:h-20"
       >
         <a href="#" aria-label="Tampilin.online — kembali ke atas" className="rounded-sm">
-          <Wordmark className="text-lg md:text-xl" />
+          <Wordmark className="text-2xl md:text-3xl" />
         </a>
 
         {/* Nav desktop */}

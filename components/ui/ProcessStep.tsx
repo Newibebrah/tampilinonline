@@ -53,7 +53,7 @@ export function ProcessStepCard({
         </span>
       ) : null}
 
-      <p className="mt-2 text-sm italic text-ink/60">{step.tagline}</p>
+      <p className="mt-2 text-base italic text-ink/70">{step.tagline}</p>
 
       <p className="mt-3 text-base leading-relaxed text-ink/80">
         {step.description}
@@ -61,7 +61,7 @@ export function ProcessStepCard({
 
       {/* Role split: Anda / Kami */}
       <div className="mt-4 grid gap-2 md:grid-cols-2 md:gap-4">
-        <p className="flex items-start gap-2 text-sm text-ink/80">
+        <p className="flex items-start gap-2 text-ink/80">
           <User
             aria-hidden="true"
             className="mt-0.5 h-4 w-4 shrink-0 text-orange"
@@ -70,7 +70,7 @@ export function ProcessStepCard({
             <span className="font-medium text-ink">Anda:</span> {step.clientRole}
           </span>
         </p>
-        <p className="flex items-start gap-2 text-sm text-ink/80">
+        <p className="flex items-start gap-2 text-ink/80">
           <Wrench aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-ink" />
           <span>
             <span className="font-medium text-ink">Kami:</span> {step.ourRole}

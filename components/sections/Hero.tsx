@@ -40,7 +40,7 @@ export function Hero() {
             </ButtonLink>
           </div>
 
-          <ul className="flex flex-wrap gap-4 text-sm font-medium text-ink/70">
+          <ul className="flex flex-wrap gap-4 text-base font-medium text-ink/70">
             <li className="flex items-center gap-1.5">
               <Brush aria-hidden="true" className="h-4 w-4" />
               Desain sesuai brand

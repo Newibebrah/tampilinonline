@@ -205,7 +205,7 @@ export function PriceSimulator() {
             </p>
 
             {result.maintenanceMonthly > 0 ? (
-              <p className="mt-3 text-sm text-ink/70">
+              <p className="mt-3 text-ink/70">
                 + Biaya berulang:{" "}
                 <b>{formatRupiah(result.maintenanceMonthly)}/bulan</b> (maintenance,
                 dibayar terpisah)

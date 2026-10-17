@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="border-t-[3px] border-ink bg-ink text-cream">
       <div className="container grid gap-10 py-12 md:grid-cols-3 md:gap-8">
         <div>
-          <Wordmark className="text-xl" />
+          <Wordmark className="text-3xl" />
           <p className="mt-3 max-w-xs text-cream/70">{BRAND.tagline}</p>
         </div>
 

@@ -1,6 +1,9 @@
+"use client";
+
 import { Check, MessageCircle } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { SwipeCarousel } from "@/components/ui/SwipeCarousel";
 import { cn } from "@/lib/utils";
 import { buildWhatsAppUrl, packageMessage } from "@/lib/whatsapp";
 import { packages } from "@/data/packages";
@@ -8,9 +11,11 @@ import type { Package } from "@/types";
 
 /**
  * Bento Grid paket (README 10):
- * - Desktop: CSS Grid 4 kolom via .bento-grid + grid-area per card.
- * - Mobile: stack 1 kolom, order mengikuti urutan data.
- * - UMKM = featured (card terbesar, bg yellow).
+ * - Desktop (≥1024): CSS Grid 4 kolom via .bento-grid + grid-area per card.
+ * - Tablet (768–1023): stack 1 kolom — seperti sebelumnya (tidak diubah).
+ * - Mobile (<768): SwipeCarousel — 6 paket sebagai card geser horizontal,
+ *   order array data (Sales = slide pertama), badge tetap tampil.
+ * - UMKM = featured (bg yellow, badge "Terpopuler").
  * CTA per paket → WhatsApp dengan pesan pre-filled.
  */
 export function PackagesBento() {
@@ -24,7 +29,20 @@ export function PackagesBento() {
         />
       </ScrollReveal>
 
-      <ScrollReveal className="mt-10 md:mt-14">
+      {/* --- MOBILE (<768px): swipe carousel 6 paket --- */}
+      <div className="mt-10 md:hidden">
+        <ScrollReveal>
+          <SwipeCarousel
+            items={packages}
+            ariaLabel="Daftar paket layanan pembuatan website"
+            cardWidthClass="w-[85vw] max-w-[380px]"
+            renderItem={(pkg) => <PackageCard pkg={pkg} />}
+          />
+        </ScrollReveal>
+      </div>
+
+      {/* --- TABLET & DESKTOP (≥768px): bento grid — TIDAK DIUBAH --- */}
+      <ScrollReveal className="mt-10 hidden md:block md:mt-14">
         <div className="bento-grid">
           {packages.map((pkg) => (
             <PackageCard key={pkg.id} pkg={pkg} />
@@ -40,7 +58,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
     <article
       style={{ gridArea: pkg.gridArea }}
       className={cn(
-        "flex flex-col rounded-card p-6 shadow-brutal transition-[transform,box-shadow] duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm",
+        "flex h-full flex-col rounded-card p-6 shadow-brutal transition-[transform,box-shadow] duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm",
         pkg.featured
           ? "border-[3px] border-ink bg-yellow"
           : "border-2 border-ink bg-white",
@@ -70,11 +88,11 @@ function PackageCard({ pkg }: { pkg: Package }) {
           {pkg.priceLabel.replace("Mulai dari ", "")}
         </span>
       </p>
-      <p className="text-sm text-ink/60">Target: {pkg.target}</p>
+      <p className="text-ink/70">Target: {pkg.target}</p>
 
       <ul className="mt-4 flex flex-1 flex-col gap-2">
         {pkg.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2 text-sm">
+          <li key={feature} className="flex items-start gap-2">
             <Check
               aria-hidden="true"
               className="mt-0.5 h-4 w-4 shrink-0 stroke-[3]"

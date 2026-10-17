@@ -8,6 +8,7 @@ import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { SwipeCarousel } from "@/components/ui/SwipeCarousel";
 import { cn } from "@/lib/utils";
 
 /**
@@ -21,9 +22,13 @@ import { cn } from "@/lib/utils";
  *   beat 1 sebagai default; observer hanya menambah interaksi.
  * - Reduced motion: swap konten berlangsung instan, tanpa animasi.
  *
- * Desktop: kolom kiri = panel sticky (visual + progress), kolom kanan = 4
- * kartu narasi sebagai trigger (IntersectionObserver band tengah viewport).
- * Mobile: kartu stack penuh (auto), visual ikut di dalam kartu.
+ * Desktop (≥768px): kolom kiri = panel sticky (visual + progress, hanya ≥1024),
+ * kolom kanan = 4 kartu narasi sebagai trigger (IntersectionObserver band
+ * tengah viewport). — TIDAK DIUBAH dari versi sebelumnya.
+ *
+ * Mobile (<768px): SwipeCarousel — 4 beat sebagai card geser horizontal
+ * (ganti scroll-driven animation yang panjang di HP). Card width 85vw
+ * dengan peek effect, snap-center, dot indicator.
  */
 
 type Scheme = "plain" | "dark" | "accent" | "cta";
@@ -155,12 +160,49 @@ export function ProblemScrolly() {
         <SectionHeading
           eyebrow="Masalah"
           title="Usaha bagus yang tak ditemukan itu rugi peluang."
-          description="Empat fakta yang bikin bisnis tanpa website ketinggalan terus. Scroll perlahan — setiap langkahnya dibedah satu per satu."
+          description="Empat fakta yang bikin bisnis tanpa website ketinggalan terus — dibedah satu per satu."
         />
       </ScrollReveal>
 
+      {/* --- MOBILE (<768px): swipe carousel — card geser, bukan vertical stack --- */}
+      <div className="mt-10 md:hidden">
+        <SwipeCarousel
+          items={BEATS}
+          ariaLabel="Masalah yang bisa diselesaikan dengan website"
+          cardWidthClass="w-[85vw] max-w-[380px]"
+          renderItem={(b) => (
+            <article
+              className={cn(
+                "flex h-full flex-col rounded-card border-2 border-ink p-6 shadow-brutal",
+                CARD_CLS[b.scheme],
+              )}
+            >
+              <span
+                className={cn(
+                  "inline-flex h-10 w-10 self-start items-center justify-center rounded-full border-2 border-ink font-display text-sm font-extrabold",
+                  NUM_CLS[b.scheme],
+                )}
+              >
+                {b.num}
+              </span>
+              <h3 className="mt-4 font-display text-2xl font-extrabold leading-tight">
+                {b.headline}
+              </h3>
+              <p className={cn("mt-3 text-base leading-relaxed", SUB_CLS[b.scheme])}>
+                {b.sub}
+              </p>
+              {/* Tinggi visual dibikin seragam supaya semua card saatnya sama & terasa identik */}
+              <div className="mt-6 flex h-56 items-center justify-center">
+                <BeatVisual beat={b} compact />
+              </div>
+            </article>
+          )}
+        />
+      </div>
+
+      {/* --- DESKTOP (≥768px): scrollytelling — TIDAK DIUBAH --- */}
       <div className="mt-10 grid gap-8 md:mt-14 lg:grid-cols-2 lg:gap-12">
-        {/* Panel sticky (hanya desktop) */}
+        {/* Panel sticky (hanya desktop ≥1024) */}
         <aside className="relative hidden lg:block">
           <div className="sticky top-24">
             <div className="overflow-hidden rounded-card border-[3px] border-ink bg-white shadow-brutal">
@@ -219,8 +261,9 @@ export function ProblemScrolly() {
           </div>
         </aside>
 
-        {/* Kartu narasi (trigger + mobile full) */}
-        <div className="flex flex-col gap-6">
+        {/* Kartu narasi sebagai trigger scrollytelling — tersembunyi di mobile
+            (mobile memakai SwipeCarousel di atas). Konten md+ tetap identik. */}
+        <div className="hidden flex-col gap-6 md:flex">
           {BEATS.map((b, index) => (
             <article
               key={b.key}
