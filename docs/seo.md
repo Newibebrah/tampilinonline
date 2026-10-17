@@ -60,14 +60,14 @@ Deploy ulang → klik Verify di GSC. (Kurang direkomendasikan karena terikat dep
 3. Status akan Listed ("Success"); halaman baru biasanya diindeks dalam **3–14 hari**.
 4. Pantau **Coverage** report — halaman satu pun harus "Indexed".
 
-Bisa juga prioritas ping: `https://www.google.com/ping?sitemap=https://tampilin.online/sitemap.xml`
+Bisa juga prioritas ping: `https://www.google.com/ping?sitemap=https://www.tampilin.online/sitemap.xml`
 
 ---
 
 ## 4. Validasi JSON-LD
 1. Buka `https://validator.schema.org` → pilih tab **Raw Input**.
 2. Copy isi salah satu `<script type="application/json-ld">` dari view-source
-   `https://tampilin.online`.
+   `https://www.tampilin.online`.
 3. Paste → Validate — semuanya harus **0 errors**; warning minor boleh.
 4. Alt tool visual: [Google Rich Results Test](https://search.google.com/test/rich-results) —
    untuk FAQPage strip rich-result snippet mungkin tidak diberikan (batas Google 2026),
@@ -81,13 +81,13 @@ Lokasi schema di kode: `lib/schema.ts`. Semua node `@id` absolut + referensi
 ## 5. Test OG Image & Sharing
 - **Facebook/LinkedIn**: https://developers.facebook.com/tools/debug/ → paste URL →
   Scrape Again (untuk purge cache).
-- **Twitter/X**: gunakan `curl -A "Twitterbot" https://tampilin.online` atau
+- **Twitter/X**: gunakan `curl -A "Twitterbot" https://www.tampilin.online` atau
   Post Inspector LinkedIn.
 - OG dinamis di-build otomatis: `app/opengraph-image.tsx` (1200×630 PNG saat build).
 - **Copy statis** di `public/images/og/og-image.png` — di-refresh dari hasil dynamic
   route saat build; perintah manual:
   ```bash
-  curl -s https://tampilin.online/opengraph-image -o public/images/og/og-image.png
+  curl -s https://www.tampilin.online/opengraph-image -o public/images/og/og-image.png
   ```
   Berguna untuk LinkedIn/testing yang tak menghormati dynamic routes atau embed
   langsung file statis. Referensi config: `SITE.ogImage` di `lib/seo.ts`.
@@ -96,8 +96,8 @@ Lokasi schema di kode: `lib/schema.ts`. Semua node `@id` absolut + referensi
 
 ## 6. Checklist Pre-Deploy SEO (run manual tiap rilis besar)
 - [ ] `npm run build` sukses tanpa error.
-- [ ] `https://tampilin.online/sitemap.xml` — hanya URL halaman indexable.
-- [ ] `https://tampilin.online/robots.txt` — Host + Sitemap + AI crawlers eksplisit.
+- [ ] `https://www.tampilin.online/sitemap.xml` — hanya URL halaman indexable.
+- [ ] `https://www.tampilin.online/robots.txt` — Host + Sitemap + AI crawlers eksplisit.
 - [ ] View-source: canonical, og:*, twitter:* lengkap; **4 JSON-LD**; tanpa duplikat.
 - [ ] Keempat JSON-LD lolos validator.schema.org.
 - [ ] OG image tampil 1200×630 via Sharing Debugger.

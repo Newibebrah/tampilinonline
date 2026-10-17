@@ -1,9 +1,10 @@
 /**
  * Centralized SEO config — satu sumber kebenaran untuk semua sinyal SEO.
- * Semua URL harus absolut (https://tampilin.online) untuk schema & canonical.
+ * Semua URL harus absolut (https://www.tampilin.online) untuk schema & canonical.
+ * Catatan: situs diserve di www (apex redirect 308 → www, urutan Vercel).
  */
 
-const BASE_URL = "https://tampilin.online";
+const BASE_URL = "https://www.tampilin.online";
 
 export const SITE = {
   name: "Tampilin.online",
@@ -35,7 +36,7 @@ export const DEFAULT_KEYWORDS = [
 
 /**
  * URL absolut lengkap — helper untuk path relatif.
- * siteUrl("/brand/logo-horizontal.svg") → "https://tampilin.online/brand/logo-horizontal.svg"
+ * siteUrl("/brand/logo-horizontal.svg") → "https://www.tampilin.online/brand/logo-horizontal.svg"
  */
 export function siteUrl(path: string): string {
   return new URL(path, SITE.url).toString();
