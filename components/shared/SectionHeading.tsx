@@ -2,7 +2,11 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
 
 /**
- * Heading konsisten untuk semua section: badge kecil (eyebrow) + H2 + deskripsi.
+ * Heading konsisten untuk semua section: badge (eyebrow) + H2 + subjudul.
+ *
+ * Subjudul v2 (permintaan review): lebih besar (text-lg → text-xl),
+ * TIDAK memanjang ke lebar penuh — block-nya hug konten & dibatasi ukuran
+ * supaya barisnya pendek-rapi, dan text-balance bikin panjang baris rata.
  */
 export function SectionHeading({
   eyebrow,
@@ -36,7 +40,13 @@ export function SectionHeading({
         {title}
       </h2>
       {description ? (
-        <p className={cn("max-w-2xl text-ink/70", invert && "text-cream/80")}>
+        <p
+          className={cn(
+            "text-balance font-display text-lg font-medium leading-snug md:text-xl",
+            "max-w-md md:max-w-xl",
+            invert ? "text-cream/80" : "text-ink/80",
+          )}
+        >
           {description}
         </p>
       ) : null}
