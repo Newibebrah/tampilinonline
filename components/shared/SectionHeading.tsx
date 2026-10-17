@@ -25,7 +25,9 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4",
+        // items-start: badge & teks shrink-to-fit (hug konten), BUKAN stretch
+        // selebar kontainer — tanpa ini badge align-kiri jadi |solusi…lebar…|
+        "flex flex-col items-start gap-4",
         align === "center" && "items-center text-center",
       )}
     >
