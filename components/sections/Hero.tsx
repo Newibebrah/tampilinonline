@@ -44,18 +44,20 @@ export function Hero() {
             </ButtonLink>
           </div>
 
-          {/* 3 poin: mobile = 1 baris ke samping TEPAT DI ATAS button; desktop = di bawah CTA. */}
-          <ul className="order-3 flex flex-nowrap items-center justify-center gap-2 whitespace-nowrap text-xs sm:order-none sm:justify-start sm:gap-4 sm:text-base">
-            <li className="flex items-center gap-1.5">
-              <Brush aria-hidden="true" className="hidden h-4 w-4 sm:inline" />
+          {/* 3 poin: mobile = 1 baris ke samping TEPAT DI ATAS button (semua
+              dikecilkan: ikon 12px + teks 11px, ikon TETAP tampil); desktop = di
+              bawah CTA ukuran normal. */}
+          <ul className="order-3 flex flex-nowrap items-center justify-center gap-1 whitespace-nowrap text-[11px] font-medium text-ink/70 sm:order-none sm:justify-start sm:gap-4 sm:text-base">
+            <li className="flex items-center gap-0.5">
+              <Brush aria-hidden="true" className="h-3 w-3 shrink-0 sm:h-4 sm:w-4" />
               Desain sesuai brand
             </li>
-            <li className="flex items-center gap-1.5">
-              <Server aria-hidden="true" className="hidden h-4 w-4 sm:inline" />
+            <li className="flex items-center gap-0.5">
+              <Server aria-hidden="true" className="h-3 w-3 shrink-0 sm:h-4 sm:w-4" />
               Deployment hosting
             </li>
-            <li className="flex items-center gap-1.5">
-              <LifeBuoy aria-hidden="true" className="hidden h-4 w-4 sm:inline" />
+            <li className="flex items-center gap-0.5">
+              <LifeBuoy aria-hidden="true" className="h-3 w-3 shrink-0 sm:h-4 sm:w-4" />
               2 putaran revisi
             </li>
           </ul>
