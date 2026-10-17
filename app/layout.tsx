@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { SITE, DEFAULT_KEYWORDS, BRAND_ICONS } from "@/lib/seo";
 
 // Font via next/font — self-hosted otomatis & dioptimasi Next.
 // --font-space-grotesk: display (heading), --font-inter: body.
@@ -19,27 +20,55 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tampilin.online"),
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: SITE.title,
+    template: "%s | Tampilin.online",
+  },
+  description: SITE.description,
+  keywords: [...DEFAULT_KEYWORDS],
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  publisher: SITE.name,
   alternates: {
     canonical: "/",
   },
-  title: {
-    default: "Tampilin.online — Semua Usaha Harus Punya Website",
-    template: "%s | Tampilin.online",
-  },
-  description:
-    "Jasa pembuatan website untuk UMKM, fresh graduate, freelancer, sales, perusahaan, dan bisnis online. Mulai Rp499.000. Konsultasi gratis via WhatsApp.",
   openGraph: {
     type: "website",
-    locale: "id_ID",
-    siteName: "Tampilin.online",
-    title: "Tampilin.online — Semua Usaha Harus Punya Website",
-    description:
-      "Jasa pembuatan website untuk UMKM, profesional, dan bisnis online. Mulai Rp499.000.",
+    locale: SITE.locale,
+    url: SITE.url,
+    siteName: SITE.name,
+    title: SITE.title,
+    description: SITE.description,
+    // OG image di-inject otomatis oleh app/opengraph-image.tsx (dynamic, 1200×630).
+    // Copy statis juga ada di public/images/og/og-image.png (lihat docs/seo.md).
   },
   twitter: {
     card: "summary_large_image",
+    site: SITE.twitterHandle,
+    creator: SITE.twitterHandle,
+    title: SITE.title,
+    description: SITE.description,
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  icons: {
+    icon: [{ url: BRAND_ICONS.favicon, sizes: "48x48" }],
+    apple: BRAND_ICONS.appleTouchIcon,
+    shortcut: BRAND_ICONS.favicon,
+  },
+  // GSC verification: JANGAN diisi sebelum verifikasi DNS selesai (Opsi A).
+  // Setelah dapat kode, tambahkan:
+  // verification: { google: "kode-dari-search-console" },
 };
 
 export const viewport: Viewport = {

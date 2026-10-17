@@ -1,13 +1,10 @@
 import type { MetadataRoute } from "next";
+import { generateSitemapEntries } from "@/lib/seo";
 
-/** Sitemap sederhana — satu halaman v1. Submit ke Google Search Console post-deploy. */
+/**
+ * Sitemap — daftar halaman dikonfigurasi di generateSitemapEntries()
+ * supaya penambahan halaman baru (v1.3 multi-page) hanya edit satu tempat.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: "https://tampilin.online",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-  ];
+  return generateSitemapEntries();
 }
