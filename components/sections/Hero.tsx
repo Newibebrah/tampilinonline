@@ -44,19 +44,18 @@ export function Hero() {
             </ButtonLink>
           </div>
 
-          {/* 3 poin: mobile = grid 2 kolom DI ATAS button → TERPASTI 2 teks di
-              atas, 1 teks span-full di baris kedua, semua centered. Desktop =
-              di bawah CTA, rata kiri (grid util diabaikan di flex). */}
-          <ul className="order-3 grid grid-cols-2 justify-items-center gap-x-2 gap-y-2 text-base font-medium text-ink/70 sm:order-none sm:flex sm:flex-wrap sm:justify-start sm:gap-4">
+          {/* 3 poin: mobile = SATU baris lurus di atas button (copy pendek biar
+              muat 360px), centered; desktop = di bawah CTA, rata kiri. */}
+          <ul className="order-3 flex flex-nowrap items-center justify-center gap-2 text-base font-medium text-ink/70 sm:order-none sm:justify-start sm:gap-4">
             <li className="flex items-center gap-1.5">
               <Brush aria-hidden="true" className="h-4 w-4 shrink-0" />
-              Desain sesuai brand
+              Desain sesuai
             </li>
             <li className="flex items-center gap-1.5">
               <Server aria-hidden="true" className="h-4 w-4 shrink-0" />
-              Deployment hosting
+              Hosting
             </li>
-            <li className="col-span-2 flex items-center gap-1.5">
+            <li className="flex items-center gap-1.5">
               <LifeBuoy aria-hidden="true" className="h-4 w-4 shrink-0" />
               2 putaran revisi
             </li>
