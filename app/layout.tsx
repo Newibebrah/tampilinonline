@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SITE, DEFAULT_KEYWORDS, BRAND_ICONS } from "@/lib/seo";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 // Font via next/font — self-hosted otomatis & dioptimasi Next.
 // --font-space-grotesk: display (heading), --font-inter: body.
@@ -92,7 +94,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className={`${spaceGrotesk.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

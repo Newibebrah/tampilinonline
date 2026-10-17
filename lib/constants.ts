@@ -9,6 +9,9 @@ export const BRAND = {
   whatsappUrl: "https://wa.me/6287716058371",
   instagram: "anandcaprio",
   instagramUrl: "https://instagram.com/anandcaprio",
+  // TODO: konfirmasi handle TikTok asli ke user — placeholder untuk sekarang.
+  tiktok: "tampilinonline",
+  tiktokUrl: "https://www.tiktok.com/@tampilinonline",
 } as const;
 
 /** Anchor navigation — urutan sama dengan urutan section di homepage. */

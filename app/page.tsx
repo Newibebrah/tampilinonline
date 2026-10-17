@@ -1,5 +1,3 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Hero } from "@/components/sections/Hero";
 import { ProblemScrolly } from "@/components/sections/ProblemScrolly";
@@ -43,7 +41,6 @@ export default function HomePage() {
       <JsonLd data={serviceSchema} />
       <JsonLd data={faqSchema(faqItems)} />
 
-      <Navbar />
       <main id="konten">
         <Hero />
         <ProblemScrolly />
@@ -55,7 +52,6 @@ export default function HomePage() {
         <FAQ />
         <FinalCTA />
       </main>
-      <Footer />
     </>
   );
 }

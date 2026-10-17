@@ -66,13 +66,30 @@ export function generateSitemapEntries(): Array<{
   const now = new Date();
 
   return [
-    // Halaman nantinya ditambahkan di sini, contoh:
-    // { url: siteUrl("/tentang"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     {
       url: SITE.url,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
+    },
+    // Halaman informatif (link di footer)
+    {
+      url: siteUrl("/privacy"),
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: siteUrl("/terms"),
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: siteUrl("/sitemap"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.2,
     },
   ];
 }

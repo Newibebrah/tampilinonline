@@ -36,8 +36,8 @@ export function Hero() {
             profesional di internet — mulai Rp499.000.
           </p>
 
-          {/* CTA (mobile: pindah ke bawah list 3 poin via order; desktop: urutan normal) */}
-          <div className="order-4 flex flex-col gap-3 sm:order-none sm:flex-row sm:items-center">
+          {/* CTA — mobile: auto-width & CENTER di bawah list; desktop row seperti sebelumnya */}
+          <div className="order-4 flex flex-col items-center gap-3 sm:order-none sm:flex-row sm:items-center">
             <WhatsAppButton size="lg" />
             <ButtonLink href="#paket" variant="secondary" size="lg">
               Lihat Paket
