@@ -3,9 +3,13 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  Camera,
   CheckCircle,
+  FileText,
+  KeyRound,
   MessageCircle,
   Package,
+  Rocket,
   User,
   Wrench,
   X,
@@ -122,6 +126,14 @@ export function Process() {
                       <p className="mt-1 text-base italic text-ink/60">
                         {step.tagline}
                       </p>
+
+                      {/* Ilustrasi mini per langkah (dekorerutif — aria-hidden) */}
+                      <div
+                        aria-hidden="true"
+                        className="mt-6 flex h-44 items-center justify-center"
+                      >
+                        <StepVisual step={step.step} />
+                      </div>
 
                       {/* Visual zone: role split + deliverable langkah aktif */}
                       <div className="mt-8 space-y-3">
@@ -386,4 +398,208 @@ export function Process() {
       </div>
     </section>
   );
+}
+
+/**
+ * Ilustrasi mini neo-brutalism per langkah, untuk panel sticky desktop.
+ * Semua dekoratif (parent aria-hidden): border tebal ink, warna flat
+ * yellow/orange/cream, shadow keras MATI (no gradients, no blur) per
+ * design system README Section 2.
+ */
+function StepVisual({ step }: { step: number }) {
+  const frame =
+    "w-full max-w-[230px] overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal-sm";
+
+  switch (step) {
+    case 1: // Konsultasi — mock chat WhatsApp
+      return (
+        <div className={frame}>
+          <div className="flex items-center gap-1.5 border-b-2 border-ink bg-yellow px-3 py-1.5">
+            <MessageCircle className="h-3.5 w-3.5 text-ink" />
+            <span className="font-display text-xs font-bold text-ink">
+              Konsultasi via chat
+            </span>
+          </div>
+          <div className="space-y-2 p-3">
+            <span className="block max-w-[85%] rounded-card rounded-bl-none border-2 border-ink bg-cream px-2.5 py-1.5">
+              <span className="block h-1.5 w-4/5 rounded-pill bg-ink/50" />
+              <span className="mt-1 block h-1.5 w-3/5 rounded-pill bg-ink/30" />
+            </span>
+            <span className="ml-auto block max-w-[85%] rounded-card rounded-br-none border-2 border-ink bg-yellow px-2.5 py-1.5">
+              <span className="block h-1.5 w-3/5 rounded-pill bg-ink/50" />
+              <span className="mt-1 block h-1.5 w-4/5 rounded-pill bg-ink/30" />
+            </span>
+            <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-white px-3 py-1.5">
+              <span className="h-1.5 flex-1 rounded-pill bg-ink/15" />
+              <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-ink" />
+            </span>
+          </div>
+        </div>
+      );
+
+    case 2: // Rekomendasi & penawaran — mock dokumen harga
+      return (
+        <div className={frame}>
+          <div className="flex items-center gap-1.5 border-b-2 border-ink bg-orange px-3 py-1.5">
+            <FileText className="h-3.5 w-3.5 text-cream" />
+            <span className="font-display text-xs font-bold text-ink">
+              Penawaran
+            </span>
+          </div>
+          <div className="space-y-2 p-3">
+            <span className="flex h-1.5 w-full rounded-pill bg-ink/15" />
+            <span className="flex h-1.5 w-4/5 rounded-pill bg-ink/15" />
+            <span className="flex h-1.5 w-3/5 rounded-pill bg-ink/15" />
+            <span className="flex items-center justify-between border-2 border-ink bg-yellow px-2.5 py-1.5">
+              <span className="font-display text-xs font-bold text-ink">Total</span>
+              <span className="font-display text-xs font-extrabold text-ink">
+                sesuai lingkup
+              </span>
+            </span>
+          </div>
+        </div>
+      );
+
+    case 3: // Pengumpulan materi — chip Logo/Foto/Teks
+      return (
+        <div className={frame}>
+          <div className="border-b-2 border-ink bg-cream px-3 py-1.5 font-display text-xs font-bold text-ink">
+            Materi dari Anda
+          </div>
+          <div className="grid grid-cols-3 gap-2 p-3">
+            <span className="flex flex-col items-center gap-1.5 rounded-card border-2 border-ink bg-white p-2">
+              <Package className="h-4 w-4 text-ink" />
+              <span className="font-display text-[10px] font-bold">Logo</span>
+            </span>
+            <span className="flex flex-col items-center gap-1.5 rounded-card border-2 border-ink bg-white p-2">
+              <Camera className="h-4 w-4 text-ink" />
+              <span className="font-display text-[10px] font-bold">Foto</span>
+            </span>
+            <span className="flex flex-col items-center gap-1.5 rounded-card border-2 border-ink bg-white p-2">
+              <FileText className="h-4 w-4 text-ink" />
+              <span className="font-display text-[10px] font-bold">Teks</span>
+            </span>
+          </div>
+        </div>
+      );
+
+    case 4: // Desain & pengembangan — mock browser
+      return (
+        <div className={frame}>
+          <div className="flex items-center gap-1 border-b-2 border-ink bg-cream px-2.5 py-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-ink" />
+            <span className="h-1.5 w-1.5 rounded-full bg-yellow" />
+            <span className="h-1.5 w-1.5 rounded-full bg-orange" />
+            <span className="ml-1.5 h-2.5 flex-1 rounded-pill border border-ink/40 bg-white" />
+          </div>
+          <div className="p-3">
+            <span className="block h-2 w-2/3 rounded-pill bg-ink" />
+            <span className="mt-1.5 block h-2 w-1/2 rounded-pill bg-ink/40" />
+            <span className="mt-2.5 block h-8 w-full rounded-sm bg-yellow" />
+            <div className="mt-2 grid grid-cols-3 gap-1.5">
+              <span className="block h-6 rounded-sm bg-cream" />
+              <span className="block h-6 rounded-sm bg-cream" />
+              <span className="block h-6 rounded-sm bg-orange" />
+            </div>
+          </div>
+        </div>
+      );
+
+    case 5: // Review & revisi — mock checklist
+      return (
+        <div className={frame}>
+          <div className="border-b-2 border-ink bg-yellow px-3 py-1.5 font-display text-xs font-bold text-ink">
+            Review Anda
+          </div>
+          <div className="space-y-1.5 p-3">
+            {[1, 2, 3].map((row) => (
+              <span
+                key={row}
+                className="flex items-center gap-2 rounded-card border-2 border-ink bg-cream px-2.5 py-1.5"
+              >
+                <CheckCircle className="h-3.5 w-3.5 shrink-0 text-ink" />
+                <span
+                  className={cn(
+                    "h-1.5 rounded-pill bg-ink/40",
+                    row === 1 ? "w-3/4" : row === 2 ? "w-1/2" : "w-2/3",
+                  )}
+                />
+              </span>
+            ))}
+            <span className="flex h-4 items-center justify-center rounded-pill border-2 border-dashed border-ink/40 bg-white">
+              <span className="font-display text-[9px] font-bold uppercase tracking-wide text-ink/60">
+                maks. 2 putaran revisi
+              </span>
+            </span>
+          </div>
+        </div>
+      );
+
+    case 6: // Peluncuran — mock status live
+      return (
+        <div className={frame}>
+          <div className="border-b-2 border-ink bg-orange px-3 py-1.5 font-display text-xs font-bold text-ink">
+            Buka untuk publik
+          </div>
+          <div className="flex flex-col items-center gap-2 p-4">
+            <Rocket className="h-6 w-6 text-ink" />
+            <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-white px-3 py-1">
+              <span className="h-2 w-2 rounded-full bg-orange" />
+              <span className="font-display text-[10px] font-bold text-ink">
+                website live
+              </span>
+            </span>
+            <span className="block h-1.5 w-2/3 rounded-pill bg-ink/20" />
+            <span className="block h-1.5 w-1/2 rounded-pill bg-ink/10" />
+          </div>
+        </div>
+      );
+
+    case 7: // Serah terima — mock kredensial + kunci
+      return (
+        <div className={frame}>
+          <div className="flex items-center gap-1.5 border-b-2 border-ink bg-yellow px-3 py-1.5">
+            <KeyRound className="h-3.5 w-3.5 text-ink" />
+            <span className="font-display text-xs font-bold text-ink">
+              Kendali Anda
+            </span>
+          </div>
+          <div className="space-y-1.5 p-3">
+            {["Akses & kredensial", "Panduan singkat", "Kode & domain"].map(
+              (item) => (
+                <span
+                  key={item}
+                  className="flex items-center justify-between rounded-card border-2 border-ink bg-cream px-2.5 py-1.5"
+                >
+                  <span className="font-display text-[10px] font-bold text-ink">
+                    {item}
+                  </span>
+                  <CheckCircle className="h-3.5 w-3.5 text-ink" />
+                </span>
+              ),
+            )}
+          </div>
+        </div>
+      );
+
+    default: // 8 — Dukungan — mock maintenance berkala
+      return (
+        <div className={frame}>
+          <div className="border-b-2 border-ink bg-cream px-3 py-1.5 font-display text-xs font-bold text-ink">
+            Opsional — paket maintenance
+          </div>
+          <div className="flex flex-col items-center gap-2 p-4">
+            <Wrench className="h-6 w-6 text-ink" />
+            <span className="block h-1.5 w-3/4 rounded-pill bg-ink/20" />
+            <span className="block h-1.5 w-2/3 rounded-pill bg-ink/15" />
+            <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-white px-3 py-1">
+              <span className="h-2 w-2 rounded-full bg-yellow" />
+              <span className="font-display text-[10px] font-bold text-ink">
+                update & pantau berkala
+              </span>
+            </span>
+          </div>
+        </div>
+      );
+  }
 }
