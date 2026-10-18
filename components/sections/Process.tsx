@@ -81,8 +81,10 @@ export function Process() {
           />
         </ScrollReveal>
 
-        {/* --- MOBILE & TABLET (<1024px): grid kartu — layout yang sudah ada (tidak berubah) --- */}
-        <div className="mt-12 grid grid-cols-1 items-start gap-6 md:grid-cols-2">
+        {/* --- MOBILE & TABLET (<1024px): grid kartu — layout yang sudah ada (tidak berubah).
+              lg:hidden: sebelumnya grid ini ikut tampil di desktop dan muncul GANDA
+              dengan sticky viewer di bawahnya (laporan user). --- */}
+        <div className="mt-12 grid grid-cols-1 items-start gap-6 md:grid-cols-2 lg:hidden">
           {processSteps.map((s, index) => (
             <ScrollReveal key={s.step} delay={Math.min(index * 0.05, 0.4)}>
               <ProcessStepCard step={s} index={index} />

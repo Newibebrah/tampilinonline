@@ -95,6 +95,21 @@ export function AboutGame() {
   const scene = aboutScenes[currentScene];
   const isLastScene = currentScene === aboutScenes.length - 1;
   const playing = phase === "playing";
+
+  // Halaman /about HARUS selalu dibuka dari paling atas (laporan user:
+  // halaman sempat muncul di footer dulu karena restore posisi scroll
+  // sesi sebelumnya, lalu "melompat" ke atas saat hydration).
+  // scrollRestoration dimatikan + scrollTop dipaksa (scrollTop assignment
+  // = instant, tidak terpengaruh scroll-behavior:smooth).
+  useEffect(() => {
+    history.scrollRestoration = "manual";
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    return () => {
+      history.scrollRestoration = "auto";
+    };
+  }, []);
+
   // instant=true di luar fase playing supaya hook tidak mengetik di background.
   const { typed, done } = useTypewriter(scene.text, 24, !playing || !isTyping);
   const tokens = parseHighlightTokens(typed);
