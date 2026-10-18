@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Play, SkipForward, ChevronRight, Flag } from "lucide-react";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { Button } from "@/components/ui/Button";
-import { SectionHeading } from "@/components/shared/SectionHeading";
 import {
   aboutScenes,
   parseHighlightTokens,
@@ -24,7 +23,8 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
  *   (animate-blink, dimatikan oleh prefers-reduced-motion).
  * - "playing" → ilustrasi pakem fix di atas, teks top-anchored tumbuh ke
  *   bawah, tombol eksplisit Lewati/Lanjut/Selesai. Halaman bebas di-scroll;
- *   auto-scroll sticky-bottom ala chat yang bisa dilepas user.
+ * - scroll otomatis DIHAPUS (laporan user): start/lanjut/selesai tidak pernah
+ *   menggerakkan halaman — user scroll sendiri, tidak ada lock di footer.
  * - "finished" → transkrip RAME: bubble chat (avatar di kolom samping di
  *   LUAR bubble, align top sinkron dengan baris pertama) — gambar & teks
  *   bukan satu kartu grid. Diakhiri CTA WhatsApp + kembali ke profil.
@@ -87,29 +87,28 @@ export function AboutGame() {
   const [phase, setPhase] = useState<Phase>("start");
   const [currentScene, setCurrentScene] = useState(0);
   const reducedMotion = useReducedMotion();
-  // Sticky-bottom ala chat: true = user "menempel" di dasar halaman →
-  // saat teks tumbuh, otomatis ikut ke baris terbaru.
-  const stickBottom = useRef(true);
 
   const scene = aboutScenes[currentScene];
   const isLastScene = currentScene === aboutScenes.length - 1;
   const playing = phase === "playing";
 
-  // Halaman /about HARUS selalu dibuka dari paling atas (laporan user:
-  // halaman sempat muncul di footer dulu karena restore posisi scroll
-  // sesi sebelumnya, lalu "melompat" ke atas saat hydration).
-  // scrollRestoration dimatikan + scrollTop dipaksa (scrollTop assignment
-  // = instant, tidak terpengaruh scroll-behavior:smooth).
+  // Halaman /about HARUS selalu dibuka dan dipindah fase dari PALING ATAS —
+  // TANPA scroll otomatis apa pun (laporan user: auto-scroll membuat halaman
+  // lompat ke footer & terkunci di bawah saat teks berjalan, scroll-up tidak
+  // bisa). scrollRestoration dimatikan supaya browser tidak me-restore posisi
+  // lama; scrollTop assignment = instant, tidak terpengaruh
+  // scroll-behavior:smooth.
+  const scrollTop = () => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
   useEffect(() => {
-    const scrollTop = () => {
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    };
     history.scrollRestoration = "manual";
     scrollTop();
     return () => {
       history.scrollRestoration = "auto";
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Tidak sedang "playing" → tanpa ketikan; play=true saat start/tap lanjut.
@@ -117,28 +116,9 @@ export function AboutGame() {
   const tokens = parseHighlightTokens(typed);
   const isTyping = playing && !done;
 
-  // Pantau posisi user: menempel dasar halaman atau sedang scroll ke atas.
-  useEffect(() => {
-    const onScroll = () => {
-      const doc = document.documentElement;
-      stickBottom.current =
-        window.innerHeight + window.scrollY >= doc.scrollHeight - 160;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Teks tumbuh → ikut ke baris terbaru HANYA kalau user masih di dasar.
-  useEffect(() => {
-    if (playing && stickBottom.current) {
-      window.scrollTo({ top: document.documentElement.scrollHeight });
-    }
-  }, [typed, playing]);
-
   const startGame = () => {
-    stickBottom.current = true;
     setPhase("playing"); // scene 0 + hook play=true → ketikan DARI NOL
-    window.scrollTo({ top: 0 });
+    scrollTop(); // TANPA scroll ke bawah — pemandangan tetap di paling atas
   };
 
   const handleTap = () => {
@@ -148,17 +128,17 @@ export function AboutGame() {
       return;
     }
     if (!isLastScene) {
-      setCurrentScene((c) => c + 1); // tekan ke-2: dialog berikutnya
+      // Dialog berikutnya — TANPA scroll otomatis; konten bertukar di lokasi.
+      setCurrentScene((c) => c + 1);
       return;
     }
     setPhase("finished"); // dialog terakhir selesai → transkrip
-    stickBottom.current = true;
-    window.scrollTo({ top: 0 });
+    scrollTop();
   };
 
   const backToProfile = () => {
     setPhase("start"); // hook otomatis reset → start screen bersih
-    window.scrollTo({ top: 0 });
+    scrollTop();
   };
 
   /* ---------------- START: profile index + start screen ---------------- */
@@ -173,13 +153,18 @@ export function AboutGame() {
         >
           <StoryBait />
 
-          <SectionHeading
-            align="center"
-            eyebrow="Tentang"
-            title="Kenalan Sama Ananta"
-            description="Orang di balik layar Tampilin.online — dengarkan ceritanya seperti membuka game, satu bagian demi satu bagian."
-          />
-
+          {/* Judul section — TANPA eyebrow "Tentang": label itu identitas
+              item navbar ( Bonus target "#tentang" di homepage), tidak
+              diulang di dalam page /about. */}
+          <div className="flex flex-col items-center gap-4">
+            <h2 className="font-display text-[clamp(1.5rem,5vw,2.5rem)] font-bold leading-tight text-ink">
+              Kenalan Sama Ananta
+            </h2>
+            <p className="max-w-md text-balance font-display text-lg font-medium leading-snug text-ink/80 md:max-w-xl">
+              Orang di balik layar Tampilin.online — dengarkan ceritanya seperti
+              membuka game, satu bagian demi satu bagian.
+            </p>
+          </div>
           <div className="flex flex-col items-center gap-3">
             <Button
               variant="primary"
