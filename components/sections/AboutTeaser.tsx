@@ -14,6 +14,12 @@ export function AboutTeaser() {
     <section id="tentang" aria-label="Kenalan sama pembuat" className="bg-cream py-16 md:py-24">
       <div className="container">
         <ScrollReveal className="flex flex-col items-center gap-6 text-center">
+          <SectionHeading
+            align="center"
+            eyebrow="Tentang"
+            title="Kenalan Sama Ananta"
+            description="Orang di balik layar Tampilin.online."
+          />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/aboutme_pixel/profile.png"
@@ -22,12 +28,6 @@ export function AboutTeaser() {
             height={192}
             loading="lazy"
             className="h-40 w-40 rounded-full border-[3px] border-ink bg-white p-1 shadow-brutal md:h-48 md:w-48 [image-rendering:pixelated]"
-          />
-          <SectionHeading
-            align="center"
-            eyebrow="Tentang"
-            title="Kenalan Sama Ananta"
-            description="Orang di balik layar Tampilin.online."
           />
           <ButtonLink href="/about" variant="primary" size="lg">
             Kenal lebih jauh

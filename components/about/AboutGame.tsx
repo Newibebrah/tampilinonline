@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Play, SkipForward, ChevronRight, Flag } from "lucide-react";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
@@ -86,7 +86,6 @@ function StoryBait() {
 export function AboutGame() {
   const [phase, setPhase] = useState<Phase>("start");
   const [currentScene, setCurrentScene] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
   const reducedMotion = useReducedMotion();
   // Sticky-bottom ala chat: true = user "menempel" di dasar halaman →
   // saat teks tumbuh, otomatis ikut ke baris terbaru.
@@ -102,23 +101,21 @@ export function AboutGame() {
   // scrollRestoration dimatikan + scrollTop dipaksa (scrollTop assignment
   // = instant, tidak terpengaruh scroll-behavior:smooth).
   useEffect(() => {
+    const scrollTop = () => {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
     history.scrollRestoration = "manual";
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    scrollTop();
     return () => {
       history.scrollRestoration = "auto";
     };
   }, []);
 
-  // instant=true di luar fase playing supaya hook tidak mengetik di background.
-  const { typed, done } = useTypewriter(scene.text, 24, !playing || !isTyping);
+  // Tidak sedang "playing" → tanpa ketikan; play=true saat start/tap lanjut.
+  const { typed, done, skip } = useTypewriter(scene.text, 24, playing);
   const tokens = parseHighlightTokens(typed);
-
-  // Sinkronkan isTyping dengan kondisi selesai mengetik natural
-  // (supaya indikator ▼ & tombol "Lanjut" muncul tanpa perlu diketuk).
-  useEffect(() => {
-    if (playing && done && isTyping) setIsTyping(false);
-  }, [playing, done, isTyping]);
+  const isTyping = playing && !done;
 
   // Pantau posisi user: menempel dasar halaman atau sedang scroll ke atas.
   useEffect(() => {
@@ -139,22 +136,19 @@ export function AboutGame() {
   }, [typed, playing]);
 
   const startGame = () => {
-    setCurrentScene(0);
-    setIsTyping(true);
     stickBottom.current = true;
-    setPhase("playing");
+    setPhase("playing"); // scene 0 + hook play=true → ketikan DARI NOL
     window.scrollTo({ top: 0 });
   };
 
   const handleTap = () => {
     if (!playing) return;
-    if (isTyping && !done) {
-      setIsTyping(false); // tekan ke-1: skip typing → tampil penuh
+    if (isTyping) {
+      skip(); // tekan ke-1: skip typing → tampil penuh
       return;
     }
     if (!isLastScene) {
       setCurrentScene((c) => c + 1); // tekan ke-2: dialog berikutnya
-      setIsTyping(true);
       return;
     }
     setPhase("finished"); // dialog terakhir selesai → transkrip
@@ -163,9 +157,7 @@ export function AboutGame() {
   };
 
   const backToProfile = () => {
-    setCurrentScene(0);
-    setIsTyping(true);
-    setPhase("start");
+    setPhase("start"); // hook otomatis reset → start screen bersih
     window.scrollTo({ top: 0 });
   };
 
@@ -311,14 +303,14 @@ export function AboutGame() {
           size="md"
           onClick={handleTap}
           aria-label={
-            isTyping && !done
+            isTyping
               ? "Lewati efek mengetik"
               : isLastScene
                 ? "Selesaikan cerita"
                 : "Lanjut ke dialog berikutnya"
           }
         >
-          {isTyping && !done ? (
+          {isTyping ? (
             <>
               Lewati
               <SkipForward aria-hidden="true" className="h-4 w-4" />

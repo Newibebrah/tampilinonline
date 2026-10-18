@@ -7,25 +7,30 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
  * Typewriter custom (README: tanpa library luar).
  *
  * - Mengetik per KODE POINT (Array.from) supaya karakter multi-byte
- *   (emoji di narasi) tidak pernah terpotong tengah surrogate pair.
- * - `instant = true` → teks tampil penuh seketika (dipakai saat user
- *   mengetuk untuk skip, dan saat prefers-reduced-motion).
- * - Reset otomatis saat `text` berpindah scene.
+ *   tidak pernah terpotong tengah surrogate pair.
+ * - API: `play = true` → mulai mengetik dari 0 (reset otomatis saat teks
+ *   berganti scene ATAU saat play berubah); `skip()` → langsung tampil penuh.
+ * - prefers-reduced-motion → teks tampil penuh seketika tanpa interval.
+ * - Saat play = false, teks di-RESET ke kosong (hook tidak pernah " Tales
+ *   leaks" posisi lama ke fase berikutnya — sumber bug "teks lompat penuh").
  *
- * Return `typed` berisi potongan RAW string (masih mengandung marker
- * ** / * yang akan diparse merahkan oleh komponen render, BUKAN HTML).
+ * Return `typed` berisi potongan RAW string (marker ** / * diparse oleh
+ * komponen render, BUKAN HTML).
  */
-export function useTypewriter(text: string, speed = 24, instant = false) {
+export function useTypewriter(text: string, speed = 24, play = false) {
   const reducedMotion = useReducedMotion();
   // Pecah per code point sekali per teks (memo) — emoji tetap utuh.
   const codePoints = useMemo(() => Array.from(text), [text]);
-  const active = !instant && !reducedMotion;
-
-  const [count, setCount] = useState(active ? 0 : codePoints.length);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!active) {
+    // Reduced motion: tanpa interval — penuh seketika (aturan README).
+    if (play && reducedMotion) {
       setCount(codePoints.length);
+      return;
+    }
+    if (!play) {
+      setCount(0); // reset bersih: tidak ada sisa teks fase sebelumnya
       return;
     }
     setCount(0);
@@ -39,10 +44,11 @@ export function useTypewriter(text: string, speed = 24, instant = false) {
       });
     }, speed);
     return () => clearInterval(id);
-  }, [codePoints, active, speed]);
+  }, [codePoints, play, reducedMotion, speed]);
 
   return {
     typed: codePoints.slice(0, count).join(""),
     done: count >= codePoints.length,
+    skip: () => setCount(codePoints.length),
   };
 }
