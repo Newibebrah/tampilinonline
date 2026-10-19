@@ -26,7 +26,7 @@ export function FinalCTA() {
             <Sticker
               text="Gratis Konsultasi"
               rotate={8}
-              tone="surface"
+              tone="lavender"
               className="right-4 top-4 hidden md:block"
               floatDelay={0.8}
             />
