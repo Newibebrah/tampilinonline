@@ -6,7 +6,6 @@ import { PackagesBento } from "@/components/sections/PackagesBento";
 import { Process } from "@/components/sections/Process";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { PriceSimulator } from "@/components/sections/PriceSimulator";
 import { FAQ } from "@/components/sections/FAQ";
 import { LeadForm } from "@/components/sections/LeadForm";
 import { AboutTeaser } from "@/components/sections/AboutTeaser";
@@ -34,7 +33,9 @@ export const metadata = {
 /**
  * Homepage one-page. HANYA compose — tanpa logic (aturan README 4.1).
  * Urutan = alur narasi: Hero → Masalah → Solusi → Paket → Proses →
- * Portofolio → Testimoni → Simulasi → Tentang → FAQ → Formulir → CTA Final.
+ * Portofolio → Testimoni → Tentang → FAQ → Formulir → CTA Final.
+ * REVISI: Simulator harga pindah ke halaman /harga — homepage hanya
+ * menampilkan banner CTA di bawah section Paket (lihat PackagesBento).
  */
 export default function HomePage() {
   return (
@@ -56,7 +57,6 @@ export default function HomePage() {
         <MarqueeDivider />
         <Portfolio />
         <Testimonials />
-        <PriceSimulator />
         <AboutTeaser />
         <FAQ />
         <LeadForm />

@@ -136,7 +136,7 @@ export const blogPosts: BlogPost[] = [
         type: "links",
         items: [
           { label: "Lihat rincian paket dan harganya", href: "/#paket" },
-          { label: "Simulator perkiraan harga website", href: "/#simulasi" },
+          { label: "Simulator perkiraan harga website", href: "/harga" },
           {
             label: "Panduan biaya membuat website di 2026",
             href: "/blog/biaya-membuat-website-2026",
@@ -277,7 +277,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: "links",
         items: [
-          { label: "Simulator harga — hitung sendiri dalam 1 menit", href: "/#simulasi" },
+          { label: "Simulator harga — hitung sendiri dalam 1 menit", href: "/harga" },
           {
             label: "Cara memilih jasa pembuatan website untuk UMKM",
             href: "/blog/cara-memilih-jasa-website-umkm",

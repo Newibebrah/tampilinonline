@@ -22,6 +22,8 @@ export function SectionHeading({
   description,
   /** id untuk <h2> — pasangkan dengan aria-labelledby section (a11y). */
   id,
+  /** Tag title: "h2" default; "h1" untuk heading utama halaman standalone. */
+  titleAs = "h2",
   align = "center",
   /** Putih teks untuk section berlatar gelap. */
   invert = false,
@@ -30,6 +32,7 @@ export function SectionHeading({
   title: string;
   description?: string;
   id?: string;
+  titleAs?: "h1" | "h2";
   align?: "left" | "center";
   invert?: boolean;
 }) {
@@ -53,7 +56,7 @@ export function SectionHeading({
       {/* Title dengan text reveal masking (per kata, staggered saat masuk
           viewport — prompt visionary 2.2). id tetap di h2 untuk aria-labelledby. */}
       <TextReveal
-        as="h2"
+        as={titleAs}
         id={id}
         className={cn(
           "font-display font-bold",

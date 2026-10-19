@@ -102,6 +102,13 @@ export function generateSitemapEntries(): Array<{
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    // Simulator harga (pindah dari anchor homepage — revisi user)
+    {
+      url: siteUrl("/harga"),
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     // Blog (OE index + artikel) — lastModified dari tanggal artikel sendiri.
     {
       url: siteUrl("/blog"),

@@ -1,10 +1,12 @@
 "use client";
 
-import { Check, MessageCircle } from "lucide-react";
+import { Calculator, Check, MessageCircle } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { SwipeCarousel } from "@/components/ui/SwipeCarousel";
 import { TiltCard } from "@/components/decorative/TiltCard";
+import { Magnetic } from "@/components/decorative/Magnetic";
+import { ButtonLink } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { buildWhatsAppUrl, packageMessage } from "@/lib/whatsapp";
 import { packages } from "@/data/packages";
@@ -53,6 +55,41 @@ export function PackagesBento() {
               <PackageCard pkg={pkg} />
             </TiltCard>
           ))}
+        </div>
+      </ScrollReveal>
+
+      {/* --- Banner CTA ke /harga (revisi user): simulator pindah halaman
+          sendiri. Gaya MIRIP banner CTA final: panel kuning, border 3px,
+          shadow brutal, dekorasi sudut cream. Bagian dari section Paket
+          Layanan — muncul di bawah grid/carousel. --- */}
+      <ScrollReveal className="mt-10 md:mt-14">
+        <div
+          aria-labelledby="paket-harga-banner"
+          className="relative overflow-hidden rounded-card border-[3px] border-ink bg-yellow p-8 text-center shadow-brutal md:p-12"
+        >
+          {/* dekorasi sudut — sama dengan banner CTA final */}
+          <span aria-hidden="true" className="absolute -left-8 -top-8 h-24 w-24 rounded-card border-[3px] border-ink bg-cream" />
+          <span aria-hidden="true" className="absolute -bottom-10 -right-8 h-28 w-28 rotate-12 rounded-card border-[3px] border-ink bg-cream" />
+
+          <div className="relative flex flex-col items-center gap-5">
+            <h3
+              id="paket-harga-banner"
+              className="text-balance font-display text-[clamp(1.5rem,4.5vw,2.25rem)] font-extrabold leading-tight"
+            >
+              Masih bingung{" "}
+              <span className="bg-cream px-2 shadow-brutal-sm">soal harga?</span>
+            </h3>
+            <p className="max-w-xl text-base leading-relaxed text-ink/80 md:text-lg">
+              Tidak perlu menebak — buka simulator, geser pilihan, dan lihat
+              estimasinya muncul langsung. Gratis, tanpa perlu chat dulu.
+            </p>
+            <Magnetic>
+              <ButtonLink href="/harga" variant="primary" size="lg">
+                <Calculator aria-hidden="true" className="h-5 w-5" />
+                Hitung Estimasi Sendiri
+              </ButtonLink>
+            </Magnetic>
+          </div>
         </div>
       </ScrollReveal>
     </section>

@@ -45,6 +45,11 @@ export function SiteMapContent() {
           </a>
         </li>
         <li>
+          <a href="/harga" className="underline-offset-4 hover:underline">
+            Simulasi Harga — hitung estimasi sendiri secara realtime
+          </a>
+        </li>
+        <li>
           <a href="/portofolio/katalog-online" className="underline-offset-4 hover:underline">
             Studi Kasus (Demo) — Website Katalog Online untuk UMKM
           </a>
@@ -92,12 +97,6 @@ export function SiteMapContent() {
             Preview
           </a>{" "}
           — contoh konsep desain (Demo Concept)
-        </li>
-        <li>
-          <a href="/#simulasi" className="underline-offset-4 hover:underline">
-            Simulasi Harga
-          </a>{" "}
-          — hitung estimasi sendiri secara realtime
         </li>
         <li>
           <a href="/#faq" className="underline-offset-4 hover:underline">

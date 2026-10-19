@@ -20,8 +20,15 @@ import { formatRupiah, cn } from "@/lib/utils";
  * Simulator harga (README Phase 7):
  * form interaktif → hitung real-time → CTA kirim estimasi ke WhatsApp dengan
  * rincian lengkap (format README 13.4).
+ *
+ * REVISI: section ini kini halaman sendiri /harga (dipindah dari homepage).
+ * `headingAs="h1"` dipakai page /harga agar H1 halaman = judul simulator.
  */
-export function PriceSimulator() {
+export function PriceSimulator({
+  headingAs = "h2",
+}: {
+  headingAs?: "h1" | "h2";
+}) {
   const { state, update, result, includedProducts } = usePriceCalculator();
 
   const isSinglePage = SINGLE_PAGE_PACKAGES.includes(state.packageId);
@@ -52,6 +59,7 @@ export function PriceSimulator() {
           eyebrow="Simulasi Harga"
           title="Coba hitung sendiri, realtime."
           description="Geser pilihan dan centang kebutuhan — estimasinya langsung muncul. Harga final ditetapkan setelah kebutuhan diperiksa saat konsultasi."
+          titleAs={headingAs}
         />
       </ScrollReveal>
 

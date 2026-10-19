@@ -16,18 +16,19 @@ export const BRAND = {
 
 /**
  * Anchor navigation — urutan sama dengan urutan section di homepage.
- * Catatan v2:
+ * Catatan v3:
  * - "Problem Solver" menggabungkan dua section lama (Masalah + Solusi) —
  *   link menuju #masalah (awal gabungan section).
  * - FAQ dihapus dari nav (section tetap ada di halaman).
- * - Blog jadi link page penuh (bukan anchor).
+ * - Simulasi harga pindah ke halaman /harga — nav menampilkan "Harga"
+ *   sebagai page link (lihat NAV_PAGE_LINKS).
+ * - Blog juga page link.
  */
 export const NAV_LINKS = [
   { label: "Problem Solver", href: "#masalah" },
   { label: "Paket Layanan", href: "#paket" },
   { label: "Proses", href: "#proses" },
   { label: "Preview", href: "#portofolio" },
-  { label: "Simulasi", href: "#simulasi" },
   // Tentang → teaser "Kenalan Sama Ananta" (section di atas FAQ — runtut
   // dengan urutan konten homepage). Dari teaser, tombol menuju /about.
   { label: "Tentang", href: "#tentang" },
@@ -35,5 +36,6 @@ export const NAV_LINKS = [
 
 /** Link page penuh (bukan anchor) — tampil di nav + hamburger menu. */
 export const NAV_PAGE_LINKS = [
+  { label: "Harga", href: "/harga" },
   { label: "Blog", href: "/blog" },
 ] as const;

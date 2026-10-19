@@ -172,7 +172,7 @@ export default async function CaseStudyPage({
                 Lihat paket →
               </Link>
               <Link
-                href="/#simulasi"
+                href="/harga"
                 className="rounded-card border-2 border-ink bg-cream px-6 py-3 font-display font-bold shadow-brutal transition-[transform,box-shadow] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm"
               >
                 Simulasi harga →
