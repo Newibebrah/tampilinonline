@@ -12,7 +12,7 @@ import { BoldShapes } from "@/components/decorative/BoldShapes";
  * Hero v3 — BOLD CENTER-FOCUSED (prompt bold-pastel v3.0 FASE 3):
  * - flex flex-col items-center justify-center text-center min-h-[80vh]
  * - latar blok pastel SOLID (bg-pink) + grid kertas global tetap di belakang
- * - H1 lebih besar (Bricolage Grotesque) dengan highlight MINT ber-border
+ * - H1 lebih besar (Bricolage Grotesque) dengan highlight HIJAU GELAP ber-border
  * - Visual utama: ilustrasi karakter DI BAWAH teks (in-flow, tidak terpotong)
  * - 3 elemen grafis melayang ala Gumroad (BoldShapes)
  * - Mockup CSS browser/ponsel yang lama DIGANTIKAN karakter ilustrasi
@@ -55,7 +55,7 @@ export function Hero() {
               { text: "Semua usaha" },
               {
                 text: "harus punya",
-                className: "border-2 border-ink bg-mint px-2 shadow-brutal-sm",
+                className: "border-2 border-ink bg-green px-2 shadow-brutal-sm",
                 asOne: true,
               },
               { text: "website." },

@@ -16,6 +16,8 @@ export const PALETTE = {
   pink: "#F2A3C7",
   blue: "#8FC5F8",
   mint: "#92E0C6",
+  /** Hijau gelap (emerald) — highlight penting yang mint-nya kurang tegas. */
+  green: "#45B36E",
   yellow: "#FFE28A",
   lavender: "#C6B5F2",
   // Tint solid (hasil campuran 20% pastel + canvas) — bg section tanpa opacity
