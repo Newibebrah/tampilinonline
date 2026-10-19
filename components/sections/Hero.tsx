@@ -16,7 +16,7 @@ export function Hero() {
   return (
     <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden">
       {/* Ilustrasi dekoratif — karakter coding mengintip dari sudut kiri bawah */}
-      <SectionArt src="/asset_decor/asset_character_coding.png" className="bottom-0 left-0 w-28 sm:block lg:w-36" />
+      <SectionArt src="/asset_decor/asset_character_coding.png" className="-rotate-2 bottom-0 left-0 w-40 md:block lg:w-52" />
 
       <div className="container grid items-center gap-12 pb-8 pt-10 md:grid-cols-2 md:pb-12 md:pt-16 lg:gap-16 lg:pt-20">
         {/* Kiri: teks + CTA */}

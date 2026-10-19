@@ -16,7 +16,7 @@ export function Testimonials() {
       aria-labelledby="testimoni-heading"
       className="container relative isolate bg-canvas py-16 md:py-24"
     >
-      <SectionArt src="/asset_decor_context/asset_target_audience.png" className="bottom-0 left-0 w-28 lg:block lg:w-36" />
+      <SectionArt src="/asset_decor_context/asset_target_audience.png" className="top-0 left-0 w-32 lg:block lg:w-44" />
       <ScrollReveal>
         <SectionHeading
           id="testimoni-heading"

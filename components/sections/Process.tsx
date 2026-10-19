@@ -74,7 +74,7 @@ export function Process() {
       aria-label="Proses kerja Tampilin.online"
       className="relative isolate py-16 md:py-24"
     >
-      <SectionArt src="/asset_decor_context/asset_proses.png" className="bottom-0 right-0 w-28 lg:block lg:w-40" />
+      <SectionArt src="/asset_decor_context/asset_proses.png" className="top-0 right-0 w-32 lg:block lg:w-44" />
       <div className="container">
         <ScrollReveal>
           <SectionHeading

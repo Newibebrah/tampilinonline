@@ -54,7 +54,7 @@ export function PriceSimulator({
 
   return (
     <section id="simulasi" aria-labelledby="simulasi-heading" className="container relative isolate py-16 md:py-24">
-      <SectionArt src="/asset_decor_context/asset_simulasi.png" className="top-0 right-0 w-24 lg:block lg:w-32" />
+      <SectionArt src="/asset_decor_context/asset_simulasi.png" className="top-0 right-0 w-28 lg:block lg:w-40" />
       <ScrollReveal>
         <SectionHeading
           id="simulasi-heading"

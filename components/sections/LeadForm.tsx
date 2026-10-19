@@ -114,7 +114,7 @@ export function LeadForm() {
       aria-labelledby="konsultasi-form-heading"
       className="container relative isolate bg-canvas py-16 md:py-24"
     >
-      <SectionArt src="/asset_decor/asset_character_monster.png" className="bottom-0 right-0 w-28 lg:block lg:w-36" />
+      <SectionArt src="/asset_decor/asset_character_monster.png" className="rotate-3 bottom-0 right-4 w-44 sm:block lg:w-56" />
       <ScrollReveal>
         <SectionHeading
           id="konsultasi-form-heading"

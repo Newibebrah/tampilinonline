@@ -69,8 +69,7 @@ export function PackagesBento() {
           className="relative isolate overflow-hidden rounded-card border-[3px] border-ink bg-yellow p-8 text-center shadow-brutal md:p-12"
         >
           {/* dekorasi sudut — sama dengan banner CTA final */}
-          <SectionArt src="/asset_decor_context/asset_paket_layanan.png" className="-bottom-6 -left-4 w-28 md:block lg:w-36" />
-          <span aria-hidden="true" className="absolute -left-8 -top-8 h-24 w-24 rounded-card border-[3px] border-ink bg-pink/40" />
+          <SectionArt src="/asset_decor_context/asset_paket_layanan.png" className="-bottom-8 -left-6 w-36 md:block lg:w-48" />
           <span aria-hidden="true" className="absolute -bottom-10 -right-8 h-28 w-28 rotate-12 rounded-card border-[3px] border-ink bg-blue/40" />
 
           <div className="relative flex flex-col items-center gap-5">

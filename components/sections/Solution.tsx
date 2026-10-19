@@ -54,7 +54,7 @@ export function Solution() {
       className="container relative isolate bg-canvas pb-16 pt-2 md:pb-24 md:pt-4"
     >
 
-      <SectionArt src="/asset_decor/asset_character_idea.png" className="bottom-0 left-0 w-28 lg:block lg:w-40" />
+      <SectionArt src="/asset_decor/asset_character_idea.png" className="bottom-0 left-2 w-36 lg:block lg:w-48" />
       {/* --- MOBILE (<768px): swipe carousel 4 card + sweetener card di bawah --- */}
       <div className="mt-10 md:hidden">
         <SwipeCarousel
