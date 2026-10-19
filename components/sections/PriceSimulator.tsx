@@ -82,7 +82,7 @@ export function PriceSimulator({
           <form
             aria-label="Kalkulator estimasi harga"
             onSubmit={(e) => e.preventDefault()}
-            className="flex flex-col gap-5 rounded-card border-2 border-ink bg-surface p-6 shadow-brutal"
+            className="flex flex-col gap-5 rounded-card border-2 border-ink bg-green p-6 shadow-brutal"
           >
             <div className="flex items-center gap-2">
               <Package aria-hidden="true" className="h-5 w-5" />
