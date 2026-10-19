@@ -5,15 +5,16 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useMousePosition } from "@/hooks/useMousePosition";
 
 /**
- * CanvasTexture (prompt Bagian 1.1) — "tactile paper" global, 3 layer FIXED:
+ * CanvasTexture (prompt Bagian 1.1, revisi user) — layer kertas global, 3 lapis
+ * FIXED di semua halaman:
  *
- * 1. Noise kertas cetak (SVG feTurbulence data-URI, opacity ~4%) — di atas
- *    semua konten (z-[45]) memberi tekstur komik/print mewah. Statis, 0 JS.
- * 2. Dot-matrix statis via CSS radial-gradient (z-[44]) — pola titik tipis
- *    di seluruh layar, ikut terlihat di mobile (di sini dot memang diam).
- * 3. Canvas dot-matrix INTERAKTIF (desktop fine-pointer only): hanya dot
- *    dekat kursor yang digambar ulang (≤ ~40 arc per frame, rAF-throttled) —
- *    jadi murah walau grid penuh beribu titik.
+ * 1. Noise kertas cetak (SVG feTurbulence data-URI, opacity ~4%).
+ * 2. Grid kotak-kotak vertikal+horizontal statis (CSS, z-[30]) — persilangan
+ *    garis tiap 40px (permintaan user: background grid di semua halaman).
+ * 3. Canvas interaktif (desktop fine-pointer only): dot kuning/oranye "menyala"
+ *    TEPAT di persilangan grid dekat kursor — hanya node dalam radius yang
+ *    digambar ulang (≤ ~30 arc per frame, rAF-throttled) — murah walau grid
+ *    penuh beribu persilangan.
  *
  * Semua layer: pointer-events-none + select-none (aturan prompt #2).
  * Reduced-motion: canvas tidak dirender — sisanya statis murni.
@@ -22,8 +23,8 @@ import { useMousePosition } from "@/hooks/useMousePosition";
 const NOISE_URI =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E";
 
-const SPACING = 28; // harus sama dengan background-size .dot-matrix
-const RADIUS = 130; // radius "menyala" di sekitar kursor
+const SPACING = 40; // harus sama dengan periode .box-grid di globals.css
+const RADIUS = 150; // radius "menyala" di sekitar kursor
 
 export function CanvasTexture() {
   const reduced = useReducedMotion();
@@ -64,15 +65,16 @@ export function CanvasTexture() {
 
       for (let gy = gy0; gy <= gy1; gy++) {
         for (let gx = gx0; gx <= gx1; gx++) {
-          const px = gx * SPACING + SPACING / 2;
-          const py = gy * SPACING + SPACING / 2;
+          // Dot TEPAT di persilangan garis grid (kelipatan 40)
+          const px = gx * SPACING;
+          const py = gy * SPACING;
           const d = Math.hypot(px - cx, py - cy);
           if (d > RADIUS) continue;
           const t = 1 - d / RADIUS; // 1 = tepat di kursor
-          ctx.globalAlpha = t * 0.55;
+          ctx.globalAlpha = t * 0.6;
           ctx.fillStyle = t > 0.55 ? "#FF6B35" : "#FFD23F";
           ctx.beginPath();
-          ctx.arc(px, py, 1.2 + t * 1.6, 0, Math.PI * 2);
+          ctx.arc(px, py, 1.6 + t * 2.4, 0, Math.PI * 2);
           ctx.fill();
         }
       }
@@ -101,8 +103,8 @@ export function CanvasTexture() {
         style={{ backgroundImage: `url("${NOISE_URI}")` }}
       />
 
-      {/* Layer 2 — dot-matrix statis (desktop & mobile, tidak beranimasi) */}
-      <div className="dot-matrix fixed inset-0 z-[30]" />
+      {/* Layer 2 — grid kotak-kotak statis (desktop & mobile, tidak beranimasi) */}
+      <div className="box-grid fixed inset-0 z-[30]" />
 
       {/* Layer 3 — dot interaktif dekat kursor (desktop only) */}
       {!reduced ? (

@@ -18,7 +18,6 @@ import {
   faqSchema,
 } from "@/lib/schema";
 import { faqItems } from "@/data/faq";
-import { KineticShapes } from "@/components/decorative/KineticShapes";
 import { MarqueeDivider } from "@/components/decorative/MarqueeDivider";
 
 /** Metadata page-level homepage — override title & canonical saja.
@@ -47,9 +46,7 @@ export default function HomePage() {
       <JsonLd data={faqSchema(faqItems)} />
 
       <main id="konten" className="relative">
-        {/* Ornamen floating (fixed, pointer-events-none) + pita marquee
-            pemisah section — ADDITIVE ONLY, tidak mengubah section mana pun. */}
-        <KineticShapes />
+        {/* Pita marquee pemisah section — ADDITIVE ONLY, layout section utuh. */}
         <Hero />
         <ProblemScrolly />
         <Solution />

@@ -8,7 +8,7 @@ import { useMotionValue, type MotionValue } from "framer-motion";
  * HANYA aktif di perangkat fine-pointer (mouse) — di touch/reduced-motion
  * nilai tetap di luar layar (-1000) sehingga efek mouse otomatis "mati".
  *
- * Dipakai: CanvasTexture (dot-matrix interaktif), KineticShapes (parallax mouse).
+ * Dipakai: CanvasTexture (dot interaktif di persilangan grid).
  */
 export function useMousePosition(enabled = true): {
   x: MotionValue<number>;

@@ -95,15 +95,21 @@
    Semua kelas di bawah otomatis lumpuh oleh blok
    prefers-reduced-motion: reduce di atas (animation-duration 0.01ms). */
 
-/* Dot-matrix statis — background-size 28px HARUS sama dengan SPACING
-   di components/decorative/CanvasTexture.tsx (alignment dot interaktif). */
-.dot-matrix {
-  background-image: radial-gradient(
-    circle,
-    rgba(26, 26, 26, 0.08) 1.2px,
-    transparent 1.6px
-  );
-  background-size: 28px 28px;
+/* Grid kotak-kotak (blueprint/graph paper) — pemanis background di SEMUA
+   halaman. Periode 40px HARUS sama dengan SPACING di
+   components/decorative/CanvasTexture.tsx (alignment dot interaktif di
+   persilangan garis). */
+.box-grid {
+  background-image: repeating-linear-gradient(
+      180deg,
+      rgba(26, 26, 26, 0.05) 0 1px,
+      transparent 1px 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(26, 26, 26, 0.05) 0 1px,
+      transparent 1px 40px
+    );
 }
 
 /* Marquee pita pemisah section — loop translateX(-50%) mulus
