@@ -58,12 +58,12 @@ export function MobileMenu({
         className="absolute inset-0 w-full bg-ink/50"
       />
 
-      <div className="absolute right-0 top-0 flex h-full w-72 max-w-[85vw] flex-col border-l-2 border-ink bg-cream pb-6 pt-6">
+      <div className="absolute right-0 top-0 flex h-full w-72 max-w-[85vw] flex-col border-l-2 border-ink bg-canvas pb-6 pt-6">
         <button
           type="button"
           onClick={onClose}
           aria-label="Tutup menu navigasi"
-          className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-card border-2 border-ink bg-cream shadow-brutal-sm"
+          className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-card border-2 border-ink bg-canvas shadow-brutal-sm"
         >
           <X aria-hidden="true" className="h-5 w-5" />
         </button>

@@ -27,18 +27,18 @@ type ParticleCfg = {
 };
 
 const PARTICLES: ParticleCfg[] = [
-  { left: "6%", top: "18%", color: "bg-yellow", delay: "0s", duration: "5.2s" },
-  { left: "14%", top: "64%", color: "bg-orange", delay: "1.1s", duration: "6.1s" },
+  { left: "6%", top: "18%", color: "bg-lavender", delay: "0s", duration: "5.2s" },
+  { left: "14%", top: "64%", color: "bg-pink", delay: "1.1s", duration: "6.1s" },
   { left: "23%", top: "38%", color: "bg-ink/30", delay: "2.3s", duration: "5.6s" },
-  { left: "31%", top: "82%", color: "bg-yellow", delay: "0.7s", duration: "6.8s" },
+  { left: "31%", top: "82%", color: "bg-lavender", delay: "0.7s", duration: "6.8s" },
   { left: "42%", top: "10%", color: "bg-ink/30", delay: "1.9s", duration: "5.9s" },
-  { left: "55%", top: "70%", color: "bg-orange", delay: "3s", duration: "6.4s" },
-  { left: "63%", top: "26%", color: "bg-yellow", delay: "0.4s", duration: "5.4s" },
+  { left: "55%", top: "70%", color: "bg-pink", delay: "3s", duration: "6.4s" },
+  { left: "63%", top: "26%", color: "bg-lavender", delay: "0.4s", duration: "5.4s" },
   { left: "71%", top: "56%", color: "bg-ink/30", delay: "2.7s", duration: "6.6s" },
-  { left: "79%", top: "12%", color: "bg-orange", delay: "1.5s", duration: "5.1s" },
-  { left: "86%", top: "44%", color: "bg-yellow", delay: "3.4s", duration: "6.9s" },
+  { left: "79%", top: "12%", color: "bg-pink", delay: "1.5s", duration: "5.1s" },
+  { left: "86%", top: "44%", color: "bg-lavender", delay: "3.4s", duration: "6.9s" },
   { left: "93%", top: "76%", color: "bg-ink/30", delay: "0.9s", duration: "5.7s" },
-  { left: "48%", top: "88%", color: "bg-orange", delay: "2s", duration: "6.2s" },
+  { left: "48%", top: "88%", color: "bg-pink", delay: "2s", duration: "6.2s" },
 ];
 
 export function PixelParticles({ active }: { active: boolean }) {

@@ -6,6 +6,7 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { Card } from "@/components/ui/Card";
 import { blogIndexSchema, breadcrumbSchema } from "@/lib/schema";
 import { getSortedPosts } from "@/data/blogPosts";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 /** Metadata /blog — title absolut (metaTitle target 50–60) + description unik. */
 export const metadata: Metadata = {
@@ -31,10 +32,11 @@ export default function BlogIndexPage() {
       <JsonLd
         data={breadcrumbSchema([{ name: "Blog", path: "/blog" }])}
       />
-      <main id="konten" className="bg-cream">
-        <section className="container py-16 md:py-24">
+      <main id="konten" className="bg-canvas">
+        <section className="container relative isolate py-16 md:py-24">
+        <SectionArt src="/asset_decor_context/asset_blog.png" className="top-0 right-0 w-24 lg:block lg:w-32" />
           <ScrollReveal>
-            <p className="font-display text-sm font-bold uppercase tracking-wide text-orange">
+            <p className="font-display text-sm font-bold uppercase tracking-wide text-pink">
               Blog
             </p>
             <h1 className="mt-3 max-w-2xl font-display text-[clamp(1.75rem,5vw,2.75rem)] font-bold leading-tight text-ink">
@@ -60,7 +62,7 @@ export default function BlogIndexPage() {
                       className="flex h-full flex-col"
                       aria-label={post.title}
                     >
-                      <div className="border-b-2 border-ink bg-cream">
+                      <div className="border-b-2 border-ink bg-canvas">
                         {/* SVG lokal kecil — width/height eksplisit, tanpa CLS */}
                         <Image
                           src={post.image}

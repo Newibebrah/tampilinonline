@@ -64,7 +64,7 @@ export default async function CaseStudyPage({
         ])}
       />
 
-      <main id="konten" className="bg-cream">
+      <main id="konten" className="bg-surface">
         <article className="container max-w-3xl py-16 md:py-20">
           <nav aria-label="Breadcrumb" className="text-sm text-ink/60">
             <ol className="flex flex-wrap items-center gap-1.5">
@@ -87,7 +87,7 @@ export default async function CaseStudyPage({
           </nav>
 
           <header className="mt-6">
-            <p className="font-display text-sm font-bold uppercase tracking-wide text-orange">
+            <p className="font-display text-sm font-bold uppercase tracking-wide text-pink">
               Studi kasus · {study.category}
             </p>
             <h1 className="mt-3 font-display text-[clamp(1.6rem,5vw,2.5rem)] font-bold leading-tight text-ink">
@@ -141,13 +141,13 @@ export default async function CaseStudyPage({
               {study.results.map((result) => (
                 <div
                   key={result.label}
-                  className="rounded-card border-2 border-ink bg-white p-4 shadow-brutal"
+                  className="rounded-card border-2 border-ink bg-surface p-4 shadow-brutal"
                 >
                   <dt className="font-display text-sm font-bold">{result.label}</dt>
                   <dd className="mt-1 text-ink/80">
                     {result.value}
                     {result.demo && (
-                      <span className="ml-2 inline-block rounded-full border-2 border-ink bg-yellow px-2 py-0.5 text-xs font-bold">
+                      <span className="ml-2 inline-block rounded-full border-2 border-ink bg-blue px-2 py-0.5 text-xs font-bold">
                         Demo
                       </span>
                     )}
@@ -173,7 +173,7 @@ export default async function CaseStudyPage({
               </Link>
               <Link
                 href="/harga"
-                className="rounded-card border-2 border-ink bg-cream px-6 py-3 font-display font-bold shadow-brutal transition-[transform,box-shadow] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm"
+                className="rounded-card border-2 border-ink bg-surface px-6 py-3 font-display font-bold shadow-brutal transition-[transform,box-shadow] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm"
               >
                 Simulasi harga →
               </Link>

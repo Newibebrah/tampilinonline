@@ -16,7 +16,7 @@ export function Accordion({ items }: { items: FAQItem[] }) {
   const reducedMotion = useReducedMotion();
 
   return (
-    <div className="rounded-card border-2 border-ink bg-white shadow-brutal">
+    <div className="rounded-card border-2 border-ink bg-surface shadow-brutal">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         const panelId = `faq-panel-${index}`;
@@ -36,7 +36,7 @@ export function Accordion({ items }: { items: FAQItem[] }) {
               aria-expanded={isOpen}
               aria-controls={panelId}
               onClick={() => setOpenIndex(isOpen ? null : index)}
-              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-display font-bold hover:bg-yellow/20"
+              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-display font-bold hover:bg-lavender/20"
             >
               <span>{item.question}</span>
               <ChevronDown

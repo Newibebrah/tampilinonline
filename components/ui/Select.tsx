@@ -18,8 +18,9 @@ export function Select({ label, hint, id, className, children, ...rest }: Select
         <select
           id={id}
           className={cn(
-            "w-full appearance-none rounded-card border-2 border-ink bg-white px-4 py-2.5 pr-10 text-base font-medium",
+            "w-full appearance-none rounded-card border-2 border-ink bg-surface px-4 py-2.5 pr-10 text-base font-medium text-ink",
             "disabled:cursor-not-allowed disabled:bg-ink/10",
+            "focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/50",
           )}
           {...rest}
         >

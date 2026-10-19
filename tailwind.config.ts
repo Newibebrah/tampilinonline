@@ -1,8 +1,15 @@
 import type { Config } from "tailwindcss";
+import { PALETTE } from "./lib/colors";
 
 /**
- * Design system Tampilin.online — Soft Neo-Brutalism.
- * Warna & shadow mengikuti README Section 2.
+ * Design system v2.1 — Soft Pastel Neo-Brutalism (migrasi dari v1 cream/orange).
+ * Warna & shadow mengikuti token PALETTE — JANGAN hardcode hex di sini lagi.
+ *
+ * Aturan rasio 75/20/5:
+ * - 75% neutral: canvas, surface, ink
+ * - 20% pastel: pink (kreatif/manusia), blue (teknologi/UI), mint (sukses),
+ *   lavender (edukasi/ide)
+ * - 5% highlight: yellow — HANYA CTA utama, harga, badge terpopuler.
  */
 const config: Config = {
   content: [
@@ -14,24 +21,27 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        cream: "#F5F0E8",
-        ink: "#1A1A1A",
-        yellow: "#FFD23F",
-        orange: "#FF6B35",
-      },
+      colors: { ...PALETTE },
       fontFamily: {
         display: ["var(--font-space-grotesk)", "sans-serif"],
         sans: ["var(--font-inter)", "sans-serif"],
         pixel: ["var(--font-press-start)", "monospace"],
       },
       borderRadius: {
-        card: "8px",
+        // v2.1: radius "card" & "pill" dinaikkan ke skala neo (14px / 999px)
+        // supaya ratusan class existing naik standalone tanpa churn — nilai
+        // sama dengan "neo". Token baru: neo, neo-lg, full.
+        card: "14px",
         pill: "999px",
+        neo: "14px",
+        "neo-lg": "18px",
+        full: "9999px",
       },
       boxShadow: {
-        brutal: "6px 6px 0 #1A1A1A",
-        "brutal-sm": "2px 2px 0 #1A1A1A",
+        // v2.1: tanpa blur, offset lebih kecil dari v1 (4px utama).
+        "brutal-sm": "3px 3px 0 #2B2433",
+        brutal: "4px 4px 0 #2B2433",
+        "brutal-lg": "6px 6px 0 #2B2433",
       },
       container: {
         center: true,

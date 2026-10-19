@@ -20,24 +20,25 @@ type ButtonLinkProps = BaseProps &
 type StyleProps = BaseProps & { href?: string };
 
 /**
- * Tombol soft neo-brutalism:
- * - primary: bg yellow, border 3px, shadow brutal
- * - secondary: bg cream, border 2px, shadow brutal
+ * Tombol Soft Pastel Neo-Brutalism v2.1:
+ * - primary: bg yellow, border 2px, shadow brutal — kuning HANYA untuk CTA (75/20/5)
+ * - secondary: bg surface (putih) + hover lapisan lavender/20
  * - ghost: polos — untuk nav / link sekunder
- * Interaksi: hover turun-kanan + shadow mengecil; active menempel penuh.
- * Jika diberi `href`, dirender sebagai <a> (pengganti asChild tanpa lib Radix).
+ * Interaksi: hover terangkat (translate-y kecil + shadow membesar ke brutal-lg);
+ * active menempel. Semua variant punya focus-visible ring ink (FASE 6 audit #6).
  */
 function buttonClasses(variant: Variant = "primary", size: Size = "md", className?: string) {
   return cn(
     "inline-flex items-center justify-center gap-2 rounded-card font-display font-bold",
     "transition-[transform,box-shadow,background-color] duration-150 ease-out cursor-pointer",
-    // shadow brutal + hover "tekan"
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-canvas",
+    // shadow brutal + hover "angkat" (v2.1) — active menempel
     variant === "primary" &&
-      "border-[3px] border-ink bg-yellow text-ink shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
+      "border-2 border-ink bg-yellow text-ink shadow-brutal hover:-translate-y-0.5 hover:shadow-brutal-lg active:translate-y-0 active:shadow-brutal-sm",
     variant === "secondary" &&
-      "border-2 border-ink bg-cream text-ink shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm active:translate-x-[4px] active:translate-y-[4px] active:shadow-none",
+      "border-2 border-ink bg-surface text-ink shadow-brutal-sm hover:-translate-y-0.5 hover:bg-lavender/20 hover:shadow-brutal active:translate-y-0 active:shadow-brutal-sm",
     variant === "ghost" &&
-      "border-2 border-transparent bg-transparent text-ink hover:bg-ink/5 active:bg-ink/10",
+      "border-2 border-transparent bg-transparent text-ink hover:bg-lavender/20 active:bg-lavender/30",
     size === "sm" && "px-4 py-2 text-sm",
     size === "md" && "px-6 py-3 text-base",
     size === "lg" && "px-8 py-4 text-lg",

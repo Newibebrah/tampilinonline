@@ -2,6 +2,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
  * Teaser halaman About (visual novel) di homepage — center, mobile-first.
@@ -12,7 +13,8 @@ import { SectionHeading } from "@/components/shared/SectionHeading";
  */
 export function AboutTeaser() {
   return (
-    <section id="tentang" aria-label="Kenalan sama pembuat" className="bg-cream py-16 md:py-24">
+    <section id="tentang" aria-label="Kenalan sama pembuat" className="relative isolate bg-surface py-16 md:py-24">
+      <SectionArt src="/asset_decor_context/asset_tentang.png" className="bottom-0 right-0 w-28 lg:block lg:w-36" />
       <div className="container">
         <ScrollReveal className="flex flex-col items-center gap-6 text-center">
           <SectionHeading
@@ -27,7 +29,7 @@ export function AboutTeaser() {
             width={192}
             height={192}
             loading="lazy"
-            className="h-40 w-40 rounded-full border-[3px] border-ink bg-white p-1 shadow-brutal md:h-48 md:w-48 [image-rendering:pixelated]"
+            className="h-40 w-40 rounded-full border-[3px] border-ink bg-pink/20 p-1 shadow-brutal md:h-48 md:w-48 [image-rendering:pixelated]"
           />
           <ButtonLink href="/about" variant="primary" size="lg">
             Kenal lebih jauh

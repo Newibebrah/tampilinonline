@@ -28,3 +28,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Aset ilustrasi asli (sumber user) — versi terkompresi ada di public/
+/asset_decor/
+/asset_decor_conten/

@@ -27,7 +27,7 @@ export function Sticker({
   className?: string;
   /** Rotasi dasar stiker (derajat). */
   rotate?: number;
-  tone?: "yellow" | "orange" | "cream";
+  tone?: "yellow" | "pink" | "blue" | "lavender" | "surface";
   /** Delay mulai float (detik) agar beberapa stiker tidak sinkron. */
   floatDelay?: number;
 }) {
@@ -57,15 +57,17 @@ export function Sticker({
     >
       <span className="relative inline-block">
         {/* Selotip kertas — dua potongan transparan di ujung atas */}
-        <span className="absolute -top-2 left-3 h-4 w-9 -rotate-12 bg-cream/70" />
-        <span className="absolute -top-2 right-3 h-4 w-9 rotate-12 bg-cream/70" />
+        <span className="absolute -top-2 left-3 h-4 w-9 -rotate-12 bg-surface/70" />
+        <span className="absolute -top-2 right-3 h-4 w-9 rotate-12 bg-surface/70" />
 
         <span
           className={cn(
             "inline-block rounded-card border-2 border-ink px-4 py-2 font-display text-sm font-bold uppercase tracking-wider shadow-brutal-sm",
             tone === "yellow" && "bg-yellow text-ink",
-            tone === "orange" && "bg-orange text-ink",
-            tone === "cream" && "bg-cream text-ink",
+            tone === "pink" && "bg-pink text-ink",
+            tone === "blue" && "bg-blue text-ink",
+            tone === "lavender" && "bg-lavender text-ink",
+            tone === "surface" && "bg-surface text-ink",
           )}
         >
           {text}

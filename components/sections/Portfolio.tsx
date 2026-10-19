@@ -4,6 +4,7 @@ import { TiltCard } from "@/components/decorative/TiltCard";
 import { portfolioItems } from "@/data/portfolio";
 import Image from "next/image";
 import Link from "next/link";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
  * Portofolio v1: grid placeholder berlabel "Demo Concept" (README 6.6).
@@ -11,7 +12,8 @@ import Link from "next/link";
  */
 export function Portfolio() {
   return (
-    <section id="portofolio" aria-labelledby="portofolio-heading" className="container bg-cream py-16 md:py-24">
+    <section id="portofolio" aria-labelledby="portofolio-heading" className="container relative isolate bg-surface py-16 md:py-24">
+      <SectionArt src="/asset_decor_context/asset_preview.png" className="bottom-0 left-0 w-28 lg:block lg:w-40" />
       <ScrollReveal>
         <SectionHeading
           id="portofolio-heading"
@@ -29,23 +31,23 @@ export function Portfolio() {
             <TiltCard
               key={item.id}
               as="li"
-              className="overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal"
+              className="overflow-hidden rounded-card border-2 border-ink bg-surface shadow-brutal"
             >
               <Image
                 src={item.image}
                 alt={item.alt}
                 width={800}
                 height={600}
-                className="aspect-[4/3] w-full border-b-2 border-ink bg-cream object-cover"
+                className="aspect-[4/3] w-full border-b-2 border-ink bg-canvas object-cover"
               />
               <div className="flex flex-wrap items-center gap-2 p-5">
                 <h3 className="mr-auto font-display text-lg font-bold">
                   {item.title}
                 </h3>
-                <span className="rounded-pill border-2 border-ink bg-cream px-2.5 py-0.5 text-xs font-medium text-ink/60">
+                <span className="rounded-pill border-2 border-ink bg-surface px-2.5 py-0.5 text-xs font-medium text-ink/60">
                   {item.category}
                 </span>
-                <span className="rounded-pill border-2 border-ink bg-orange px-2.5 py-0.5 font-display text-xs font-bold">
+                <span className="rounded-pill border-2 border-ink bg-blue px-2.5 py-0.5 font-display text-xs font-bold">
                   {item.label}
                 </span>
               </div>
@@ -56,7 +58,7 @@ export function Portfolio() {
         <p className="mt-6 font-display text-sm font-bold">
           <Link
             href="/portofolio/katalog-online"
-            className="underline decoration-2 underline-offset-4 hover:text-orange"
+            className="underline decoration-2 underline-offset-4 hover:text-pink"
           >
             Baca studi kasus cara kerja kami (konsep katalog online) →
           </Link>

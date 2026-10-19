@@ -2,7 +2,7 @@
  * Narasi visual novel halaman /about.
  * Format highlight custom (aman kena typewriter, TANPA HTML mentah):
  * - **teks**  → highlight KUNING (render: bg-yellow, font-bold)
- * - *teks*    → highlight ORANYE (render: text-orange, font-bold)
+ * - *teks*    → highlight PINK (render: text-pink, font-bold)
  */
 
 export type AboutScene = {
@@ -51,7 +51,7 @@ export const aboutScenes: AboutScene[] = [
 
 /* ---------------- Parser highlight ---------------- */
 
-export type HighlightStyle = "none" | "yellow" | "orange";
+export type HighlightStyle = "none" | "yellow" | "pink";
 
 export type HighlightToken = {
   text: string;
@@ -76,7 +76,7 @@ export function parseHighlightTokens(text: string): HighlightToken[] {
     }
     tokens.push({
       text: match[1] ?? match[2],
-      style: match[1] ? "yellow" : "orange",
+      style: match[1] ? "yellow" : "pink",
     });
     last = match.index + match[0].length;
   }
@@ -97,7 +97,7 @@ export function parseHighlightTokens(text: string): HighlightToken[] {
         text: remainder.slice(0, singleIdx),
         style: "none",
       });
-      tokens.push({ text: remainder.slice(singleIdx + 1), style: "orange" });
+      tokens.push({ text: remainder.slice(singleIdx + 1), style: "pink" });
     } else {
       tokens.push({ text: remainder, style: "none" });
     }

@@ -19,9 +19,9 @@ export function ProcessStepCard({
   return (
     <article
       className={cn(
-        "relative z-10 rounded-card border-2 border-ink bg-cream p-6 shadow-brutal",
+        "relative z-10 rounded-card border-2 border-ink bg-surface p-6 shadow-brutal",
         // Highlight step pertama
-        step.step === 1 && "bg-yellow/10",
+        step.step === 1 && "bg-mint/20",
         // Hover neo-brutalist — desktop only
         "md:hover:translate-x-[2px] md:hover:translate-y-[2px] md:hover:shadow-brutal-sm",
         "transition-[transform,box-shadow] duration-200 ease-out",
@@ -32,7 +32,7 @@ export function ProcessStepCard({
       <div className="flex items-center gap-3">
         <span
           aria-hidden="true"
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-yellow font-display text-xl font-extrabold text-ink md:h-14 md:w-14"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-mint font-display text-xl font-extrabold text-ink md:h-14 md:w-14"
         >
           {step.step}
         </span>
@@ -64,7 +64,7 @@ export function ProcessStepCard({
         <p className="flex items-start gap-2 text-ink/80">
           <User
             aria-hidden="true"
-            className="mt-0.5 h-4 w-4 shrink-0 text-orange"
+            className="mt-0.5 h-4 w-4 shrink-0 text-mint"
           />
           <span>
             <span className="font-medium text-ink">Anda:</span> {step.clientRole}
@@ -79,7 +79,7 @@ export function ProcessStepCard({
       </div>
 
       {/* Deliverable */}
-      <p className="mt-4 inline-flex items-center gap-1.5 rounded-pill border-[1.5px] border-ink/30 bg-yellow/20 px-3 py-1.5 text-xs font-medium text-ink">
+      <p className="mt-4 inline-flex items-center gap-1.5 rounded-pill border-2 border-ink/30 bg-lavender/30 px-3 py-1.5 text-xs font-medium text-ink">
         <CheckCircle aria-hidden="true" className="h-4 w-4 shrink-0" />
         {step.deliverable}
       </p>

@@ -8,7 +8,7 @@ type CardProps = HTMLAttributes<HTMLElement> & {
   children?: ReactNode;
 };
 
-/** Card dasar soft neo-brutalism: border 2px ink, radius 8px, shadow brutal. */
+/** Card dasar Soft Pastel Neo-Brutalism v2.1: border 2px ink, radius neo (14px), shadow brutal. */
 export function Card({
   as: Tag = "div",
   interactive = false,
@@ -19,9 +19,9 @@ export function Card({
   return (
     <Tag
       className={cn(
-        "rounded-card border-2 border-ink bg-white p-6 shadow-brutal",
+        "rounded-card border-2 border-ink bg-surface p-6 shadow-brutal",
         interactive &&
-          "transition-[transform,box-shadow] duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm",
+          "transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-brutal-lg",
         className,
       )}
       {...rest}

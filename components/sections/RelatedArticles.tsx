@@ -25,7 +25,7 @@ export function RelatedArticles({ posts }: { posts: BlogPost[] }) {
                   {post.title}
                 </span>
                 <span className="text-sm text-ink/70">{post.excerpt}</span>
-                <span className="mt-auto pt-3 font-display text-sm font-bold text-orange">
+                <span className="mt-auto pt-3 font-display text-sm font-bold text-pink">
                   Baca artikel →
                 </span>
               </Link>

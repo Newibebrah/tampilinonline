@@ -49,9 +49,9 @@ function HighlightedSpans({ tokens }: { tokens: HighlightToken[] }) {
             </span>
           );
         }
-        if (token.style === "orange") {
+        if (token.style === "pink") {
           return (
-            <span key={index} className="font-bold text-orange">
+            <span key={index} className="font-bold text-pink">
               {token.text}
             </span>
           );
@@ -65,7 +65,8 @@ function HighlightedSpans({ tokens }: { tokens: HighlightToken[] }) {
 /**
  * Bait pembuka halaman /about: foto besar (tanpa border) + judul arcade.
  * `font-pixel` = Press Start 2P (weight 400 — chunky, jadi TANPA bold tambah),
- * gradient warna brand + hard shadow ink ala neo-brutalism.
+ * warna solid pastel pink + hard shadow plum ink ala neo-brutalism
+ * (gradient smooth DIHAPUS — aturan FASE 5 prompt migrasi v2.1).
  */
 function StoryBait() {
   return (
@@ -77,7 +78,7 @@ function StoryBait() {
         height={240}
         className="h-36 w-36 shrink-0 rounded-full object-cover [image-rendering:pixelated] md:h-52 md:w-52"
       />
-      <h1 className="font-pixel bg-gradient-to-br from-yellow to-orange bg-clip-text text-sm leading-[2] text-transparent [filter:drop-shadow(3px_3px_0_#1A1A1A)] sm:text-base md:text-lg">
+      <h1 className="font-pixel text-sm leading-[2] text-pink [filter:drop-shadow(3px_3px_0_var(--ink))] sm:text-base md:text-lg">
         Just a story about me, making my dreams come true.
       </h1>
     </header>
@@ -211,9 +212,9 @@ export function AboutGame() {
                 width={96}
                 height={96}
                 loading={s.id === 1 ? "eager" : "lazy"}
-                className="h-12 w-12 shrink-0 rounded-full border-2 border-ink bg-white [image-rendering:pixelated] md:h-16 md:w-16"
+                className="h-12 w-12 shrink-0 rounded-full border-2 border-ink bg-pink/20 [image-rendering:pixelated] md:h-16 md:w-16"
               />
-              <div className="min-w-0 flex-1 rounded-card rounded-tl-none border-[3px] border-ink bg-white p-4 shadow-brutal md:p-5">
+              <div className="min-w-0 flex-1 rounded-card rounded-tl-none border-[3px] border-ink bg-surface p-4 shadow-brutal md:p-5">
                 <p className="text-base leading-relaxed text-ink/85 md:text-lg">
                   <HighlightedSpans tokens={parseHighlightTokens(s.text)} />
                 </p>
@@ -253,7 +254,7 @@ export function AboutGame() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? undefined : { opacity: 0, y: -20 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="max-h-full w-auto max-w-[280px] rounded-full border-[3px] border-ink bg-white p-1 shadow-brutal md:max-w-[380px] [image-rendering:pixelated]"
+            className="max-h-full w-auto max-w-[280px] rounded-full border-[3px] border-ink bg-pink/20 p-1 shadow-brutal md:max-w-[380px] [image-rendering:pixelated]"
           />
         </AnimatePresence>
       </div>
@@ -265,11 +266,11 @@ export function AboutGame() {
         onClick={handleTap}
         className="relative mt-8 w-full max-w-xl cursor-pointer select-none"
       >
-        <span className="absolute -top-4 left-4 z-10 rounded-pill border-2 border-ink bg-yellow px-4 py-1 font-display text-sm font-bold text-ink shadow-brutal-sm">
+        <span className="absolute -top-4 left-4 z-10 rounded-pill border-2 border-ink bg-lavender px-4 py-1 font-display text-sm font-bold text-ink shadow-brutal-sm">
           Ananta
         </span>
 
-        <div className="relative min-h-[200px] rounded-card border-[3px] border-ink bg-cream p-5 pt-7 shadow-brutal md:min-h-[240px] md:p-6 md:pt-7">
+        <div className="relative min-h-[200px] rounded-card border-[3px] border-ink bg-surface p-5 pt-7 shadow-brutal md:min-h-[240px] md:p-6 md:pt-7">
           <p className="text-left text-base leading-relaxed text-ink/85 md:text-lg">
             <HighlightedSpans tokens={tokens} />
           </p>

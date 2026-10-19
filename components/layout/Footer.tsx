@@ -43,13 +43,13 @@ const INFO_LINKS = [
 ];
 
 const linkCls =
-  "text-cream/80 underline-offset-4 transition-colors hover:text-yellow hover:underline";
+  "text-canvas/80 underline-offset-4 transition-colors hover:text-yellow hover:underline";
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t-[3px] border-ink bg-ink text-cream">
+    <footer className="border-t-[3px] border-ink bg-ink text-canvas">
       <div className="container grid gap-10 py-14 md:grid-cols-2 md:gap-8 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
         {/* Brand + tagline + medsos */}
         <div className="flex flex-col items-start gap-4">
@@ -57,7 +57,7 @@ export function Footer() {
           <p className="max-w-xs font-display text-sm font-bold uppercase tracking-wide text-yellow">
             {BRAND.tagline}
           </p>
-          <p className="max-w-xs text-sm leading-relaxed text-cream/70">
+          <p className="max-w-xs text-sm leading-relaxed text-canvas/70">
             Jasa pembuatan website untuk semua skala usaha — dari landing page
             mulai Rp499.000 sampai e-commerce.
           </p>
@@ -71,7 +71,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-card border-2 border-cream/30 bg-white/5 text-cream transition-all duration-200 hover:-translate-y-0.5 hover:border-yellow hover:bg-yellow hover:text-ink"
+                  className="flex h-11 w-11 items-center justify-center rounded-card border-2 border-canvas/30 bg-surface/5 text-canvas transition-all duration-200 hover:-translate-y-0.5 hover:border-yellow hover:bg-yellow hover:text-ink"
                 >
                   <social.icon className="h-5 w-5" />
                 </a>
@@ -136,7 +136,7 @@ export function Footer() {
                 />
                 <span>
                   WhatsApp
-                  <span className="block text-cream/60">
+                  <span className="block text-canvas/60">
                     {BRAND.whatsappNumberLabel}
                   </span>
                 </span>
@@ -152,7 +152,7 @@ export function Footer() {
                 <InstagramIcon className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>
                   Instagram
-                  <span className="block text-cream/60">
+                  <span className="block text-canvas/60">
                     @{BRAND.instagram}
                   </span>
                 </span>
@@ -168,7 +168,7 @@ export function Footer() {
                 <TikTokIcon className="mt-0.5 h-4 w-4 shrink-0" />
                 <span>
                   TikTok
-                  <span className="block text-cream/60">@{BRAND.tiktok}</span>
+                  <span className="block text-canvas/60">@{BRAND.tiktok}</span>
                 </span>
               </a>
             </li>
@@ -177,8 +177,8 @@ export function Footer() {
       </div>
 
       {/* Bar bawah: copyright + legal inline */}
-      <div className="border-t border-cream/20">
-        <div className="container flex flex-col gap-3 py-6 text-sm text-cream/60 md:flex-row md:items-center md:justify-between">
+      <div className="border-t border-canvas/20">
+        <div className="container flex flex-col gap-3 py-6 text-sm text-canvas/60 md:flex-row md:items-center md:justify-between">
           <p>
             © {year} {BRAND.name}. Hak cipta dilindungi.
           </p>
@@ -192,7 +192,7 @@ export function Footer() {
                   {link.label}
                 </a>
                 {index < INFO_LINKS.length - 1 ? (
-                  <span aria-hidden="true" className="text-cream/30">
+                  <span aria-hidden="true" className="text-canvas/30">
                     |
                   </span>
                 ) : null}

@@ -6,6 +6,7 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { TextReveal } from "@/components/shared/TextReveal";
 import { Magnetic } from "@/components/decorative/Magnetic";
 import { Sticker } from "@/components/decorative/Sticker";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
  * CTA final — headline besar + 2 tombol di atas panel kuning (README Phase 8).
@@ -14,17 +15,18 @@ export function FinalCTA() {
   return (
     <section aria-labelledby="cta-final-heading" className="px-5 pb-20 md:pb-28">
       <ScrollReveal>
-        <div className="container relative overflow-hidden rounded-card border-[3px] border-ink bg-yellow p-8 text-center shadow-brutal md:p-14">
+        <div className="container relative isolate overflow-hidden rounded-card border-[3px] border-ink bg-yellow p-8 text-center shadow-brutal md:p-14">
+          <SectionArt src="/asset_decor_context/asset_hasil_growth.png" className="-bottom-8 -left-6 w-28 md:block lg:w-36" />
           {/* dekorasi sudut */}
-          <span aria-hidden="true" className="absolute -left-10 -top-10 h-28 w-28 rounded-card border-[3px] border-ink bg-cream" />
-          <span aria-hidden="true" className="absolute -bottom-12 -right-10 h-32 w-32 rotate-12 rounded-card border-[3px] border-ink bg-cream" />
+          <span aria-hidden="true" className="absolute -left-10 -top-10 h-28 w-28 rounded-card border-[3px] border-ink bg-pink/40" />
+          <span aria-hidden="true" className="absolute -bottom-12 -right-10 h-32 w-32 rotate-12 rounded-card border-[3px] border-ink bg-blue/40" />
 
           <div className="relative flex flex-col items-center gap-6">
             {/* Sticker bombing di panel kuning (prompt visionary 2.1) */}
             <Sticker
               text="Gratis Konsultasi"
               rotate={8}
-              tone="cream"
+              tone="surface"
               className="right-4 top-4 hidden md:block"
               floatDelay={0.8}
             />
@@ -37,7 +39,7 @@ export function FinalCTA() {
                 { text: "Saatnya usaha Anda" },
                 {
                   text: "tampil online.",
-                  className: "bg-cream px-2 shadow-brutal-sm",
+                  className: "bg-surface px-2 shadow-brutal-sm",
                   asOne: true,
                 },
               ]}
@@ -51,7 +53,7 @@ export function FinalCTA() {
               <WhatsAppButton
                 size="lg"
                 variant="primary"
-                className="bg-ink text-cream"
+                className="bg-ink text-canvas"
               >
                 Konsultasi Gratis via WhatsApp
               </WhatsAppButton>

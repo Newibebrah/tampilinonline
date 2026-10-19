@@ -15,6 +15,7 @@ import {
 } from "@/lib/pricing";
 import { estimateMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 import { formatRupiah, cn } from "@/lib/utils";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
  * Simulator harga (README Phase 7):
@@ -52,7 +53,8 @@ export function PriceSimulator({
   });
 
   return (
-    <section id="simulasi" aria-labelledby="simulasi-heading" className="container py-16 md:py-24">
+    <section id="simulasi" aria-labelledby="simulasi-heading" className="container relative isolate py-16 md:py-24">
+      <SectionArt src="/asset_decor_context/asset_simulasi.png" className="top-0 right-0 w-24 lg:block lg:w-32" />
       <ScrollReveal>
         <SectionHeading
           id="simulasi-heading"
@@ -69,7 +71,7 @@ export function PriceSimulator({
           <form
             aria-label="Kalkulator estimasi harga"
             onSubmit={(e) => e.preventDefault()}
-            className="flex flex-col gap-5 rounded-card border-2 border-ink bg-white p-6 shadow-brutal"
+            className="flex flex-col gap-5 rounded-card border-2 border-ink bg-surface p-6 shadow-brutal"
           >
             <div className="flex items-center gap-2">
               <Package aria-hidden="true" className="h-5 w-5" />
@@ -179,7 +181,7 @@ export function PriceSimulator({
         <ScrollReveal delay={0.1} className="lg:col-span-2">
           <aside
             aria-label="Estimasi biaya"
-            className="lg:sticky lg:top-28 rounded-card border-[3px] border-ink bg-white p-6 shadow-brutal"
+            className="lg:sticky lg:top-28 rounded-card border-[3px] border-ink bg-surface p-6 shadow-brutal"
           >
             <h3 className="font-display text-lg font-bold">Estimasi biaya</h3>
 

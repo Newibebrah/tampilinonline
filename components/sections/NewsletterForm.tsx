@@ -73,7 +73,7 @@ export function NewsletterForm() {
             required
             autoComplete="email"
             placeholder="nama@email.com"
-            className="w-full rounded-card border-2 border-ink bg-white px-4 py-2.5 text-base sm:flex-1"
+            className="w-full rounded-card border-2 border-ink bg-surface px-4 py-2.5 text-base sm:flex-1"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />

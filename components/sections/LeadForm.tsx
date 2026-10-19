@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { packages } from "@/data/packages";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
  * LeadForm — diversifikasi konversi (jangan 100% WhatsApp).
@@ -111,8 +112,9 @@ export function LeadForm() {
     <section
       id="konsultasi-form"
       aria-labelledby="konsultasi-form-heading"
-      className="container bg-cream py-16 md:py-24"
+      className="container relative isolate bg-canvas py-16 md:py-24"
     >
+      <SectionArt src="/asset_decor/asset_character_monster.png" className="bottom-0 right-0 w-28 lg:block lg:w-36" />
       <ScrollReveal>
         <SectionHeading
           id="konsultasi-form-heading"
@@ -136,16 +138,16 @@ export function LeadForm() {
             aria-valuenow={step}
             aria-valuemin={1}
             aria-valuemax={STEPS}
-            className="mb-6 h-2 w-full rounded-card border-2 border-ink bg-white"
+            className="mb-6 h-2 w-full rounded-card border-2 border-ink bg-surface"
           >
             <div
-              className="h-full rounded-card bg-orange transition-[width] duration-300"
+              className="h-full rounded-card bg-mint transition-[width] duration-300"
               style={{ width: `${(step / STEPS) * 100}%` }}
             />
           </div>
 
           <form
-            className="rounded-card border-2 border-ink bg-white p-6 shadow-brutal md:p-8"
+            className="rounded-card border-2 border-ink bg-surface p-6 shadow-brutal md:p-8"
             onSubmit={(event) => {
               event.preventDefault();
               // Submit form tidak melakukan apapun selain CTA di bawah —
@@ -228,7 +230,7 @@ export function LeadForm() {
                   <textarea
                     id="lead-pesan"
                     rows={3}
-                    className="w-full rounded-card border-2 border-ink bg-white px-4 py-2.5 text-base"
+                    className="w-full rounded-card border-2 border-ink bg-surface px-4 py-2.5 text-base"
                     placeholder="Kebutuhan khusus, deadline, atau pertanyaan lain…"
                     value={data.pesan}
                     onChange={(event) => set("pesan")(event.target.value)}

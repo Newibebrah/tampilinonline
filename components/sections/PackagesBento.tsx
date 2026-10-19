@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { buildWhatsAppUrl, packageMessage } from "@/lib/whatsapp";
 import { packages } from "@/data/packages";
 import type { Package } from "@/types";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
  * Bento Grid paket (README 10):
@@ -23,7 +24,7 @@ import type { Package } from "@/types";
  */
 export function PackagesBento() {
   return (
-    <section id="paket" aria-labelledby="paket-heading" className="container py-16 md:py-24">
+    <section id="paket" aria-labelledby="paket-heading" className="container relative isolate bg-surface py-16 md:py-24">
       <ScrollReveal>
         <SectionHeading
           id="paket-heading"
@@ -60,16 +61,17 @@ export function PackagesBento() {
 
       {/* --- Banner CTA ke /harga (revisi user): simulator pindah halaman
           sendiri. Gaya MIRIP banner CTA final: panel kuning, border 3px,
-          shadow brutal, dekorasi sudut cream. Bagian dari section Paket
+          shadow brutal, dekorasi sudut pastel. Bagian dari section Paket
           Layanan — muncul di bawah grid/carousel. --- */}
       <ScrollReveal className="mt-10 md:mt-14">
         <div
           aria-labelledby="paket-harga-banner"
-          className="relative overflow-hidden rounded-card border-[3px] border-ink bg-yellow p-8 text-center shadow-brutal md:p-12"
+          className="relative isolate overflow-hidden rounded-card border-[3px] border-ink bg-yellow p-8 text-center shadow-brutal md:p-12"
         >
           {/* dekorasi sudut — sama dengan banner CTA final */}
-          <span aria-hidden="true" className="absolute -left-8 -top-8 h-24 w-24 rounded-card border-[3px] border-ink bg-cream" />
-          <span aria-hidden="true" className="absolute -bottom-10 -right-8 h-28 w-28 rotate-12 rounded-card border-[3px] border-ink bg-cream" />
+          <SectionArt src="/asset_decor_context/asset_paket_layanan.png" className="-bottom-6 -left-4 w-28 md:block lg:w-36" />
+          <span aria-hidden="true" className="absolute -left-8 -top-8 h-24 w-24 rounded-card border-[3px] border-ink bg-pink/40" />
+          <span aria-hidden="true" className="absolute -bottom-10 -right-8 h-28 w-28 rotate-12 rounded-card border-[3px] border-ink bg-blue/40" />
 
           <div className="relative flex flex-col items-center gap-5">
             <h3
@@ -77,7 +79,7 @@ export function PackagesBento() {
               className="text-balance font-display text-[clamp(1.5rem,4.5vw,2.25rem)] font-extrabold leading-tight"
             >
               Masih bingung{" "}
-              <span className="bg-cream px-2 shadow-brutal-sm">soal harga?</span>
+              <span className="bg-surface px-2 shadow-brutal-sm">soal harga?</span>
             </h3>
             <p className="max-w-xl text-base leading-relaxed text-ink/80 md:text-lg">
               Tidak perlu menebak — buka simulator, geser pilihan, dan lihat
@@ -102,10 +104,10 @@ function PackageCard({ pkg }: { pkg: Package }) {
     // di mobile carousel properti grid ini tidak berpengaruh.
     <article
       className={cn(
-        "flex h-full flex-col rounded-card p-6 shadow-brutal transition-[transform,box-shadow] duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm",
+        "flex h-full flex-col rounded-card p-6 shadow-brutal transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-brutal-lg",
         pkg.featured
           ? "border-[3px] border-ink bg-yellow"
-          : "border-2 border-ink bg-white",
+          : "border-2 border-ink bg-surface",
       )}
     >
       <header className="flex flex-wrap items-center gap-2">
@@ -114,7 +116,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
           <span
             className={cn(
               "rounded-pill border-2 border-ink px-3 py-0.5 font-display text-xs font-bold",
-              pkg.badge === "Terpopuler" ? "bg-orange" : "bg-cream",
+              pkg.badge === "Terpopuler" ? "bg-ink text-canvas" : "bg-surface",
             )}
           >
             {pkg.badge}
@@ -153,7 +155,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
         className={cn(
           "mt-6 inline-flex items-center justify-center gap-2 rounded-card font-display font-bold transition-transform cursor-pointer",
           pkg.featured
-            ? "border-[3px] border-ink bg-ink px-4 py-3 text-cream hover:translate-x-[2px] hover:translate-y-[2px]"
+            ? "border-[3px] border-ink bg-ink px-4 py-3 text-canvas hover:translate-x-[2px] hover:translate-y-[2px]"
             : "border-[3px] border-ink bg-yellow px-4 py-3 shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px]",
         )}
       >

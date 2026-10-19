@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Press_Start_2P, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { SITE, DEFAULT_KEYWORDS, BRAND_ICONS } from "@/lib/seo";
+import { PALETTE } from "@/lib/colors";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CanvasTexture } from "@/components/decorative/CanvasTexture";
@@ -93,7 +94,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F5F0E8",
+  themeColor: PALETTE.canvas,
   width: "device-width",
   initialScale: 1,
 };

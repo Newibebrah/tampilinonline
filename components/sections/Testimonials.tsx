@@ -2,6 +2,7 @@ import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { Card } from "@/components/ui/Card";
 import { testimonials } from "@/data/testimonials";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
  * Testimoni v1 — SEMUA kartu berlabel "Demo" (aturan jujur README 6.5).
@@ -13,8 +14,9 @@ export function Testimonials() {
     <section
       id="testimoni"
       aria-labelledby="testimoni-heading"
-      className="container bg-cream py-16 md:py-24"
+      className="container relative isolate bg-canvas py-16 md:py-24"
     >
+      <SectionArt src="/asset_decor_context/asset_target_audience.png" className="bottom-0 left-0 w-28 lg:block lg:w-36" />
       <ScrollReveal>
         <SectionHeading
           id="testimoni-heading"
@@ -29,7 +31,7 @@ export function Testimonials() {
           {testimonials.map((item) => (
             <li key={item.id}>
               <Card className="flex h-full flex-col gap-4">
-                <span className="inline-flex w-fit items-center gap-1.5 rounded-full border-2 border-ink bg-yellow px-2.5 py-0.5 text-xs font-bold">
+                <span className="inline-flex w-fit items-center gap-1.5 rounded-full border-2 border-ink bg-blue px-2.5 py-0.5 text-xs font-bold">
                   {item.demo ? "Testimoni Demo" : "Testimoni Klien"}
                 </span>
                 <blockquote className="text-ink/80">“{item.quote}”</blockquote>

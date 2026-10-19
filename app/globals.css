@@ -4,10 +4,15 @@
 
 @layer base {
   :root {
-    --cream: #f5f0e8;
-    --ink: #1a1a1a;
-    --yellow: #ffd23f;
-    --orange: #ff6b35;
+    /* v2.1 Soft Pastel Neo-Brutalism — mirror token PALETTE (lib/colors.ts). */
+    --canvas: #fffcf8;
+    --surface: #ffffff;
+    --ink: #2b2433;
+    --pink: #f2a3c7;
+    --blue: #8fc5f8;
+    --mint: #92e0c6;
+    --yellow: #ffe28a;
+    --lavender: #c6b5f2;
   }
 
   html {
@@ -16,21 +21,23 @@
   }
 
   body {
-    @apply bg-cream font-sans text-ink antialiased;
+    @apply bg-canvas font-sans text-ink antialiased;
   }
 
   ::selection {
     @apply bg-yellow text-ink;
   }
 
-  /* fokus utama navigasi — harus terlihat jelas (WCAG 2.4.7). */
+  /* Fokus utama navigasi — terlihat jelas (WCAG 2.4.7) + ring ink (FASE 2 prompt).
+     Ring direalisasikan via outline agar berlaku GLOBAL untuk semua <a>/<button>/
+     <input>/<select> tanpa menambah class per elemen. */
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,
   select:focus-visible,
   [tabindex]:focus-visible {
     @apply outline-none;
-    outline: 3px solid var(--orange);
+    outline: 2px solid var(--ink);
     outline-offset: 2px;
   }
 }
@@ -98,16 +105,16 @@
 /* Grid kotak-kotak (blueprint/graph paper) — pemanis background di SEMUA
    halaman. Periode 40px HARUS sama dengan SPACING di
    components/decorative/CanvasTexture.tsx (alignment dot interaktif di
-   persilangan garis). */
+   persilangan garis). v2.1: ink plum #2B2433 @ 5% (maks ink/5 per prompt). */
 .box-grid {
   background-image: repeating-linear-gradient(
       180deg,
-      rgba(26, 26, 26, 0.05) 0 1px,
+      rgba(43, 36, 51, 0.05) 0 1px,
       transparent 1px 40px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(26, 26, 26, 0.05) 0 1px,
+      rgba(43, 36, 51, 0.05) 0 1px,
       transparent 1px 40px
     );
 }
@@ -152,16 +159,16 @@
   pointer-events: none;
   background: repeating-linear-gradient(
     180deg,
-    rgba(26, 26, 26, 0.05) 0 1px,
+    rgba(43, 36, 51, 0.05) 0 1px,
     transparent 1px 4px
   );
 }
 
-/* Retro pixel cursor — HANYA halaman /about (prompt Bagian 3.3).
-   Elemen interaktif (button/link dengan cursor-pointer) menimpa ini —
-   jadi tetap responsif. Hotspot 2,1 mengikuti ujung mata panah. */
+/* Retro pixel cursor — HANYA halaman /about. v2.1: panah plum #2B2433
+   dengan outline canvas #FFFCF8. Elemen interaktif (button/link dengan
+   cursor-pointer) menimpa ini — jadi tetap responsif. Hotspot 2,1. */
 .cursor-pixel {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpolygon points='2,1 2,13 5,10 7,15 9,14 7,9 11,9' fill='%231A1A1A' stroke='%23F5F0E8' stroke-width='1'/%3E%3C/svg%3E")
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpolygon points='2,1 2,13 5,10 7,15 9,14 7,9 11,9' fill='%232B2433' stroke='%23FFFCF8' stroke-width='1'/%3E%3C/svg%3E")
       2 1,
     auto;
 }

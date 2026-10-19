@@ -12,6 +12,7 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { SwipeCarousel } from "@/components/ui/SwipeCarousel";
 import { Magnetic } from "@/components/decorative/Magnetic";
 import { cn } from "@/lib/utils";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
  * Scrollytelling "Sticky Story Viewer + Narrative Cards" (schema v2).
@@ -87,38 +88,38 @@ const BEATS: Beat[] = [
 ];
 
 const CARD_CLS: Record<Scheme, string> = {
-  plain: "bg-white text-ink",
-  dark: "bg-ink text-cream",
+  plain: "bg-surface text-ink",
+  dark: "bg-ink text-canvas",
   accent: "bg-yellow text-ink",
-  cta: "bg-white text-ink",
+  cta: "bg-surface text-ink",
 };
 
 const SUB_CLS: Record<Scheme, string> = {
   plain: "text-ink/70",
-  dark: "text-cream/75",
+  dark: "text-canvas/75",
   accent: "text-ink/70",
   cta: "text-ink/70",
 };
 
 const NUM_CLS: Record<Scheme, string> = {
-  plain: "bg-cream text-ink",
+  plain: "bg-canvas text-ink",
   dark: "bg-yellow text-ink",
   accent: "bg-ink text-yellow",
-  cta: "bg-cream text-ink",
+  cta: "bg-canvas text-ink",
 };
 
 const STRIP_CLS: Record<Scheme, string> = {
-  plain: "bg-cream",
+  plain: "bg-canvas",
   dark: "bg-ink",
   accent: "bg-yellow",
-  cta: "bg-orange",
+  cta: "bg-pink",
 };
 
 const ACCENT_NUM_CLS: Record<Scheme, string> = {
   plain: "text-ink/15",
   dark: "text-yellow",
-  accent: "text-orange",
-  cta: "text-orange",
+  accent: "text-pink",
+  cta: "text-pink",
 };
 
 export function ProblemScrolly() {
@@ -156,8 +157,9 @@ export function ProblemScrolly() {
     <section
       id="masalah"
       aria-labelledby="problem-solver-heading"
-      className="container bg-cream pb-8 pt-16 md:pb-8 md:pt-24"
+      className="container relative isolate bg-surface pb-8 pt-16 md:pb-8 md:pt-24"
     >
+      <SectionArt src="/asset_decor_context/asset_problem_solver.png" className="bottom-0 right-0 w-28 lg:block lg:w-40" />
       {/* Heading gabungan "Problem Solver" — menggantikan dua heading lama
           (Masalah & Solusi) sesuai permintaan user. Konten tetap utuh:
           heading masalah punya H2 sendiri, solution section ikut di bawah
@@ -212,7 +214,7 @@ export function ProblemScrolly() {
         {/* Panel sticky (hanya desktop ≥1024) */}
         <aside className="relative hidden lg:block">
           <div className="sticky top-24">
-            <div className="overflow-hidden rounded-card border-[3px] border-ink bg-white shadow-brutal">
+            <div className="overflow-hidden rounded-card border-[3px] border-ink bg-surface shadow-brutal">
               <span
                 aria-hidden="true"
                 className={cn("block h-3 w-full transition-colors duration-300", STRIP_CLS[beat.scheme])}
@@ -254,7 +256,7 @@ export function ProblemScrolly() {
                         key={b.key}
                         className={cn(
                           "h-1.5 flex-1 rounded-pill transition-colors duration-300",
-                          index <= active ? "bg-yellow" : "bg-ink/15",
+                          index <= active ? "bg-mint" : "bg-ink/15",
                         )}
                       />
                     ))}
@@ -308,7 +310,7 @@ export function ProblemScrolly() {
       <ScrollReveal className="mx-auto mt-12 max-w-2xl px-4 text-center md:mt-16">
         <p className="text-balance font-display text-lg font-medium leading-snug text-ink/80 md:text-xl">
           Keempat masalah itu nyata setiap hari —{" "}
-          <span className="bg-orange px-1 font-bold text-ink">
+          <span className="bg-pink px-1 font-bold text-ink">
             tapi semuanya bisa dituntaskan dari satu hal
           </span>{" "}
           — satu website yang dikelola dengan benar. Di bawah ini cara kami
@@ -374,24 +376,24 @@ function MockPreview({ compact }: { compact: boolean }) {
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal-sm",
+        "overflow-hidden rounded-card border-2 border-ink bg-surface shadow-brutal-sm",
         compact ? "w-full max-w-xs" : "w-full max-w-[260px]",
       )}
     >
-      <div className="flex items-center gap-1 border-b-2 border-ink bg-cream px-3 py-2">
+      <div className="flex items-center gap-1 border-b-2 border-ink bg-canvas px-3 py-2">
         <span className="h-2 w-2 rounded-full bg-ink" />
         <span className="h-2 w-2 rounded-full bg-yellow" />
-        <span className="h-2 w-2 rounded-full bg-orange" />
-        <span className="ml-2 h-3 flex-1 rounded-pill border border-ink/40 bg-white" />
+        <span className="h-2 w-2 rounded-full bg-pink" />
+        <span className="ml-2 h-3 flex-1 rounded-pill border border-ink/40 bg-surface" />
       </div>
       <div className="p-3">
         <span className="block h-3 w-2/3 rounded-pill bg-ink" />
         <span className="mt-1.5 block h-3 w-1/2 rounded-pill bg-ink" />
         <span className="mt-3 block h-10 w-full rounded-sm bg-yellow" />
         <div className="mt-3 grid grid-cols-3 gap-2">
-          <span className="block h-8 rounded-sm bg-cream" />
-          <span className="block h-8 rounded-sm bg-cream" />
-          <span className="block h-8 rounded-sm bg-orange" />
+          <span className="block h-8 rounded-sm bg-canvas" />
+          <span className="block h-8 rounded-sm bg-canvas" />
+          <span className="block h-8 rounded-sm bg-pink" />
         </div>
       </div>
     </div>

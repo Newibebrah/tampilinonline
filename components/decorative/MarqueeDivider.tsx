@@ -4,12 +4,10 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 
 /**
- * MarqueeDivider — REVISI USER:
- * - LURUS horizontal (tidak lagi miring -2°).
- * - Lebih cartoonish: pita dua-warna keras (kuning atas / oranye bawah,
- *   hard-stop bukan gradient smooth) + item sebagai "chips" putih
- *   border-ink + shadow keras, dipisah starburst mini — bukan pita hitam flat.
- *
+ * MarqueeDivider — v2.1 Soft Pastel Neo-Brutalism:
+ * - Pita gelap `bg-ink` dengan teks `text-yellow` (prompt FASE 5 #2).
+ * - Starburst mini di-restyle ke gaya baru: fill pastel pink + garis
+ *   plum ink (outline kartun, stroke menyatu ke band gelap — aman).
  * - ADDITIVE: hanya disisipkan DI ANTARA section (app/page.tsx).
  * - Konten digandakan 2× (salinan aria-hidden) → loop translateX(-50%)
  *   mulus tanpa "lompatan".
@@ -25,19 +23,19 @@ const ITEMS = [
   "E-Commerce",
 ] as const;
 
-/** Starburst mini cartoon — pemisah antar chips. */
+/** Starburst mini cartoon gaya pastel-plum — pemisah antar item. */
 function MiniBurst() {
   return (
     <svg
       viewBox="0 0 100 100"
-      className="mx-2.5 h-4 w-4 shrink-0"
+      className="mx-3 h-4 w-4 shrink-0"
       aria-hidden="true"
     >
       <polygon
         points="98,50 67,60 74,92 50,70 26,92 33,60 2,50 33,40 26,8 50,30 74,8 67,40"
-        fill="#FFFFFF"
-        stroke="#1A1A1A"
-        strokeWidth="7"
+        fill="var(--pink)"
+        stroke="var(--ink)"
+        strokeWidth="6"
         strokeLinejoin="round"
       />
     </svg>
@@ -50,7 +48,7 @@ function Row({ hidden = false }: { hidden?: boolean }) {
     <span className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
       {ITEMS.map((item) => (
         <span key={item} className="flex items-center">
-          <span className="mx-1 inline-block whitespace-nowrap rounded-card border-2 border-ink bg-white px-4 py-1.5 font-display text-sm font-bold uppercase tracking-widest text-ink shadow-brutal-sm sm:text-base">
+          <span className="mx-1 inline-block whitespace-nowrap font-display text-sm font-bold uppercase tracking-widest text-yellow sm:text-base">
             {item}
           </span>
           <MiniBurst />
@@ -68,14 +66,8 @@ export function MarqueeDivider({ className }: { className?: string }) {
       aria-hidden="true"
       className={cn("relative overflow-hidden py-6 select-none", className)}
     >
-      {/* Pita lurus, dua-warna keras: kuning atas / oranye bawah */}
-      <div
-        className="border-y-[3px] border-ink py-2"
-        style={{
-          backgroundImage:
-            "linear-gradient(180deg, #FFD23F 0 50%, #FF6B35 50% 100%)",
-        }}
-      >
+      {/* Pita gelap datar + teks kuning (highlight konversi). */}
+      <div className="border-y-2 border-ink bg-ink py-2.5">
         <div className={cn("flex w-max", !reduced && "animate-marquee")}>
           <Row />
           <Row hidden />

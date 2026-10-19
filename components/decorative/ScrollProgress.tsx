@@ -2,12 +2,13 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { INK_RGB } from "@/lib/colors";
 
 /**
  * ScrollProgress (prompt Bagian 1.2) — garis putus-putus di atas layar yang
- * "terisi" solid kuning→oranye (hard-stop, bukan gradient smooth) mengikuti
- * scroll. Spring 300/30 agar terasa hidup; reduced-motion tetap berfungsi
- * sebagai indikator (scroll-driven, bukan animasi waktu) tanpa spring.
+ * "terisi" solid kuning (highlight konversi, token PALETTE — tanpa hex)
+ * mengikuti scroll. Spring 300/30 agar terasa hidup; reduced-motion tetap
+ * berfungsi sebagai indikator (scroll-driven, bukan animasi waktu) tanpa spring.
  *
  * Fixed + pointer-events-none — tidak memblokir navbar/menu di bawahnya.
  */
@@ -29,18 +30,15 @@ export function ScrollProgress() {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage:
-            "repeating-linear-gradient(90deg, rgba(26,26,26,0.35) 0 6px, transparent 6px 12px)",
+          backgroundImage: `repeating-linear-gradient(90deg, rgba(${INK_RGB},0.35) 0 6px, transparent 6px 12px)`,
         }}
       />
-      {/* Isi solid — scaleX mengikuti progres baca */}
+      {/* Isi solid kuning — scaleX mengikuti progres baca */}
       <motion.div
-        className="h-full w-full origin-left"
+        className="h-full w-full origin-left bg-yellow"
         style={{
           scaleX: reduced ? scrollYProgress : springScaleX,
           willChange: "transform",
-          backgroundImage:
-            "linear-gradient(90deg, #FFD23F 0 70%, #FF6B35 70% 100%)",
         }}
       />
     </div>

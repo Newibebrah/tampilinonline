@@ -11,7 +11,7 @@ import { Wordmark } from "@/components/brand/Wordmark";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 
 /**
- * Navbar sticky: transparan di atas → solid cream + border saat scroll > 50px.
+ * Navbar sticky: transparan di atas → solid canvas + border saat scroll > 50px.
  * Mobile (<md) memakai drawer; active link dari useScrollSpy.
  */
 export function Navbar() {
@@ -41,7 +41,7 @@ export function Navbar() {
       className={cn(
         "sticky top-0 z-40 transition-colors duration-200",
         isScrolled
-          ? "border-b-2 border-ink bg-cream"
+          ? "border-b-2 border-ink bg-canvas"
           : "border-b-2 border-transparent bg-transparent",
       )}
     >
@@ -101,7 +101,7 @@ export function Navbar() {
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Buka menu navigasi"
             aria-expanded={isMobileMenuOpen}
-            className="flex h-10 w-10 items-center justify-center rounded-card border-2 border-ink bg-cream shadow-brutal-sm md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-card border-2 border-ink bg-canvas shadow-brutal-sm md:hidden"
           >
             <Menu aria-hidden="true" className="h-5 w-5" />
           </button>

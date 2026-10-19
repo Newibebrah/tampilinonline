@@ -24,6 +24,7 @@ import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 import { processSteps, processContent } from "@/data/process";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
  * Section Proses v3 — konsep "Sticky Story Viewer" (SAMA dengan section
@@ -41,7 +42,7 @@ import { processSteps, processContent } from "@/data/process";
  * Semua teks dari data/process.ts.
  */
 
-const STRIP_SCHEMES = ["bg-yellow", "bg-orange", "bg-ink"] as const;
+const STRIP_SCHEMES = ["bg-pink", "bg-blue", "bg-ink"] as const;
 
 export function Process() {
   const reducedMotion = useReducedMotion();
@@ -71,8 +72,9 @@ export function Process() {
     <section
       id="proses"
       aria-label="Proses kerja Tampilin.online"
-      className="py-16 md:py-24"
+      className="relative isolate py-16 md:py-24"
     >
+      <SectionArt src="/asset_decor_context/asset_proses.png" className="bottom-0 right-0 w-28 lg:block lg:w-40" />
       <div className="container">
         <ScrollReveal>
           <SectionHeading
@@ -98,7 +100,7 @@ export function Process() {
           {/* Panel sticky — langkah aktif yang diperbarui dinamis */}
           <aside className="relative hidden lg:block">
             <div className="sticky top-24">
-              <div className="overflow-hidden rounded-card border-[3px] border-ink bg-white shadow-brutal">
+              <div className="overflow-hidden rounded-card border-[3px] border-ink bg-surface shadow-brutal">
                 <span
                   aria-hidden="true"
                   className={cn(
@@ -141,7 +143,7 @@ export function Process() {
                       {/* Visual zone: role split + deliverable langkah aktif */}
                       <div className="mt-8 space-y-3">
                         <p className="flex items-start gap-2 text-sm text-ink/80">
-                          <User aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-orange" />
+                          <User aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-pink" />
                           <span>
                             <span className="font-medium text-ink">Anda:</span> {step.clientRole}
                           </span>
@@ -152,7 +154,7 @@ export function Process() {
                             <span className="font-medium text-ink">Kami:</span> {step.ourRole}
                           </span>
                         </p>
-                        <p className="inline-flex items-center gap-1.5 rounded-pill border-[1.5px] border-ink/30 bg-yellow/20 px-3 py-1.5 text-xs font-medium text-ink">
+                        <p className="inline-flex items-center gap-1.5 rounded-pill border-2 border-ink/30 bg-lavender/30 px-3 py-1.5 text-xs font-medium text-ink">
                           <CheckCircle aria-hidden="true" className="h-4 w-4 shrink-0" />
                           {step.deliverable}
                         </p>
@@ -168,7 +170,7 @@ export function Process() {
                           key={s.step}
                           className={cn(
                             "h-1.5 flex-1 rounded-pill transition-colors duration-300",
-                            index <= active ? "bg-yellow" : "bg-ink/15",
+                            index <= active ? "bg-mint" : "bg-ink/15",
                           )}
                         />
                       ))}
@@ -191,15 +193,15 @@ export function Process() {
                 data-step-card
                 data-index={index}
                 className={cn(
-                  "rounded-card border-2 border-ink bg-cream p-6 md:p-8 shadow-brutal transition-transform duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm lg:flex lg:min-h-[55vh] lg:flex-col lg:justify-center",
-                  s.step === 1 && "bg-yellow/10",
+                  "rounded-card border-2 border-ink bg-surface p-6 md:p-8 shadow-brutal transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-brutal-lg lg:flex lg:min-h-[55vh] lg:flex-col lg:justify-center",
+                  s.step === 1 && "bg-mint/20",
                   active === index ? "opacity-100" : "lg:opacity-80",
                 )}
               >
                 <div className="flex flex-wrap items-center gap-3">
                   <span
                     aria-hidden="true"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink bg-yellow font-display text-sm font-extrabold"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink bg-mint font-display text-sm font-extrabold"
                   >
                     {s.step}
                   </span>
@@ -224,17 +226,17 @@ export function Process() {
         {/* --- GAMBAR GRID PEMANIS --- */}
         <ScrollReveal className="mt-12 md:mt-16">
           <ul className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-            <li className="flex flex-col overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal">
+            <li className="flex flex-col overflow-hidden rounded-card border-2 border-ink bg-surface shadow-brutal">
               <div
                 aria-hidden="true"
-                className="flex flex-1 items-center justify-center bg-cream p-4"
+                className="flex flex-1 items-center justify-center bg-canvas p-4"
               >
                 {/* Mock browser mini */}
-                <div className="w-full max-w-[170px] overflow-hidden rounded-card border-2 border-ink bg-white">
-                  <div className="flex items-center gap-1 border-b-2 border-ink bg-cream px-2 py-1.5">
+                <div className="w-full max-w-[170px] overflow-hidden rounded-card border-2 border-ink bg-surface">
+                  <div className="flex items-center gap-1 border-b-2 border-ink bg-canvas px-2 py-1.5">
                     <span className="h-1.5 w-1.5 rounded-full bg-ink" />
                     <span className="h-1.5 w-1.5 rounded-full bg-yellow" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-orange" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-pink" />
                   </div>
                   <div className="p-2">
                     <span className="block h-2 w-2/3 rounded-pill bg-ink" />
@@ -243,52 +245,52 @@ export function Process() {
                   </div>
                 </div>
               </div>
-              <p className="border-t-2 border-ink bg-white px-3 py-2 text-center text-xs font-medium text-ink/70">
+              <p className="border-t-2 border-ink bg-surface px-3 py-2 text-center text-xs font-medium text-ink/70">
                 Preview website
               </p>
             </li>
 
-            <li className="flex flex-col overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal">
+            <li className="flex flex-col overflow-hidden rounded-card border-2 border-ink bg-surface shadow-brutal">
               <div
                 aria-hidden="true"
                 className="flex flex-1 items-center justify-center bg-yellow/10 p-4"
               >
                 {/* Mock ponsel mini */}
-                <div className="w-[86px] rounded-card border-[3px] border-ink bg-white p-2">
+                <div className="w-[86px] rounded-card border-[3px] border-ink bg-surface p-2">
                   <div className="mx-auto mb-1.5 h-1 w-6 rounded-pill bg-ink/30" />
                   <span className="block h-10 rounded-sm bg-yellow" />
                   <span className="mt-1.5 block h-1.5 w-3/4 rounded-pill bg-ink/40" />
                   <span className="mt-1 block h-1.5 w-1/2 rounded-pill bg-ink/30" />
-                  <span className="mt-2 block h-4 rounded-pill bg-orange" />
+                  <span className="mt-2 block h-4 rounded-pill bg-pink" />
                 </div>
               </div>
-              <p className="border-t-2 border-ink bg-white px-3 py-2 text-center text-xs font-medium text-ink/70">
+              <p className="border-t-2 border-ink bg-surface px-3 py-2 text-center text-xs font-medium text-ink/70">
                 Responsif di HP
               </p>
             </li>
 
-            <li className="flex flex-col overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal">
+            <li className="flex flex-col overflow-hidden rounded-card border-2 border-ink bg-surface shadow-brutal">
               <div
                 aria-hidden="true"
-                className="flex flex-1 items-center justify-center bg-cream p-4"
+                className="flex flex-1 items-center justify-center bg-canvas p-4"
               >
                 {/* Mock grid konten/produk */}
                 <div className="grid w-full max-w-[150px] grid-cols-3 gap-1.5">
-                  <span className="h-10 rounded-sm border-2 border-ink bg-white" />
-                  <span className="h-10 rounded-sm border-2 border-ink bg-orange" />
-                  <span className="h-10 rounded-sm border-2 border-ink bg-white" />
-                  <span className="h-10 rounded-sm border-2 border-ink bg-white" />
+                  <span className="h-10 rounded-sm border-2 border-ink bg-surface" />
+                  <span className="h-10 rounded-sm border-2 border-ink bg-blue" />
+                  <span className="h-10 rounded-sm border-2 border-ink bg-surface" />
+                  <span className="h-10 rounded-sm border-2 border-ink bg-surface" />
                   <span className="h-10 rounded-sm border-2 border-ink bg-ink" />
-                  <span className="h-10 rounded-sm border-2 border-ink bg-white" />
+                  <span className="h-10 rounded-sm border-2 border-ink bg-surface" />
                 </div>
               </div>
-              <p className="border-t-2 border-ink bg-white px-3 py-2 text-center text-xs font-medium text-ink/70">
+              <p className="border-t-2 border-ink bg-surface px-3 py-2 text-center text-xs font-medium text-ink/70">
                 Produk &amp; galeri
               </p>
             </li>
 
-            <li className="flex flex-col overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal">
-              <div className="flex flex-1 items-center justify-center bg-white p-4">
+            <li className="flex flex-col overflow-hidden rounded-card border-2 border-ink bg-surface shadow-brutal">
+              <div className="flex flex-1 items-center justify-center bg-surface p-4">
                 <Image
                   src="/images/solution/solution-illustration.svg"
                   alt="Ilustrasi website sebagai kantor digital bisnis yang selalu terhubung"
@@ -298,7 +300,7 @@ export function Process() {
                   className="w-full rounded-sm"
                 />
               </div>
-              <p className="border-t-2 border-ink bg-white px-3 py-2 text-center text-xs font-medium text-ink/70">
+              <p className="border-t-2 border-ink bg-surface px-3 py-2 text-center text-xs font-medium text-ink/70">
                 Kantor digital bisnis
               </p>
             </li>
@@ -351,7 +353,7 @@ export function Process() {
                   >
                     <X
                       aria-hidden="true"
-                      className="mt-0.5 h-4 w-4 shrink-0 text-orange"
+                      className="mt-0.5 h-4 w-4 shrink-0 text-mint"
                     />
                     {item}
                   </li>
@@ -405,12 +407,12 @@ export function Process() {
 /**
  * Ilustrasi mini neo-brutalism per langkah, untuk panel sticky desktop.
  * Semua dekoratif (parent aria-hidden): border tebal ink, warna flat
- * yellow/orange/cream, shadow keras MATI (no gradients, no blur) per
+ * pink/blue/ink, shadow keras MATI (no gradients, no blur) per
  * design system README Section 2.
  */
 function StepVisual({ step }: { step: number }) {
   const frame =
-    "w-full max-w-[230px] overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal-sm";
+    "w-full max-w-[230px] overflow-hidden rounded-card border-2 border-ink bg-surface shadow-brutal-sm";
 
   switch (step) {
     case 1: // Konsultasi — mock chat WhatsApp
@@ -423,7 +425,7 @@ function StepVisual({ step }: { step: number }) {
             </span>
           </div>
           <div className="space-y-2 p-3">
-            <span className="block max-w-[85%] rounded-card rounded-bl-none border-2 border-ink bg-cream px-2.5 py-1.5">
+            <span className="block max-w-[85%] rounded-card rounded-bl-none border-2 border-ink bg-surface px-2.5 py-1.5">
               <span className="block h-1.5 w-4/5 rounded-pill bg-ink/50" />
               <span className="mt-1 block h-1.5 w-3/5 rounded-pill bg-ink/30" />
             </span>
@@ -431,7 +433,7 @@ function StepVisual({ step }: { step: number }) {
               <span className="block h-1.5 w-3/5 rounded-pill bg-ink/50" />
               <span className="mt-1 block h-1.5 w-4/5 rounded-pill bg-ink/30" />
             </span>
-            <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-white px-3 py-1.5">
+            <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-surface px-3 py-1.5">
               <span className="h-1.5 flex-1 rounded-pill bg-ink/15" />
               <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-ink" />
             </span>
@@ -442,8 +444,8 @@ function StepVisual({ step }: { step: number }) {
     case 2: // Rekomendasi & penawaran — mock dokumen harga
       return (
         <div className={frame}>
-          <div className="flex items-center gap-1.5 border-b-2 border-ink bg-orange px-3 py-1.5">
-            <FileText className="h-3.5 w-3.5 text-cream" />
+          <div className="flex items-center gap-1.5 border-b-2 border-ink bg-pink px-3 py-1.5">
+            <FileText className="h-3.5 w-3.5 text-canvas" />
             <span className="font-display text-xs font-bold text-ink">
               Penawaran
             </span>
@@ -465,19 +467,19 @@ function StepVisual({ step }: { step: number }) {
     case 3: // Pengumpulan materi — chip Logo/Foto/Teks
       return (
         <div className={frame}>
-          <div className="border-b-2 border-ink bg-cream px-3 py-1.5 font-display text-xs font-bold text-ink">
+          <div className="border-b-2 border-ink bg-canvas px-3 py-1.5 font-display text-xs font-bold text-ink">
             Materi dari Anda
           </div>
           <div className="grid grid-cols-3 gap-2 p-3">
-            <span className="flex flex-col items-center gap-1.5 rounded-card border-2 border-ink bg-white p-2">
+            <span className="flex flex-col items-center gap-1.5 rounded-card border-2 border-ink bg-surface p-2">
               <Package className="h-4 w-4 text-ink" />
               <span className="font-display text-[10px] font-bold">Logo</span>
             </span>
-            <span className="flex flex-col items-center gap-1.5 rounded-card border-2 border-ink bg-white p-2">
+            <span className="flex flex-col items-center gap-1.5 rounded-card border-2 border-ink bg-surface p-2">
               <Camera className="h-4 w-4 text-ink" />
               <span className="font-display text-[10px] font-bold">Foto</span>
             </span>
-            <span className="flex flex-col items-center gap-1.5 rounded-card border-2 border-ink bg-white p-2">
+            <span className="flex flex-col items-center gap-1.5 rounded-card border-2 border-ink bg-surface p-2">
               <FileText className="h-4 w-4 text-ink" />
               <span className="font-display text-[10px] font-bold">Teks</span>
             </span>
@@ -488,20 +490,20 @@ function StepVisual({ step }: { step: number }) {
     case 4: // Desain & pengembangan — mock browser
       return (
         <div className={frame}>
-          <div className="flex items-center gap-1 border-b-2 border-ink bg-cream px-2.5 py-1.5">
+          <div className="flex items-center gap-1 border-b-2 border-ink bg-canvas px-2.5 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-ink" />
             <span className="h-1.5 w-1.5 rounded-full bg-yellow" />
-            <span className="h-1.5 w-1.5 rounded-full bg-orange" />
-            <span className="ml-1.5 h-2.5 flex-1 rounded-pill border border-ink/40 bg-white" />
+            <span className="h-1.5 w-1.5 rounded-full bg-pink" />
+            <span className="ml-1.5 h-2.5 flex-1 rounded-pill border border-ink/40 bg-surface" />
           </div>
           <div className="p-3">
             <span className="block h-2 w-2/3 rounded-pill bg-ink" />
             <span className="mt-1.5 block h-2 w-1/2 rounded-pill bg-ink/40" />
             <span className="mt-2.5 block h-8 w-full rounded-sm bg-yellow" />
             <div className="mt-2 grid grid-cols-3 gap-1.5">
-              <span className="block h-6 rounded-sm bg-cream" />
-              <span className="block h-6 rounded-sm bg-cream" />
-              <span className="block h-6 rounded-sm bg-orange" />
+              <span className="block h-6 rounded-sm bg-canvas" />
+              <span className="block h-6 rounded-sm bg-canvas" />
+              <span className="block h-6 rounded-sm bg-pink" />
             </div>
           </div>
         </div>
@@ -517,7 +519,7 @@ function StepVisual({ step }: { step: number }) {
             {[1, 2, 3].map((row) => (
               <span
                 key={row}
-                className="flex items-center gap-2 rounded-card border-2 border-ink bg-cream px-2.5 py-1.5"
+                className="flex items-center gap-2 rounded-card border-2 border-ink bg-surface px-2.5 py-1.5"
               >
                 <CheckCircle className="h-3.5 w-3.5 shrink-0 text-ink" />
                 <span
@@ -528,7 +530,7 @@ function StepVisual({ step }: { step: number }) {
                 />
               </span>
             ))}
-            <span className="flex h-4 items-center justify-center rounded-pill border-2 border-dashed border-ink/40 bg-white">
+            <span className="flex h-4 items-center justify-center rounded-pill border-2 border-dashed border-ink/40 bg-surface">
               <span className="font-display text-[9px] font-bold uppercase tracking-wide text-ink/60">
                 maks. 2 putaran revisi
               </span>
@@ -540,13 +542,13 @@ function StepVisual({ step }: { step: number }) {
     case 6: // Peluncuran — mock status live
       return (
         <div className={frame}>
-          <div className="border-b-2 border-ink bg-orange px-3 py-1.5 font-display text-xs font-bold text-ink">
+          <div className="border-b-2 border-ink bg-pink px-3 py-1.5 font-display text-xs font-bold text-ink">
             Buka untuk publik
           </div>
           <div className="flex flex-col items-center gap-2 p-4">
             <Rocket className="h-6 w-6 text-ink" />
-            <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-white px-3 py-1">
-              <span className="h-2 w-2 rounded-full bg-orange" />
+            <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-surface px-3 py-1">
+              <span className="h-2 w-2 rounded-full bg-pink" />
               <span className="font-display text-[10px] font-bold text-ink">
                 website live
               </span>
@@ -571,7 +573,7 @@ function StepVisual({ step }: { step: number }) {
               (item) => (
                 <span
                   key={item}
-                  className="flex items-center justify-between rounded-card border-2 border-ink bg-cream px-2.5 py-1.5"
+                  className="flex items-center justify-between rounded-card border-2 border-ink bg-canvas px-2.5 py-1.5"
                 >
                   <span className="font-display text-[10px] font-bold text-ink">
                     {item}
@@ -587,14 +589,14 @@ function StepVisual({ step }: { step: number }) {
     default: // 8 — Dukungan — mock maintenance berkala
       return (
         <div className={frame}>
-          <div className="border-b-2 border-ink bg-cream px-3 py-1.5 font-display text-xs font-bold text-ink">
+          <div className="border-b-2 border-ink bg-canvas px-3 py-1.5 font-display text-xs font-bold text-ink">
             Opsional — paket maintenance
           </div>
           <div className="flex flex-col items-center gap-2 p-4">
             <Wrench className="h-6 w-6 text-ink" />
             <span className="block h-1.5 w-3/4 rounded-pill bg-ink/20" />
             <span className="block h-1.5 w-2/3 rounded-pill bg-ink/15" />
-            <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-white px-3 py-1">
+            <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-surface px-3 py-1">
               <span className="h-2 w-2 rounded-full bg-yellow" />
               <span className="font-display text-[10px] font-bold text-ink">
                 update & pantau berkala

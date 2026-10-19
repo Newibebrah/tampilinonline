@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { SwipeCarousel } from "@/components/ui/SwipeCarousel";
+import { SectionArt } from "@/components/decorative/SectionArt";
 
 const SOLUTIONS = [
   {
@@ -50,9 +51,10 @@ export function Solution() {
     <section
       id="solusi"
       aria-label="Solusi dari Tampilin.online"
-      className="container bg-cream pb-16 pt-2 md:pb-24 md:pt-4"
+      className="container relative isolate bg-canvas pb-16 pt-2 md:pb-24 md:pt-4"
     >
 
+      <SectionArt src="/asset_decor/asset_character_idea.png" className="bottom-0 left-0 w-28 lg:block lg:w-40" />
       {/* --- MOBILE (<768px): swipe carousel 4 card + sweetener card di bawah --- */}
       <div className="mt-10 md:hidden">
         <SwipeCarousel
@@ -60,11 +62,11 @@ export function Solution() {
           ariaLabel="Keunggulan website buatan Tampilin.online"
           cardWidthClass="w-[85vw] max-w-[380px]"
           renderItem={(item) => (
-            <div className="flex h-full rounded-card border-2 border-ink bg-cream p-6 shadow-brutal">
+            <div className="flex h-full rounded-card border-2 border-ink bg-surface p-6 shadow-brutal">
               <div>
                 <item.icon
                   aria-hidden="true"
-                  className="h-9 w-9 rounded-card border-2 border-ink bg-yellow p-1.5"
+                  className="h-9 w-9 rounded-card border-2 border-ink bg-blue p-1.5"
                 />
                 <h3 className="mt-4 font-display text-lg font-bold">{item.title}</h3>
                 <p className="mt-2 text-base leading-relaxed text-ink/80">{item.desc}</p>
@@ -100,7 +102,7 @@ export function Solution() {
             <Card interactive className="h-full">
               <item.icon
                 aria-hidden="true"
-                className="h-9 w-9 rounded-card border-2 border-ink bg-yellow p-1.5"
+                className="h-9 w-9 rounded-card border-2 border-ink bg-blue p-1.5"
               />
               <h3 className="mt-4 font-display text-lg font-bold">{item.title}</h3>
               <p className="mt-2 text-ink/70">{item.desc}</p>
@@ -110,7 +112,7 @@ export function Solution() {
 
         {/* Ilustrasi sebagai card visual */}
         <ScrollReveal delay={0.32}>
-          <Card className="flex h-full flex-col items-center justify-center gap-4 bg-cream">
+          <Card className="flex h-full flex-col items-center justify-center gap-4 bg-surface">
             <Image
               src="/images/solution/solution-illustration.svg"
               alt="Ilustrasi website sebagai pusat digital bisnis yang terhubung dengan berbagai kanal"

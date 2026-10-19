@@ -24,8 +24,9 @@ export function Input({ label, hint, id, className, ...rest }: InputProps) {
       <input
         id={id}
         className={cn(
-          "w-full rounded-card border-2 border-ink bg-white px-4 py-2.5 text-base",
+          "w-full rounded-card border-2 border-ink bg-surface px-4 py-2.5 text-base text-ink",
           "placeholder:text-ink/40 disabled:cursor-not-allowed disabled:bg-ink/10 disabled:text-ink/40",
+          "focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/50",
         )}
         {...rest}
       />

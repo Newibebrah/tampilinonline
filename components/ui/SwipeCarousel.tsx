@@ -142,7 +142,7 @@ export function SwipeCarousel<T>({
         <span
           aria-hidden="true"
           className={cn(
-            "pointer-events-none absolute right-6 top-1/2 flex -translate-y-1/2 items-center gap-1 rounded-pill border-2 border-ink bg-cream px-3 py-1.5 text-xs font-medium text-ink shadow-brutal-sm",
+            "pointer-events-none absolute right-6 top-1/2 flex -translate-y-1/2 items-center gap-1 rounded-pill border-2 border-ink bg-surface px-3 py-1.5 text-xs font-medium text-ink shadow-brutal-sm",
             !reducedMotion && "animate-pulse",
           )}
         >
@@ -160,7 +160,7 @@ export function SwipeCarousel<T>({
             aria-label="Slide sebelumnya"
             onClick={() => activeArrow(-1)}
             disabled={finalIndex === 0}
-            className="absolute left-2 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-pill border-2 border-ink bg-cream shadow-brutal-sm transition-transform hover:translate-x-[1px] hover:translate-y-1 hover:shadow-none md:flex disabled:opacity-40"
+            className="absolute left-2 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-pill border-2 border-ink bg-surface shadow-brutal-sm transition-transform hover:translate-x-[1px] hover:translate-y-1 hover:shadow-none md:flex disabled:opacity-40"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -169,7 +169,7 @@ export function SwipeCarousel<T>({
             aria-label="Slide berikutnya"
             onClick={() => activeArrow(1)}
             disabled={finalIndex === items.length - 1}
-            className="absolute right-2 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-pill border-2 border-ink bg-cream shadow-brutal-sm transition-transform hover:translate-x-[1px] hover:translate-y-1 hover:shadow-none md:flex disabled:opacity-40"
+            className="absolute right-2 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-pill border-2 border-ink bg-surface shadow-brutal-sm transition-transform hover:translate-x-[1px] hover:translate-y-1 hover:shadow-none md:flex disabled:opacity-40"
           >
             <ChevronRight className="h-5 w-5" />
           </button>

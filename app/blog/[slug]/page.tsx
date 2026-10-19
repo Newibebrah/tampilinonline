@@ -75,7 +75,7 @@ function Block({ block }: { block: BlogBlock }) {
       return (
         <nav
           aria-label="Tautan terkait"
-          className="rounded-card border-2 border-ink bg-yellow/50 p-5"
+          className="rounded-card border-2 border-ink bg-lavender/30 p-5"
         >
           <p className="mb-3 font-display text-sm font-bold uppercase tracking-wide">
             Tautan penting
@@ -83,7 +83,7 @@ function Block({ block }: { block: BlogBlock }) {
           <ul className="flex flex-col gap-2">
             {block.items.map((item) => (
               <li key={`${item.label}-${item.href}`}>
-                <Link href={item.href} className="underline decoration-2 underline-offset-4 hover:text-orange">
+                <Link href={item.href} className="underline decoration-2 underline-offset-4 hover:text-pink">
                   {item.label} →
                 </Link>
               </li>
@@ -131,7 +131,7 @@ export default async function BlogPostPage({
         ])}
       />
 
-      <main id="konten" className="bg-cream">
+      <main id="konten" className="bg-canvas">
         <article className="container max-w-3xl py-16 md:py-20">
           {/* Breadcrumb visual */}
           <nav aria-label="Breadcrumb" className="text-sm text-ink/60">
@@ -174,7 +174,7 @@ export default async function BlogPostPage({
           />
 
           {/* Jawaban atomik 40–60 kata untuk featured snippet / AI */}
-          <div className="mt-8 rounded-card border-2 border-ink bg-yellow/50 p-6">
+          <div className="mt-8 rounded-card border-2 border-ink bg-lavender/30 p-6">
             <h2 className="font-display text-base font-bold uppercase tracking-wide">
               Jawaban singkat
             </h2>

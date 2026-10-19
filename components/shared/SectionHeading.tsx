@@ -5,10 +5,10 @@ import { TextReveal } from "@/components/shared/TextReveal";
  * SectionHeading v3 — "Sticker + Underline" (hasil acc user).
  *
  * Perubahan dari v2:
- * - Eyebrow bukan lagi Badge pill besar, melainkan STIKER: kotak kuning
+ * - Eyebrow bukan lagi Badge pill besar, melainkan STIKER: kotak lavender
  *   miring -1°, border ink, shadow keras kecil, uppercase — bahasa visual
  *   yang sama dengan label/tombol di kartu-kartu section.
- * - "Anchor visual": garis pendek orange di bawah title menyatukan judul
+ * - "Anchor visual": garis pendek pink di bawah title menyatukan judul
  *   dengan stiker (sebelumnya title & badge terasa lepas).
  * - Deskripsi lebih tenang: Inter biasa text-base md:text-lg, ink/70 —
  *   bukan font-display besar yang "bersaing" dengan title.
@@ -46,7 +46,7 @@ export function SectionHeading({
       {/* Stiker eyebrow — miring -1° agar terasa "ditempel" */}
       <span
         className={cn(
-          "inline-block -rotate-1 rounded-card border-2 border-ink bg-yellow px-3.5 py-1.5",
+          "inline-block -rotate-1 rounded-card border-2 border-ink bg-lavender px-3.5 py-1.5",
           "font-display text-sm font-bold uppercase tracking-wider text-ink shadow-brutal-sm",
         )}
       >
@@ -60,7 +60,7 @@ export function SectionHeading({
         id={id}
         className={cn(
           "font-display font-bold",
-          invert ? "text-cream" : "text-ink",
+          invert ? "text-canvas" : "text-ink",
           "text-[clamp(1.5rem,5vw,2.5rem)] leading-tight",
         )}
         parts={[{ text: title }]}
@@ -70,7 +70,7 @@ export function SectionHeading({
       <span
         aria-hidden="true"
         className={cn(
-          "h-1.5 w-16 rounded-pill bg-orange",
+          "h-1.5 w-16 rounded-pill bg-pink",
           align === "center" && "mx-auto",
         )}
       />
@@ -80,7 +80,7 @@ export function SectionHeading({
           className={cn(
             "text-balance text-base leading-relaxed md:text-lg",
             "mx-auto max-w-md md:max-w-xl",
-            invert ? "text-cream/70" : "text-ink/70",
+            invert ? "text-canvas/70" : "text-ink/70",
           )}
         >
           {description}

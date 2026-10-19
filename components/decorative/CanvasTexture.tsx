@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useMousePosition } from "@/hooks/useMousePosition";
+import { PALETTE } from "@/lib/colors";
 
 /**
  * CanvasTexture (prompt Bagian 1.1, revisi user) — layer kertas global, 3 lapis
@@ -11,7 +12,7 @@ import { useMousePosition } from "@/hooks/useMousePosition";
  * 1. Noise kertas cetak (SVG feTurbulence data-URI, opacity ~4%).
  * 2. Grid kotak-kotak vertikal+horizontal statis (CSS, z-[30]) — persilangan
  *    garis tiap 40px (permintaan user: background grid di semua halaman).
- * 3. Canvas interaktif (desktop fine-pointer only): dot kuning/oranye "menyala"
+ * 3. Canvas interaktif (desktop fine-pointer only): dot pastel "menyala"
  *    TEPAT di persilangan grid dekat kursor — hanya node dalam radius yang
  *    digambar ulang (≤ ~30 arc per frame, rAF-throttled) — murah walau grid
  *    penuh beribu persilangan.
@@ -72,7 +73,8 @@ export function CanvasTexture() {
           if (d > RADIUS) continue;
           const t = 1 - d / RADIUS; // 1 = tepat di kursor
           ctx.globalAlpha = t * 0.6;
-          ctx.fillStyle = t > 0.55 ? "#FF6B35" : "#FFD23F";
+          // v2.1: inti dekat kursor = kuning (highlight), pinggiran = pink
+          ctx.fillStyle = t > 0.55 ? PALETTE.yellow : PALETTE.pink;
           ctx.beginPath();
           ctx.arc(px, py, 1.6 + t * 2.4, 0, Math.PI * 2);
           ctx.fill();
