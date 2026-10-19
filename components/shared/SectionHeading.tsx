@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { TextReveal } from "@/components/shared/TextReveal";
 
 /**
  * SectionHeading v3 — "Sticker + Underline" (hasil acc user).
@@ -49,16 +50,18 @@ export function SectionHeading({
         {eyebrow}
       </span>
 
-      <h2
+      {/* Title dengan text reveal masking (per kata, staggered saat masuk
+          viewport — prompt visionary 2.2). id tetap di h2 untuk aria-labelledby. */}
+      <TextReveal
+        as="h2"
         id={id}
         className={cn(
           "font-display font-bold",
           invert ? "text-cream" : "text-ink",
           "text-[clamp(1.5rem,5vw,2.5rem)] leading-tight",
         )}
-      >
-        {title}
-      </h2>
+        parts={[{ text: title }]}
+      />
 
       {/* Garis anchor pendek — penghubung stiker → title → narasi */}
       <span

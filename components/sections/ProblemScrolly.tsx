@@ -10,6 +10,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { SwipeCarousel } from "@/components/ui/SwipeCarousel";
+import { Magnetic } from "@/components/decorative/Magnetic";
 import { cn } from "@/lib/utils";
 
 /**
@@ -355,10 +356,12 @@ function BeatVisual({ beat, compact }: { beat: Beat; compact: boolean }) {
       return (
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <WhatsAppButton size={compact ? "md" : "lg"} />
-          <ButtonLink href="#paket" variant="secondary" size={compact ? "md" : "lg"}>
-            Lihat Paket Layanan
-            <ArrowRight aria-hidden="true" className="h-4 w-4" />
-          </ButtonLink>
+          <Magnetic>
+            <ButtonLink href="#paket" variant="secondary" size={compact ? "md" : "lg"}>
+              Lihat Paket Layanan
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </ButtonLink>
+          </Magnetic>
         </div>
       );
     default:

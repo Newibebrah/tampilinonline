@@ -4,6 +4,8 @@ import "./globals.css";
 import { SITE, DEFAULT_KEYWORDS, BRAND_ICONS } from "@/lib/seo";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CanvasTexture } from "@/components/decorative/CanvasTexture";
+import { ScrollProgress } from "@/components/decorative/ScrollProgress";
 
 // Font via next/font — self-hosted otomatis & dioptimasi Next.
 // --font-space-grotesk: display (heading), --font-inter: body.
@@ -104,6 +106,10 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${spaceGrotesk.variable} ${inter.variable} ${pressStart2P.variable}`}>
       <body>
+        {/* Layer dekoratif global (fixed, pointer-events-none — prompt visionary):
+            ScrollProgress di atas semuanya, CanvasTexture di bawah navbar. */}
+        <ScrollProgress />
+        <CanvasTexture />
         <Navbar />
         {children}
         <Footer />

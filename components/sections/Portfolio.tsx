@@ -1,5 +1,6 @@
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { TiltCard } from "@/components/decorative/TiltCard";
 import { portfolioItems } from "@/data/portfolio";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,9 +24,12 @@ export function Portfolio() {
       <ScrollReveal className="mt-10 md:mt-14">
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {portfolioItems.map((item) => (
-            <li
+            // li → TiltCard (as="li", markup semantik tetap): hover translate
+            // digantikan 3D tilt desktop only (prompt visionary 3.2); mobile statis.
+            <TiltCard
               key={item.id}
-              className="overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal transition-transform hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm"
+              as="li"
+              className="overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal"
             >
               <Image
                 src={item.image}
@@ -45,7 +49,7 @@ export function Portfolio() {
                   {item.label}
                 </span>
               </div>
-            </li>
+            </TiltCard>
           ))}
         </ul>
         {/* Link studi kasus — tambahan di bawah grid, layout card final tidak diubah. */}

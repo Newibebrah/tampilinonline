@@ -90,3 +90,72 @@
 .animate-blink {
   animation: tampilin-blink 1.6s ease-in-out infinite;
 }
+
+/* ===== Layer dekoratif "Majestic UI" (prompt visionary) =====
+   Semua kelas di bawah otomatis lumpuh oleh blok
+   prefers-reduced-motion: reduce di atas (animation-duration 0.01ms). */
+
+/* Dot-matrix statis — background-size 28px HARUS sama dengan SPACING
+   di components/decorative/CanvasTexture.tsx (alignment dot interaktif). */
+.dot-matrix {
+  background-image: radial-gradient(
+    circle,
+    rgba(26, 26, 26, 0.08) 1.2px,
+    transparent 1.6px
+  );
+  background-size: 28px 28px;
+}
+
+/* Marquee pita pemisah section — loop translateX(-50%) mulus
+   (konten digandakan 2× di MarqueeDivider). */
+@keyframes tampilin-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: tampilin-marquee 26s linear infinite;
+}
+
+/* Pixel particle halaman /about — kotak kecil melayang pelan. */
+@keyframes tampilin-pixel-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-14px);
+    opacity: 0.9;
+  }
+}
+.pixel-particle {
+  animation: tampilin-pixel-float 5s ease-in-out infinite;
+}
+
+/* CRT scanlines halaman /about — garis horizontal tipis (opacity ~5%),
+   FIXED + pointer-events none; statis, bukan animasi. */
+.crt-scanlines::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(26, 26, 26, 0.05) 0 1px,
+    transparent 1px 4px
+  );
+}
+
+/* Retro pixel cursor — HANYA halaman /about (prompt Bagian 3.3).
+   Elemen interaktif (button/link dengan cursor-pointer) menimpa ini —
+   jadi tetap responsif. Hotspot 2,1 mengikuti ujung mata panah. */
+.cursor-pixel {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpolygon points='2,1 2,13 5,10 7,15 9,14 7,9 11,9' fill='%231A1A1A' stroke='%23F5F0E8' stroke-width='1'/%3E%3C/svg%3E")
+      2 1,
+    auto;
+}

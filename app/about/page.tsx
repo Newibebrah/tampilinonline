@@ -26,7 +26,9 @@ export const metadata: Metadata = {
  */
 export default function AboutPage() {
   return (
-    <main id="konten" className="bg-cream">
+    // cursor-pixel & crt-scanlines (prompt visionary 3.3): kursor pixel arrow
+    // + garis scanline CRT — hanya halaman ini; tombol tetap cursor-pointer.
+    <main id="konten" className="crt-scanlines cursor-pixel bg-cream">
       <JsonLd
         data={personSchema({
           name: "Ananta",

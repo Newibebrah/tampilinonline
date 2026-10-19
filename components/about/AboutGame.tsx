@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { PixelParticles } from "@/components/about/GameFX";
 import { Play, SkipForward, ChevronRight, Flag } from "lucide-react";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { Button } from "@/components/ui/Button";
@@ -233,7 +234,12 @@ export function AboutGame() {
 
   /* ---------- PLAYING: gambar fix di atas, teks tumbuh ke bawah ---------- */
   return (
-    <div className="flex flex-col items-center px-4 pb-20 pt-6 md:pb-24">
+    // isolate → stacking context sendiri; PixelParticles (-z-10) melayang
+    // DI BELAKANG konten dialog (prompt visionary 3.3).
+    <div className="relative isolate flex flex-col items-center px-4 pb-20 pt-6 md:pb-24">
+      {/* Pixel particles — melayang di latar; membesar saat dialog diketik */}
+      <PixelParticles active={isTyping} />
+
       {/* Zona karakter — tinggi TETAP supaya posisinya pakem walau teks tumbuh */}
       <div className="flex h-48 w-full max-w-xl items-center justify-center md:h-72">
         <AnimatePresence mode="wait" initial={false}>

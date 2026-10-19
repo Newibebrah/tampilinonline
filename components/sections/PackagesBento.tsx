@@ -4,6 +4,7 @@ import { Check, MessageCircle } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { SwipeCarousel } from "@/components/ui/SwipeCarousel";
+import { TiltCard } from "@/components/decorative/TiltCard";
 import { cn } from "@/lib/utils";
 import { buildWhatsAppUrl, packageMessage } from "@/lib/whatsapp";
 import { packages } from "@/data/packages";
@@ -46,7 +47,11 @@ export function PackagesBento() {
       <ScrollReveal className="mt-10 hidden md:block md:mt-14">
         <div className="bento-grid">
           {packages.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} />
+            // TiltCard = wrapper additive (3D tilt desktop only, prompt 3.2);
+            // grid-area pindah ke wrapper, area grid tidak berubah.
+            <TiltCard key={pkg.id} style={{ gridArea: pkg.gridArea }} className="h-full">
+              <PackageCard pkg={pkg} />
+            </TiltCard>
           ))}
         </div>
       </ScrollReveal>
@@ -56,8 +61,9 @@ export function PackagesBento() {
 
 function PackageCard({ pkg }: { pkg: Package }) {
   return (
+    // gridArea diteruskan wrapper TiltCard di desktop grid (lihat pemanggil);
+    // di mobile carousel properti grid ini tidak berpengaruh.
     <article
-      style={{ gridArea: pkg.gridArea }}
       className={cn(
         "flex h-full flex-col rounded-card p-6 shadow-brutal transition-[transform,box-shadow] duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm",
         pkg.featured

@@ -18,6 +18,8 @@ import {
   faqSchema,
 } from "@/lib/schema";
 import { faqItems } from "@/data/faq";
+import { KineticShapes } from "@/components/decorative/KineticShapes";
+import { MarqueeDivider } from "@/components/decorative/MarqueeDivider";
 
 /** Metadata page-level homepage — override title & canonical saja.
  * PERHATIAN: field object (mis. openGraph) di level page MENGGANTIKAN seluruh
@@ -44,18 +46,24 @@ export default function HomePage() {
       <JsonLd data={serviceSchema} />
       <JsonLd data={faqSchema(faqItems)} />
 
-      <main id="konten">
+      <main id="konten" className="relative">
+        {/* Ornamen floating (fixed, pointer-events-none) + pita marquee
+            pemisah section — ADDITIVE ONLY, tidak mengubah section mana pun. */}
+        <KineticShapes />
         <Hero />
         <ProblemScrolly />
         <Solution />
+        <MarqueeDivider />
         <PackagesBento />
         <Process />
+        <MarqueeDivider />
         <Portfolio />
         <Testimonials />
         <PriceSimulator />
         <AboutTeaser />
         <FAQ />
         <LeadForm />
+        <MarqueeDivider />
         <FinalCTA />
       </main>
     </>

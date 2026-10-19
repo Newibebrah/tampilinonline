@@ -3,6 +3,9 @@ import { BRAND } from "@/lib/constants";
 import { ButtonLink } from "@/components/ui/Button";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { TextReveal } from "@/components/shared/TextReveal";
+import { Magnetic } from "@/components/decorative/Magnetic";
+import { Sticker } from "@/components/decorative/Sticker";
 
 /**
  * CTA final — headline besar + 2 tombol di atas panel kuning (README Phase 8).
@@ -17,18 +20,34 @@ export function FinalCTA() {
           <span aria-hidden="true" className="absolute -bottom-12 -right-10 h-32 w-32 rotate-12 rounded-card border-[3px] border-ink bg-cream" />
 
           <div className="relative flex flex-col items-center gap-6">
-            <h2
+            {/* Sticker bombing di panel kuning (prompt visionary 2.1) */}
+            <Sticker
+              text="Gratis Konsultasi"
+              rotate={8}
+              tone="cream"
+              className="right-4 top-4 hidden md:block"
+              floatDelay={0.8}
+            />
+
+            <TextReveal
+              as="h2"
               id="cta-final-heading"
               className="text-balance font-display text-[clamp(1.75rem,6vw,3rem)] font-extrabold leading-tight"
-            >
-              Saatnya usaha Anda{" "}
-              <span className="bg-cream px-2 shadow-brutal-sm">tampil online.</span>
-            </h2>
+              parts={[
+                { text: "Saatnya usaha Anda" },
+                {
+                  text: "tampil online.",
+                  className: "bg-cream px-2 shadow-brutal-sm",
+                  asOne: true,
+                },
+              ]}
+            />
             <p className="max-w-xl text-lg text-ink/80">
               Konsultasi dulu, gratis, tanpa paksaan. Ceritakan usaha Anda —
               kami bantu carikan paket yang paling masuk akal.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
+              {/* Magnetic bawaan WhatsAppButton */}
               <WhatsAppButton
                 size="lg"
                 variant="primary"
@@ -36,9 +55,11 @@ export function FinalCTA() {
               >
                 Konsultasi Gratis via WhatsApp
               </WhatsAppButton>
-              <ButtonLink href="#paket" variant="secondary" size="lg">
-                Lihat Paket Layanan Lagi
-              </ButtonLink>
+              <Magnetic>
+                <ButtonLink href="#paket" variant="secondary" size="lg">
+                  Lihat Paket Layanan Lagi
+                </ButtonLink>
+              </Magnetic>
             </div>
             <a
               href={BRAND.instagramUrl}

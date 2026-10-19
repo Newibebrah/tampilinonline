@@ -3,6 +3,9 @@ import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { TextReveal } from "@/components/shared/TextReveal";
+import { Magnetic } from "@/components/decorative/Magnetic";
+import { Sticker } from "@/components/decorative/Sticker";
 
 /**
  * Hero — above the fold. H1 + subheadline + 2 CTA + mockup CSS browser & ponsel
@@ -19,16 +22,20 @@ export function Hero() {
             Jasa Pembuatan Website
           </Badge>
 
-          <h1
+          <TextReveal
+            as="h1"
             id="hero-heading"
             className="text-balance text-center font-display text-[clamp(2rem,8vw,3.5rem)] font-extrabold leading-[1.08] tracking-tight md:text-left"
-          >
-            Semua usaha{" "}
-            <span className="inline-block bg-yellow px-2 leading-[1.25] shadow-brutal-sm">
-              harus punya
-            </span>{" "}
-            website.
-          </h1>
+            parts={[
+              { text: "Semua usaha" },
+              {
+                text: "harus punya",
+                className: "bg-yellow px-2 leading-[1.25] shadow-brutal-sm",
+                asOne: true,
+              },
+              { text: "website." },
+            ]}
+          />
 
           <p className="max-w-lg text-lg text-ink/75">
             Jangan sampai calon pelanggan mencari bisnis Anda, tetapi menemukan
@@ -36,12 +43,16 @@ export function Hero() {
             profesional di internet — mulai Rp499.000.
           </p>
 
-          {/* CTA — mobile: auto-width & CENTER di bawah list; desktop row seperti sebelumnya */}
+          {/* CTA — mobile: auto-width & CENTER di bawah list; desktop row seperti sebelumnya.
+              Magnetic (desktop only) — tarikan elastis ke kursor (prompt visionary 2.3). */}
           <div className="order-4 flex flex-col items-center gap-3 sm:order-none sm:flex-row sm:items-center">
+            {/* Magnetic bawaan WhatsAppButton (semua CTA WA utama) */}
             <WhatsAppButton size="lg" />
-            <ButtonLink href="#paket" variant="secondary" size="lg">
-              Lihat Paket Layanan
-            </ButtonLink>
+            <Magnetic>
+              <ButtonLink href="#paket" variant="secondary" size="lg">
+                Lihat Paket Layanan
+              </ButtonLink>
+            </Magnetic>
           </div>
 
           {/* 3 poin: mobile = SATU baris lurus di atas button (copy pendek biar
@@ -70,6 +81,23 @@ export function Hero() {
           >
             Demo Concept
           </Badge>
+
+          {/* Sticker bombing (prompt visionary 2.1) — pointer-events-none,
+              floating idle; hanya desktop agar 360px tetap bersih. */}
+          <Sticker
+            text="100% Custom"
+            rotate={7}
+            tone="orange"
+            className="-bottom-10 right-0 hidden sm:block"
+            floatDelay={0.4}
+          />
+          <Sticker
+            text="No Template"
+            rotate={-6}
+            tone="cream"
+            className="-left-6 top-6 hidden lg:block"
+            floatDelay={1.2}
+          />
 
           {/* Browser desktop */}
           <div className="relative rounded-card border-[3px] border-ink bg-white shadow-brutal">
