@@ -9,7 +9,7 @@
  *   (grid background boleh tertutup).
  */
 export const PALETTE = {
-  canvas: "#FFFCF8",
+  canvas: "#EFE9D8",
   surface: "#FFFFFF",
   ink: "#2B2433",
   red: "#FF5A5A",

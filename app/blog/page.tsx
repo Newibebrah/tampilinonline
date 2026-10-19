@@ -44,7 +44,7 @@ export default function BlogIndexPage() {
             artAlt="Ilustrasi gaya kartun: panduan website untuk pebisnis"
             stickers={[
               { text: "Panduan", tone: "red", rotate: 7, className: "hidden md:block -left-10 top-12" },
-              { text: "Terbaru", tone: "surface", rotate: -6, className: "hidden md:block -right-10 bottom-16", floatDelay: 1.1 },
+              { text: "Terbaru", tone: "yellow", rotate: -6, className: "hidden md:block -right-10 bottom-16", floatDelay: 1.1 },
             ]}
           />
 

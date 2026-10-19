@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* v3.0 Bold Pastel + RED — mirror token PALETTE (lib/colors.ts). */
-    --canvas: #fffcf8;
+    --canvas: #EFE9D8;
     --surface: #ffffff;
     --ink: #2b2433;
     --red: #ff5a5a;

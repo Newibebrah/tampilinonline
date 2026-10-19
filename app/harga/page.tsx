@@ -42,7 +42,7 @@ export default function HargaPage() {
             artAlt="Ilustrasi gaya kartun: kalkulator estimasi biaya website Tampilin.online"
             stickers={[
               { text: "Realtime", tone: "red", rotate: 7, className: "hidden md:block -left-10 top-10" },
-              { text: "Gratis", tone: "surface", rotate: -6, className: "hidden md:block -right-10 bottom-14", floatDelay: 1.1 },
+              { text: "Gratis", tone: "pink", rotate: -6, className: "hidden md:block -right-10 bottom-14", floatDelay: 1.1 },
             ]}
           />
         </section>
