@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Server, Brush, LifeBuoy } from "lucide-react";
-import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -20,7 +19,10 @@ import { BoldShapes } from "@/components/decorative/BoldShapes";
  *   (permintaan user: hero center-focused & berani)
  *
  * COPY 100% identik dengan versi sebelumnya — hanya layout & visual yang
- * berubah (aturan NO LOGIC/COPY CHANGES).
+ * berubah (aturan NO LOGIC/COPY CHANGES), KECUALI badge eyebrow
+ * "Jasa Pembuatan Website" yang dihapus atas permintaan user
+ * (hero sudah self-explanatory). Padding atas hero dipangkas agar
+ * konten naik — tidak terlalu banyak ruang kosong di top.
  */
 export function Hero() {
   return (
@@ -40,11 +42,11 @@ export function Hero() {
         ]}
       />
 
-      <div className="container flex flex-col items-center gap-6 py-16 md:py-20">
+      {/* Revisi user: padding ATAS dipangkas & center bias ke atas —
+          ruang kosong di top hero tidak berlebihan */}
+      <div className="container flex flex-col items-center gap-6 pb-16 pt-8 md:pb-20 md:pt-10">
         {/* Teks + CTA — semuanya center sekarang */}
         <ScrollReveal className="flex flex-col items-center gap-6">
-          <Badge variant="blue">Jasa Pembuatan Website</Badge>
-
           <TextReveal
             as="h1"
             id="hero-heading"
