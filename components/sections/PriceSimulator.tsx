@@ -15,7 +15,6 @@ import {
 } from "@/lib/pricing";
 import { estimateMessage, buildWhatsAppUrl } from "@/lib/whatsapp";
 import { formatRupiah, cn } from "@/lib/utils";
-import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
  * Simulator harga (README Phase 7):
@@ -27,8 +26,11 @@ import { SectionArt } from "@/components/decorative/SectionArt";
  */
 export function PriceSimulator({
   headingAs = "h2",
+  showHeading = true,
 }: {
   headingAs?: "h1" | "h2";
+  /** false = heading H1 dirender PageHero terpisah (halaman /harga). */
+  showHeading?: boolean;
 }) {
   const { state, update, result, includedProducts } = usePriceCalculator();
 
@@ -53,17 +55,26 @@ export function PriceSimulator({
   });
 
   return (
-    <section id="simulasi" aria-labelledby="simulasi-heading" className="container relative isolate py-16 md:py-24">
-      <SectionArt src="/asset_decor_context/asset_simulasi.png" className="top-0 right-0 w-28 lg:block lg:w-40" />
-      <ScrollReveal>
-        <SectionHeading
-          id="simulasi-heading"
-          eyebrow="Simulasi Harga"
-          title="Coba hitung sendiri, realtime."
-          description="Geser pilihan dan centang kebutuhan — estimasinya langsung muncul. Harga final ditetapkan setelah kebutuhan diperiksa saat konsultasi."
-          titleAs={headingAs}
-        />
-      </ScrollReveal>
+    <section
+      id="simulasi"
+      aria-labelledby="simulasi-heading"
+      className={
+        showHeading
+          ? "container relative isolate py-16 md:py-24"
+          : "container relative isolate pb-16 pt-6 md:pb-24 md:pt-10"
+      }
+    >
+      {!showHeading ? null : (
+        <ScrollReveal>
+          <SectionHeading
+            id="simulasi-heading"
+            eyebrow="Simulasi Harga"
+            title="Coba hitung sendiri, realtime."
+            description="Geser pilihan dan centang kebutuhan — estimasinya langsung muncul. Harga final ditetapkan setelah kebutuhan diperiksa saat konsultasi."
+            titleAs={headingAs}
+          />
+        </ScrollReveal>
+      )}
 
       <div className="mt-10 grid gap-8 md:mt-14 lg:grid-cols-5">
         {/* Form */}
@@ -198,7 +209,7 @@ export function PriceSimulator({
               {state.customIntegration ? <Row label="Integrasi kustom" value={ADDON_PRICES.customIntegration} /> : null}
             </dl>
 
-            <div className="my-3 border-t-2 border-dashed border-ink/20" />
+            <div className="my-3 border-t-2 border-dashed border-ink" />
 
             <dl className="flex flex-col gap-2 text-sm">
               <Row label="Subtotal" value={result.subtotal} bold />
@@ -211,7 +222,7 @@ export function PriceSimulator({
             </dl>
 
             <p className="mt-5 font-display text-sm font-bold">Total estimasi:</p>
-            <p className="mt-1 inline-block bg-yellow px-2 font-display text-3xl font-extrabold tracking-tight">
+            <p className="mt-1 inline-block bg-red px-2 font-display text-3xl font-extrabold text-ink tracking-tight">
               {formatRupiah(result.total)}
             </p>
 
@@ -232,7 +243,7 @@ export function PriceSimulator({
               href={buildWhatsAppUrl(waMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-card border-[3px] border-ink bg-yellow px-4 py-3 font-display font-bold shadow-brutal transition-transform hover:translate-x-[2px] hover:translate-y-[2px]"
+              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-card border-[3px] border-ink bg-red px-4 py-3 font-display font-bold shadow-brutal transition-transform hover:translate-x-[2px] hover:translate-y-[2px]"
             >
               <Plus aria-hidden="true" className="h-5 w-5" />
               Kirim Estimasi ke WhatsApp

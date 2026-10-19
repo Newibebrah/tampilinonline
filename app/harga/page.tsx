@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PriceSimulator } from "@/components/sections/PriceSimulator";
+import { PageHero } from "@/components/shared/PageHero";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { breadcrumbSchema } from "@/lib/schema";
 
@@ -28,8 +29,24 @@ export default function HargaPage() {
       <JsonLd
         data={breadcrumbSchema([{ name: "Simulasi Harga", path: "/harga" }])}
       />
-      <main id="konten">
-        <PriceSimulator headingAs="h1" />
+      <main id="konten" className="bg-canvas">
+        {/* Header halaman & simulator breakpoint — style sama persis dengan Blog
+            (revisi user): teks center + ilustrasi jadi kesatuan kalimat pembuka. */}
+        <section className="container relative isolate overflow-hidden pb-2 pt-14 md:pt-20">
+          <PageHero
+            id="simulasi-heading"
+            eyebrow="Simulasi Harga"
+            title="Coba hitung sendiri, realtime."
+            description="Geser pilihan dan centang kebutuhan — estimasinya langsung muncul. Harga final ditetapkan setelah kebutuhan diperiksa saat konsultasi."
+            artSrc="/asset_decor_context/asset_simulasi.png"
+            artAlt="Ilustrasi gaya kartun: kalkulator estimasi biaya website Tampilin.online"
+            stickers={[
+              { text: "Realtime", tone: "red", rotate: 7, className: "hidden md:block -left-10 top-10" },
+              { text: "Gratis", tone: "surface", rotate: -6, className: "hidden md:block -right-10 bottom-14", floatDelay: 1.1 },
+            ]}
+          />
+        </section>
+        <PriceSimulator headingAs="h1" showHeading={false} />
       </main>
     </>
   );

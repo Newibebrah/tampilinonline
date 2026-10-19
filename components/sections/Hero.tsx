@@ -13,7 +13,7 @@ import { BoldShapes } from "@/components/decorative/BoldShapes";
  * Hero v3 — BOLD CENTER-FOCUSED (prompt bold-pastel v3.0 FASE 3):
  * - flex flex-col items-center justify-center text-center min-h-[80vh]
  * - latar blok pastel SOLID (bg-pink) + grid kertas global tetap di belakang
- * - H1 lebih besar (Bricolage Grotesque) dengan highlight solid ber-border
+ * - H1 lebih besar (Bricolage Grotesque) dengan highlight MERAH ber-border
  * - Visual utama: ilustrasi karakter DI BAWAH teks (in-flow, tidak terpotong)
  * - 3 elemen grafis melayang ala Gumroad (BoldShapes)
  * - Mockup CSS browser/ponsel yang lama DIGANTIKAN karakter ilustrasi
@@ -31,9 +31,12 @@ export function Hero() {
       {/* Elemen grafis melayang ala Gumroad (kiri & kanan teks) */}
       <BoldShapes
         shapes={[
-          { kind: "star", tone: "yellow", className: "left-[8%] top-16 h-12 w-12 rotate-12" },
+          { kind: "star", tone: "yellow", className: "left-[7%] top-14 h-12 w-12 rotate-12" },
+          { kind: "star", tone: "red", className: "right-[6%] top-24 h-8 w-8 -rotate-6" },
           { kind: "circle", tone: "blue", className: "right-[9%] top-1/3 h-8 w-8" },
           { kind: "cross", tone: "mint", className: "left-[12%] bottom-24 h-10 w-10" },
+          { kind: "cross", tone: "red", className: "left-[6%] bottom-[34%] h-7 w-7" },
+          { kind: "ring", className: "right-[13%] bottom-[18%] h-10 w-10" },
         ]}
       />
 
@@ -50,7 +53,7 @@ export function Hero() {
               { text: "Semua usaha" },
               {
                 text: "harus punya",
-                className: "border-2 border-ink bg-yellow px-2 shadow-brutal-sm",
+                className: "border-2 border-ink bg-red px-2 shadow-brutal-sm",
                 asOne: true,
               },
               { text: "website." },
@@ -98,7 +101,7 @@ export function Hero() {
           <Sticker
             text="100% Custom"
             rotate={7}
-            tone="blue"
+            tone="red"
             className="-left-10 -top-4 hidden md:block"
             floatDelay={0.4}
           />

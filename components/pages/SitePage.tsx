@@ -32,7 +32,7 @@ export function SitePage({
           {children}
         </div>
 
-        <div className="mt-12 flex items-center justify-between border-t-2 border-dashed border-ink/15 pt-6">
+        <div className="mt-12 flex items-center justify-between border-t-2 border-dashed border-ink pt-6">
           <a
             href="/"
             className="inline-flex items-center gap-2 rounded-card border-2 border-ink bg-surface px-4 py-2 font-display text-sm font-bold text-ink transition-transform hover:translate-x-[2px] hover:translate-y-[2px]"

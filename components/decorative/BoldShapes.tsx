@@ -11,9 +11,10 @@ import { cn } from "@/lib/utils";
  * `relative isolate`, dan ukuran shape WAJIB menyertakan h-* dan w-*.
  */
 
-type Tone = "yellow" | "blue" | "pink" | "mint" | "lavender" | "surface";
+type Tone = "yellow" | "blue" | "pink" | "mint" | "lavender" | "surface" | "red";
 
 const FILL: Record<Tone, string> = {
+  red: "var(--red)",
   yellow: "var(--yellow)",
   blue: "var(--blue)",
   pink: "var(--pink)",

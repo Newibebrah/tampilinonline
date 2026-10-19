@@ -24,6 +24,8 @@ export function SectionHeading({
   id,
   /** Tag title: "h2" default; "h1" untuk heading utama halaman standalone. */
   titleAs = "h2",
+  /** Override parts title — untuk judul 2 baris dengan aksen (mis. merah). */
+  titleParts,
   align = "center",
   /** Putih teks untuk section berlatar gelap. */
   invert = false,
@@ -33,6 +35,8 @@ export function SectionHeading({
   description?: string;
   id?: string;
   titleAs?: "h1" | "h2";
+  /** Override parts title — baris kedua beraksen (mis. chip merah). */
+  titleParts?: import("@/components/shared/TextReveal").TextRevealPart[];
   align?: "left" | "center";
   invert?: boolean;
 }) {
@@ -63,7 +67,7 @@ export function SectionHeading({
           invert ? "text-canvas" : "text-ink",
           "text-[clamp(1.5rem,5vw,2.5rem)] leading-tight",
         )}
-        parts={[{ text: title }]}
+        parts={titleParts ?? [{ text: title }]}
       />
 
       {/* Garis anchor pendek — penghubung stiker → title → narasi */}

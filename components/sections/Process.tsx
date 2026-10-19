@@ -72,7 +72,7 @@ export function Process() {
     <section
       id="proses"
       aria-label="Proses kerja Tampilin.online"
-      className="relative isolate bg-lavender/20 py-16 md:py-24"
+      className="relative isolate bg-lavenderLite py-16 md:py-24"
     >
       <SectionArt src="/asset_decor_context/asset_proses.png" className="top-0 right-0 w-32 lg:block lg:w-44" />
       <div className="container">
@@ -100,7 +100,7 @@ export function Process() {
           {/* Panel sticky — langkah aktif yang diperbarui dinamis */}
           <aside className="relative hidden lg:block">
             <div className="sticky top-24">
-              <div className="overflow-hidden rounded-card border-[3px] border-ink bg-surface shadow-brutal">
+              <div className="overflow-hidden rounded-card border-[3px] border-ink bg-mintLite shadow-brutal">
                 <span
                   aria-hidden="true"
                   className={cn(
@@ -120,7 +120,7 @@ export function Process() {
                     >
                       <span
                         className={cn(
-                          "font-display text-[7rem] font-extrabold leading-none tracking-tight text-ink/15",
+                          "font-display text-[7rem] font-extrabold leading-none tracking-tight text-red",
                         )}
                       >
                         {String(step.step).padStart(2, "0")}
@@ -154,7 +154,7 @@ export function Process() {
                             <span className="font-medium text-ink">Kami:</span> {step.ourRole}
                           </span>
                         </p>
-                        <p className="inline-flex items-center gap-1.5 rounded-pill border-2 border-ink/30 bg-lavender/30 px-3 py-1.5 text-xs font-medium text-ink">
+                        <p className="inline-flex items-center gap-1.5 rounded-pill border-2 border-ink bg-lavender px-3 py-1.5 text-xs font-medium text-ink">
                           <CheckCircle aria-hidden="true" className="h-4 w-4 shrink-0" />
                           {step.deliverable}
                         </p>
@@ -163,14 +163,14 @@ export function Process() {
                   </AnimatePresence>
 
                   {/* Progress segments */}
-                  <div className="mt-6 border-t-2 border-dashed border-ink/15 pt-4">
+                  <div className="mt-6 border-t-2 border-dashed border-ink pt-4">
                     <div aria-hidden="true" className="flex gap-1.5">
                       {processSteps.map((s, index) => (
                         <span
                           key={s.step}
                           className={cn(
-                            "h-1.5 flex-1 rounded-pill transition-colors duration-300",
-                            index <= active ? "bg-mint" : "bg-ink/15",
+                            "h-2.5 flex-1 rounded-pill border-2 border-ink bg-surface transition-colors duration-300",
+                            index <= active ? "bg-red" : "bg-surface",
                           )}
                         />
                       ))}
@@ -209,7 +209,7 @@ export function Process() {
                     {s.title}
                   </h3>
                   {s.optional ? (
-                    <span className="rounded-pill border border-ink/20 bg-ink/5 px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-ink/70">
+                    <span className="rounded-pill border-2 border-ink bg-canvas px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-ink/70">
                       Opsional
                     </span>
                   ) : null}
@@ -240,7 +240,7 @@ export function Process() {
                   </div>
                   <div className="p-2">
                     <span className="block h-2 w-2/3 rounded-pill bg-ink" />
-                    <span className="mt-1 block h-2 w-1/2 rounded-pill bg-ink/60" />
+                    <span className="mt-1 block h-2 w-1/2 rounded-pill bg-ink" />
                     <span className="mt-2 block h-6 w-full rounded-sm bg-yellow" />
                   </div>
                 </div>
@@ -253,14 +253,14 @@ export function Process() {
             <li className="flex flex-col overflow-hidden rounded-card border-2 border-ink bg-surface shadow-brutal">
               <div
                 aria-hidden="true"
-                className="flex flex-1 items-center justify-center bg-yellow/10 p-4"
+                className="flex flex-1 items-center justify-center bg-canvas p-4"
               >
                 {/* Mock ponsel mini */}
                 <div className="w-[86px] rounded-card border-[3px] border-ink bg-surface p-2">
-                  <div className="mx-auto mb-1.5 h-1 w-6 rounded-pill bg-ink/30" />
+                  <div className="mx-auto mb-1.5 h-1 w-6 rounded-pill bg-blue" />
                   <span className="block h-10 rounded-sm bg-yellow" />
-                  <span className="mt-1.5 block h-1.5 w-3/4 rounded-pill bg-ink/40" />
-                  <span className="mt-1 block h-1.5 w-1/2 rounded-pill bg-ink/30" />
+                  <span className="mt-1.5 block h-1.5 w-3/4 rounded-pill bg-ink" />
+                  <span className="mt-1 block h-1.5 w-1/2 rounded-pill bg-blue" />
                   <span className="mt-2 block h-4 rounded-pill bg-pink" />
                 </div>
               </div>
@@ -426,15 +426,15 @@ function StepVisual({ step }: { step: number }) {
           </div>
           <div className="space-y-2 p-3">
             <span className="block max-w-[85%] rounded-card rounded-bl-none border-2 border-ink bg-surface px-2.5 py-1.5">
-              <span className="block h-1.5 w-4/5 rounded-pill bg-ink/50" />
-              <span className="mt-1 block h-1.5 w-3/5 rounded-pill bg-ink/30" />
+              <span className="block h-1.5 w-4/5 rounded-pill bg-ink" />
+              <span className="mt-1 block h-1.5 w-3/5 rounded-pill bg-blue" />
             </span>
             <span className="ml-auto block max-w-[85%] rounded-card rounded-br-none border-2 border-ink bg-yellow px-2.5 py-1.5">
-              <span className="block h-1.5 w-3/5 rounded-pill bg-ink/50" />
-              <span className="mt-1 block h-1.5 w-4/5 rounded-pill bg-ink/30" />
+              <span className="block h-1.5 w-3/5 rounded-pill bg-ink" />
+              <span className="mt-1 block h-1.5 w-4/5 rounded-pill bg-blue" />
             </span>
             <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-surface px-3 py-1.5">
-              <span className="h-1.5 flex-1 rounded-pill bg-ink/15" />
+              <span className="h-1.5 flex-1 rounded-pill bg-blue" />
               <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-ink" />
             </span>
           </div>
@@ -451,9 +451,9 @@ function StepVisual({ step }: { step: number }) {
             </span>
           </div>
           <div className="space-y-2 p-3">
-            <span className="flex h-1.5 w-full rounded-pill bg-ink/15" />
-            <span className="flex h-1.5 w-4/5 rounded-pill bg-ink/15" />
-            <span className="flex h-1.5 w-3/5 rounded-pill bg-ink/15" />
+            <span className="flex h-1.5 w-full rounded-pill bg-blue" />
+            <span className="flex h-1.5 w-4/5 rounded-pill bg-blue" />
+            <span className="flex h-1.5 w-3/5 rounded-pill bg-blue" />
             <span className="flex items-center justify-between border-2 border-ink bg-yellow px-2.5 py-1.5">
               <span className="font-display text-xs font-bold text-ink">Total</span>
               <span className="font-display text-xs font-extrabold text-ink">
@@ -494,11 +494,11 @@ function StepVisual({ step }: { step: number }) {
             <span className="h-1.5 w-1.5 rounded-full bg-ink" />
             <span className="h-1.5 w-1.5 rounded-full bg-yellow" />
             <span className="h-1.5 w-1.5 rounded-full bg-pink" />
-            <span className="ml-1.5 h-2.5 flex-1 rounded-pill border border-ink/40 bg-surface" />
+            <span className="ml-1.5 h-2.5 flex-1 rounded-pill border-2 border-ink bg-surface" />
           </div>
           <div className="p-3">
             <span className="block h-2 w-2/3 rounded-pill bg-ink" />
-            <span className="mt-1.5 block h-2 w-1/2 rounded-pill bg-ink/40" />
+            <span className="mt-1.5 block h-2 w-1/2 rounded-pill bg-ink" />
             <span className="mt-2.5 block h-8 w-full rounded-sm bg-yellow" />
             <div className="mt-2 grid grid-cols-3 gap-1.5">
               <span className="block h-6 rounded-sm bg-canvas" />
@@ -524,13 +524,13 @@ function StepVisual({ step }: { step: number }) {
                 <CheckCircle className="h-3.5 w-3.5 shrink-0 text-ink" />
                 <span
                   className={cn(
-                    "h-1.5 rounded-pill bg-ink/40",
+                    "h-1.5 rounded-pill bg-ink",
                     row === 1 ? "w-3/4" : row === 2 ? "w-1/2" : "w-2/3",
                   )}
                 />
               </span>
             ))}
-            <span className="flex h-4 items-center justify-center rounded-pill border-2 border-dashed border-ink/40 bg-surface">
+            <span className="flex h-4 items-center justify-center rounded-pill border-2 border-dashed border-ink bg-surface">
               <span className="font-display text-[9px] font-bold uppercase tracking-wide text-ink/60">
                 maks. 2 putaran revisi
               </span>
@@ -553,8 +553,8 @@ function StepVisual({ step }: { step: number }) {
                 website live
               </span>
             </span>
-            <span className="block h-1.5 w-2/3 rounded-pill bg-ink/20" />
-            <span className="block h-1.5 w-1/2 rounded-pill bg-ink/10" />
+            <span className="block h-1.5 w-2/3 rounded-pill bg-blue" />
+            <span className="block h-1.5 w-1/2 rounded-pill bg-blue" />
           </div>
         </div>
       );
@@ -594,8 +594,8 @@ function StepVisual({ step }: { step: number }) {
           </div>
           <div className="flex flex-col items-center gap-2 p-4">
             <Wrench className="h-6 w-6 text-ink" />
-            <span className="block h-1.5 w-3/4 rounded-pill bg-ink/20" />
-            <span className="block h-1.5 w-2/3 rounded-pill bg-ink/15" />
+            <span className="block h-1.5 w-3/4 rounded-pill bg-blue" />
+            <span className="block h-1.5 w-2/3 rounded-pill bg-blue" />
             <span className="flex items-center gap-1.5 rounded-pill border-2 border-ink bg-surface px-3 py-1">
               <span className="h-2 w-2 rounded-full bg-yellow" />
               <span className="font-display text-[10px] font-bold text-ink">

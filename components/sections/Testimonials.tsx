@@ -35,7 +35,7 @@ export function Testimonials() {
                   {item.demo ? "Testimoni Demo" : "Testimoni Klien"}
                 </span>
                 <blockquote className="text-ink/80">“{item.quote}”</blockquote>
-                <p className="mt-auto border-t-2 border-dashed border-ink/15 pt-3 font-display text-sm font-bold">
+                <p className="mt-auto border-t-2 border-dashed border-ink pt-3 font-display text-sm font-bold">
                   {item.authorRole}
                 </p>
               </Card>

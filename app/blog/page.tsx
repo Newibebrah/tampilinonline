@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { PageHero } from "@/components/shared/PageHero";
 import { Card } from "@/components/ui/Card";
 import { blogIndexSchema, breadcrumbSchema } from "@/lib/schema";
 import { getSortedPosts } from "@/data/blogPosts";
-import { SectionArt } from "@/components/decorative/SectionArt";
 
 /** Metadata /blog — title absolut (metaTitle target 50–60) + description unik. */
 export const metadata: Metadata = {
@@ -33,20 +33,20 @@ export default function BlogIndexPage() {
         data={breadcrumbSchema([{ name: "Blog", path: "/blog" }])}
       />
       <main id="konten" className="bg-canvas">
-        <section className="container relative isolate py-16 md:py-24">
-        <SectionArt src="/asset_decor_context/asset_blog.png" className="top-0 right-0 w-28 lg:block lg:w-36" />
-          <ScrollReveal>
-            <p className="font-display text-sm font-bold uppercase tracking-wide text-pink">
-              Blog
-            </p>
-            <h1 className="mt-3 max-w-2xl font-display text-[clamp(1.75rem,5vw,2.75rem)] font-bold leading-tight text-ink">
-              Panduan Website untuk UMKM, Sales, dan Bisnis.
-            </h1>
-            <p className="mt-4 max-w-xl text-lg text-ink/70">
-              Jawaban langsung dari pertanyaan yang paling sering masuk:
-              berapa biayanya, mulai dari mana, dan cara memilih jasa yang aman.
-            </p>
-          </ScrollReveal>
+        <section className="container relative isolate pb-16 pt-12 md:pb-24 md:pt-16">
+          {/* Header Blog & ilustrasi satu kesatuan — style sama persis
+              dengan halaman /harga (revisi user). */}
+          <PageHero
+            eyebrow="Blog"
+            title="Panduan Website untuk UMKM, Sales, dan Bisnis."
+            description="Jawaban langsung dari pertanyaan yang paling sering masuk: berapa biayanya, mulai dari mana, dan cara memilih jasa yang aman."
+            artSrc="/asset_decor_context/asset_blog.png"
+            artAlt="Ilustrasi gaya kartun: panduan website untuk pebisnis"
+            stickers={[
+              { text: "Panduan", tone: "red", rotate: 7, className: "hidden md:block -left-10 top-12" },
+              { text: "Terbaru", tone: "surface", rotate: -6, className: "hidden md:block -right-10 bottom-16", floatDelay: 1.1 },
+            ]}
+          />
 
           <ScrollReveal className="mt-10 md:mt-14">
             <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

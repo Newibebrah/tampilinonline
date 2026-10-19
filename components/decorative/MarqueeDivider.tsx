@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 /**
  * MarqueeDivider — v2.1 Soft Pastel Neo-Brutalism:
  * - Pita gelap `bg-ink` dengan teks `text-yellow` (prompt FASE 5 #2).
- * - Starburst mini di-restyle ke gaya baru: fill pastel pink + garis
+ * - Starburst mini di-restyle ke gaya baru: fill merah (warna aksi) + garis
  *   plum ink (outline kartun, stroke menyatu ke band gelap — aman).
  * - ADDITIVE: hanya disisipkan DI ANTARA section (app/page.tsx).
  * - Konten digandakan 2× (salinan aria-hidden) → loop translateX(-50%)
@@ -33,7 +33,7 @@ function MiniBurst() {
     >
       <polygon
         points="98,50 67,60 74,92 50,70 26,92 33,60 2,50 33,40 26,8 50,30 74,8 67,40"
-        fill="var(--pink)"
+        fill="var(--red)"
         stroke="var(--ink)"
         strokeWidth="6"
         strokeLinejoin="round"

@@ -267,7 +267,7 @@ export function LeadForm() {
             </div>
 
             {step === STEPS && (
-              <div className="mt-6 border-t-2 border-dashed border-ink/15 pt-6">
+              <div className="mt-6 border-t-2 border-dashed border-ink pt-6">
                 <p className="text-sm text-ink/60">
                   Langkah terakhir — tombol kirim tampil di bawah setelah
                   navigasi ini.

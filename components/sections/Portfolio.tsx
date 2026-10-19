@@ -12,7 +12,7 @@ import { SectionArt } from "@/components/decorative/SectionArt";
  */
 export function Portfolio() {
   return (
-    <section id="portofolio" aria-labelledby="portofolio-heading" className="container relative isolate bg-blue/20 py-16 md:py-24">
+    <section id="portofolio" aria-labelledby="portofolio-heading" className="container relative isolate bg-blueLite py-16 md:py-24">
       <SectionArt src="/asset_decor_context/asset_preview.png" className="top-0 right-0 w-32 lg:block lg:w-40" />
       <ScrollReveal>
         <SectionHeading

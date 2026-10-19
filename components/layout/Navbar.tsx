@@ -89,7 +89,7 @@ export function Navbar() {
             href={buildWhatsAppUrl(DEFAULT_WA_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center rounded-card border-[3px] border-ink bg-yellow px-4 py-2 font-display text-sm font-bold shadow-brutal-sm transition-transform hover:translate-x-[2px] hover:translate-y-[2px] md:inline-flex"
+            className="hidden items-center rounded-card border-[3px] border-ink bg-red px-4 py-2 font-display text-sm font-bold shadow-brutal-sm transition-transform hover:translate-x-[2px] hover:translate-y-[2px] md:inline-flex"
           >
             <MessageCircle aria-hidden="true" className="mr-2 inline h-4 w-4" />
             Konsultasi

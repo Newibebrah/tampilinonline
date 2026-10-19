@@ -2,15 +2,14 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
-import { INK_RGB } from "@/lib/colors";
 
 /**
- * ScrollProgress (prompt Bagian 1.2) — garis putus-putus di atas layar yang
- * "terisi" solid kuning (highlight konversi, token PALETTE — tanpa hex)
- * mengikuti scroll. Spring 300/30 agar terasa hidup; reduced-motion tetap
- * berfungsi sebagai indikator (scroll-driven, bukan animasi waktu) tanpa spring.
- *
- * Fixed + pointer-events-none — tidak memblokir navbar/menu di bawahnya.
+ * ScrollProgress v3 — PENANDA PROGRES BACA yang jelas & berani (revisi user:
+ * versi lama tipis + kuning "tidak jelas dan monoton"):
+ * - Track surface SOLID dengan border-b 2px ink (garis tegas di bawah bar).
+ * - Isi SOLID merah (warna aksi) — scaleX mengikuti scroll, spring 300/30.
+ * - Reduced-motion: tetap berfungsi (scroll-driven, bukan animasi waktu).
+ * Fixed + pointer-events-none — tidak memblokir navbar/menu.
  */
 export function ScrollProgress() {
   const reduced = useReducedMotion();
@@ -24,18 +23,10 @@ export function ScrollProgress() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-1.5 select-none"
+      className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-2.5 select-none border-b-2 border-ink bg-surface"
     >
-      {/* Track putus-putus (ink transparan) */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `repeating-linear-gradient(90deg, rgba(${INK_RGB},0.35) 0 6px, transparent 6px 12px)`,
-        }}
-      />
-      {/* Isi solid kuning — scaleX mengikuti progres baca */}
       <motion.div
-        className="h-full w-full origin-left bg-yellow"
+        className="h-full w-full origin-left bg-red"
         style={{
           scaleX: reduced ? scrollYProgress : springScaleX,
           willChange: "transform",

@@ -177,7 +177,7 @@ export function Footer() {
       </div>
 
       {/* Bar bawah: copyright + legal inline */}
-      <div className="border-t border-canvas/20">
+      <div className="border-t-2 border-canvas">
         <div className="container flex flex-col gap-3 py-6 text-sm text-canvas/60 md:flex-row md:items-center md:justify-between">
           <p>
             © {year} {BRAND.name}. Hak cipta dilindungi.

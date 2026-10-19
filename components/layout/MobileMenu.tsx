@@ -8,6 +8,7 @@ import { buildWhatsAppUrl, DEFAULT_WA_MESSAGE } from "@/lib/whatsapp";
 
 /**
  * Drawer menu mobile (<768px). Esc & backdrop menutup, fokus tetap aman.
+ * v3.0: scrim SOLID (bg-ink) — 0 transparansi di background (aturan user).
  * Render selalu; visibility via prop isOpen (transition handle animasi via CSS).
  */
 export function MobileMenu({
@@ -55,7 +56,7 @@ export function MobileMenu({
         type="button"
         aria-label="Tutup menu"
         onClick={onClose}
-        className="absolute inset-0 w-full bg-ink/50"
+        className="absolute inset-0 w-full bg-ink"
       />
 
       <div className="absolute right-0 top-0 flex h-full w-72 max-w-[85vw] flex-col border-l-2 border-ink bg-canvas pb-6 pt-6">
@@ -92,7 +93,7 @@ export function MobileMenu({
           target="_blank"
           rel="noopener noreferrer"
           onClick={onClose}
-          className="mx-4 mt-auto inline-flex items-center justify-center gap-2 rounded-card border-[3px] border-ink bg-yellow px-6 py-3 font-display font-bold shadow-brutal"
+          className="mx-4 mt-auto inline-flex items-center justify-center gap-2 rounded-card border-[3px] border-ink bg-red px-6 py-3 font-display font-bold shadow-brutal"
         >
           <MessageCircle aria-hidden="true" className="h-5 w-5" />
           Konsultasi via WhatsApp

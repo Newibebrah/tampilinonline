@@ -40,7 +40,7 @@ export function ProcessStepCard({
           {step.title}
         </h3>
         {step.optional ? (
-          <span className="ml-auto hidden shrink-0 rounded-pill border border-ink/20 bg-ink/5 px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-ink/70 sm:inline-block">
+          <span className="ml-auto hidden shrink-0 rounded-pill border-2 border-ink bg-canvas px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-ink/70 sm:inline-block">
             Opsional
           </span>
         ) : null}
@@ -48,7 +48,7 @@ export function ProcessStepCard({
 
       {/* Badge "Opsional" di mobile — di bawah header agar tak sesak */}
       {step.optional ? (
-        <span className="mt-3 inline-block rounded-pill border border-ink/20 bg-ink/5 px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-ink/70 sm:hidden">
+        <span className="mt-3 inline-block rounded-pill border-2 border-ink bg-canvas px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-ink/70 sm:hidden">
           Opsional
         </span>
       ) : null}
@@ -79,7 +79,7 @@ export function ProcessStepCard({
       </div>
 
       {/* Deliverable */}
-      <p className="mt-4 inline-flex items-center gap-1.5 rounded-pill border-2 border-ink/30 bg-lavender/30 px-3 py-1.5 text-xs font-medium text-ink">
+      <p className="mt-4 inline-flex items-center gap-1.5 rounded-pill border-2 border-ink bg-lavender px-3 py-1.5 text-xs font-medium text-ink">
         <CheckCircle aria-hidden="true" className="h-4 w-4 shrink-0" />
         {step.deliverable}
       </p>

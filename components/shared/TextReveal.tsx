@@ -18,31 +18,44 @@ import { cn } from "@/lib/utils";
  */
 
 export type TextRevealPart = {
-  text: string;
-  /** Kelas tambahan pada kata (mis. highlight bg-yellow). */
+  text?: string;
+  /** Kelas tambahan pada kata (mis. highlight bg-yellow / bg-red). */
   className?: string;
   /** Render seluruh part sebagai satu blok tersingkap (bukan per kata). */
   asOne?: boolean;
+  /** Token pindah-baris eksplisit (judul 2 baris, revisi user). */
+  br?: boolean;
 };
 
 type Tag = "h1" | "h2" | "span" | "p";
 
-type Token = { key: string; text: string; className?: string; asOne: boolean };
+type Token = {
+  key: string;
+  text: string;
+  className?: string;
+  asOne: boolean;
+  br: boolean;
+};
 
-/** Susun parts → token kata + blok as-one. */
+/** Susun parts → token kata + blok as-one + break. */
 function buildTokens(parts: TextRevealPart[]): Token[] {
   const tokens: Token[] = [];
   parts.forEach((part, pi) => {
+    if (part.br) {
+      tokens.push({ key: `p${pi}br`, text: "", asOne: false, br: true });
+      return;
+    }
     if (part.asOne) {
       tokens.push({
         key: `p${pi}`,
-        text: part.text,
+        text: part.text ?? "",
         className: part.className,
         asOne: true,
+        br: false,
       });
       return;
     }
-    part.text
+    (part.text ?? "")
       .split(" ")
       .filter(Boolean)
       .forEach((word, wi) => {
@@ -51,6 +64,7 @@ function buildTokens(parts: TextRevealPart[]): Token[] {
           text: word,
           className: part.className,
           asOne: false,
+          br: false,
         });
       });
   });
@@ -74,7 +88,9 @@ export function TextReveal({
 
   if (reduced) {
     const content = parts.map((part, i) =>
-      part.className ? (
+      part.br ? (
+        <br key={i} aria-hidden="true" />
+      ) : part.className ? (
         <span key={i} className={part.className}>
           {part.text}
         </span>
@@ -108,27 +124,32 @@ export function TextReveal({
         show: { transition: { staggerChildren: 0.045 } },
       }}
     >
-      {tokens.map((token, i) => (
-        <span key={token.key}>
-          {/* Wrapper overflow-hidden = "mask"; inner bergeser dari bawah */}
-          <span className="inline-block overflow-hidden align-bottom">
-            <motion.span
-              className={cn("inline-block will-change-transform", token.className)}
-              variants={{
-                hidden: { y: "115%" },
-                show: {
-                  y: 0,
-                  transition: { type: "spring", stiffness: 300, damping: 20 },
-                },
-              }}
-            >
-              {token.text}
-            </motion.span>
+      {tokens.map((token, i) =>
+        token.br ? (
+          // Break token — block penuh memaksa kata berikutnya ke baris baru
+          <span key={token.key} className="block w-full" aria-hidden="true" />
+        ) : (
+          <span key={token.key}>
+            {/* Wrapper overflow-hidden = "mask"; inner bergeser dari bawah */}
+            <span className="inline-block overflow-hidden align-bottom">
+              <motion.span
+                className={cn("inline-block will-change-transform", token.className)}
+                variants={{
+                  hidden: { y: "115%" },
+                  show: {
+                    y: 0,
+                    transition: { type: "spring", stiffness: 300, damping: 20 },
+                  },
+                }}
+              >
+                {token.text}
+              </motion.span>
+            </span>
+            {/* Spasi eksplisit — inline-block menelan whitespace di sekitarnya */}
+            {i < tokens.length - 1 ? " " : null}
           </span>
-          {/* Spasi eksplisit — inline-block menelan whitespace di sekitarnya */}
-          {i < tokens.length - 1 ? " " : null}
-        </span>
-      ))}
+        ),
+      )}
     </MotionTag>
   );
 }

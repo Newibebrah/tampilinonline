@@ -4,15 +4,22 @@
 
 @layer base {
   :root {
-    /* v2.1 Soft Pastel Neo-Brutalism — mirror token PALETTE (lib/colors.ts). */
+    /* v3.0 Bold Pastel + RED — mirror token PALETTE (lib/colors.ts). */
     --canvas: #fffcf8;
     --surface: #ffffff;
     --ink: #2b2433;
+    --red: #ff5a5a;
     --pink: #f2a3c7;
     --blue: #8fc5f8;
     --mint: #92e0c6;
     --yellow: #ffe28a;
     --lavender: #c6b5f2;
+    /* Tint SOLID untuk bg section (tanpa opacity) */
+    --pink-lite: #fceaee;
+    --blue-lite: #e8f1f8;
+    --mint-lite: #e9f6ee;
+    --lavender-lite: #f3eef7;
+    --yellow-lite: #fff7e2;
   }
 
   html {
@@ -25,7 +32,7 @@
   }
 
   ::selection {
-    @apply bg-yellow text-ink;
+    @apply bg-red text-ink;
   }
 
   /* Fokus utama navigasi — terlihat jelas (WCAG 2.4.7) + ring ink (FASE 2 prompt).

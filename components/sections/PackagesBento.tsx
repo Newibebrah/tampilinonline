@@ -71,7 +71,7 @@ export function PackagesBento() {
         >
           {/* dekorasi sudut — sama dengan banner CTA final */}
           <SectionArt src="/asset_decor_context/asset_paket_layanan.png" className="-bottom-8 -left-6 w-36 md:block lg:w-48" />
-          <span aria-hidden="true" className="absolute -bottom-10 -right-8 h-28 w-28 rotate-12 rounded-card border-[3px] border-ink bg-blue/40" />
+          <span aria-hidden="true" className="absolute -bottom-10 -right-8 h-28 w-28 rotate-12 rounded-card border-[3px] border-ink bg-blue" />
 
           <div className="relative flex flex-col items-center gap-5">
             <h3
@@ -166,8 +166,9 @@ function PackageCard({ pkg }: { pkg: Package }) {
         className={cn(
           "mt-6 inline-flex items-center justify-center gap-2 rounded-card font-display font-bold transition-transform cursor-pointer",
           pkg.featured
-            ? "border-[3px] border-ink bg-ink px-4 py-3 text-canvas hover:translate-x-[2px] hover:translate-y-[2px]"
-            : "border-[3px] border-ink bg-yellow px-4 py-3 shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px]",
+            // CTA merah di SEMUA kartu — kontras jelas di bg pastel mana pun
+            ? "border-[3px] border-ink bg-red px-4 py-3 text-ink hover:translate-x-[2px] hover:translate-y-[2px]"
+            : "border-[3px] border-ink bg-red px-4 py-3 text-ink shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px]",
         )}
       >
         <MessageCircle aria-hidden="true" className="h-5 w-5" />

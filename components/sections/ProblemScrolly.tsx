@@ -46,6 +46,15 @@ type Beat = {
   image?: { src: string; alt: string; width: number; height: number };
 };
 
+/** Pemetaan masalah → penawar (revisi user #8) — cure = judul PERSIS
+ *  kartu keunggulan di bawah (apple-to-apple, tidak ada klaim baru). */
+const FIXES = [
+  { problem: "Tak muncul saat dicari di Google", cure: "Mudah ditemukan di Google" },
+  { problem: "Kantor tutup saat Anda sibuk", cure: "Langsung terhubung ke WhatsApp" },
+  { problem: "Alat jualan tak nyaman di HP", cure: "Tampil bagus di semua HP" },
+  { problem: "Budget pas-pasan", cure: "Sesuai tahap & budget usaha" },
+];
+
 const BEATS: Beat[] = [
   {
     key: "m1",
@@ -96,7 +105,7 @@ const CARD_CLS: Record<Scheme, string> = {
 
 const SUB_CLS: Record<Scheme, string> = {
   plain: "text-ink/70",
-  dark: "text-canvas/75",
+  dark: "text-canvas",
   accent: "text-ink/70",
   cta: "text-ink/70",
 };
@@ -116,10 +125,10 @@ const STRIP_CLS: Record<Scheme, string> = {
 };
 
 const ACCENT_NUM_CLS: Record<Scheme, string> = {
-  plain: "text-ink/15",
-  dark: "text-yellow",
-  accent: "text-pink",
-  cta: "text-pink",
+  plain: "text-red",
+  dark: "text-red",
+  accent: "text-red",
+  cta: "text-red",
 };
 
 export function ProblemScrolly() {
@@ -168,7 +177,15 @@ export function ProblemScrolly() {
         <SectionHeading
           id="problem-solver-heading"
           eyebrow="Problem Solver"
-          title="Usaha bagus yang tak ditemukan itu rugi peluang."
+          title="Usaha bagus yang tak ditemukan itu"
+          titleParts={[
+            { text: "Usaha bagus yang tak ditemukan itu" },
+            { br: true },
+            {
+              text: "rugi peluang.",
+              className: "border-2 border-ink bg-red px-2 shadow-brutal-sm",
+            },
+          ]}
           description="Empat fakta yang bikin bisnis tanpa website ketinggalan terus — dibedah satu per satu, lalu dituntaskan lewat keunggulan yang kami bangun."
         />
       </ScrollReveal>
@@ -214,7 +231,7 @@ export function ProblemScrolly() {
         {/* Panel sticky (hanya desktop ≥1024) */}
         <aside className="relative hidden lg:block">
           <div className="sticky top-24">
-            <div className="overflow-hidden rounded-card border-[3px] border-ink bg-surface shadow-brutal">
+            <div className="overflow-hidden rounded-card border-[3px] border-ink bg-yellowLite shadow-brutal">
               <span
                 aria-hidden="true"
                 className={cn("block h-3 w-full transition-colors duration-300", STRIP_CLS[beat.scheme])}
@@ -249,14 +266,14 @@ export function ProblemScrolly() {
                 </AnimatePresence>
 
                 {/* Progress segments */}
-                <div className="mt-6 border-t-2 border-dashed border-ink/15 pt-4">
+                <div className="mt-6 border-t-2 border-dashed border-ink pt-4">
                   <div aria-hidden="true" className="flex gap-1.5">
                     {BEATS.map((b, index) => (
                       <span
                         key={b.key}
                         className={cn(
-                          "h-1.5 flex-1 rounded-pill transition-colors duration-300",
-                          index <= active ? "bg-mint" : "bg-ink/15",
+                          "h-2.5 flex-1 rounded-pill border-2 border-ink bg-surface transition-colors duration-300",
+                          index <= active ? "bg-red" : "bg-surface",
                         )}
                       />
                     ))}
@@ -307,15 +324,44 @@ export function ProblemScrolly() {
       </div>
 
       {/* --- NARASI PENYAMBUNG Masalah → Solusi (bagian dari unit "Problem Solver") --- */}
-      <ScrollReveal className="mx-auto mt-12 max-w-2xl px-4 text-center md:mt-16">
-        <p className="text-balance font-display text-lg font-medium leading-snug text-ink/80 md:text-xl">
-          Keempat masalah itu nyata setiap hari —{" "}
-          <span className="bg-pink px-1 font-bold text-ink">
-            tapi semuanya bisa dituntaskan dari satu hal
-          </span>{" "}
-          — satu website yang dikelola dengan benar. Di bawah ini cara kami
-          menuntaskannya, satu per satu.
-        </p>
+      <ScrollReveal className="mx-auto mt-12 max-w-2xl px-4 md:mt-16">
+        <div className="rounded-card border-2 border-ink bg-yellowLite p-5 shadow-brutal md:p-7">
+          {/* Konsep baru: PEMETAAN masalah → penawar, baris demi baris
+              (apple-to-apple sesuai permintaan user). */}
+          <p className="text-balance text-center font-display text-lg font-medium leading-snug text-ink md:text-xl">
+            Keempat kenyataan di atas menyerang akar yang sama:{" "}
+            <span className="bg-red px-1 font-bold text-ink">
+              belum ada website yang kerja
+            </span>{" "}
+            untuk usaha Anda.
+          </p>
+          <p className="mt-2 text-center text-base text-ink/70">
+            Solusinya cuma satu, tapi menuntaskan semuanya sekaligus — ini
+            pemetaannya:
+          </p>
+          <ul className="mt-4 flex flex-col gap-2.5">
+            {FIXES.map((fix) => (
+              <li
+                key={fix.problem}
+                className="flex flex-wrap items-center gap-x-2 gap-y-1 bg-surface px-3 py-2"
+              >
+                <span className="min-w-[10rem] flex-1 text-sm font-medium text-ink/80">
+                  {fix.problem}
+                </span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="h-4 w-4 shrink-0 text-red"
+                />
+                <span className="border-2 border-ink bg-red px-2 py-0.5 font-display text-sm font-bold text-ink">
+                  {fix.cure}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-center font-display text-base font-bold text-ink">
+            Satu website — keempatnya tuntas.
+          </p>
+        </div>
       </ScrollReveal>
     </section>
   );
@@ -384,7 +430,7 @@ function MockPreview({ compact }: { compact: boolean }) {
         <span className="h-2 w-2 rounded-full bg-ink" />
         <span className="h-2 w-2 rounded-full bg-yellow" />
         <span className="h-2 w-2 rounded-full bg-pink" />
-        <span className="ml-2 h-3 flex-1 rounded-pill border border-ink/40 bg-surface" />
+        <span className="ml-2 h-3 flex-1 rounded-pill border-2 border-ink bg-surface" />
       </div>
       <div className="p-3">
         <span className="block h-3 w-2/3 rounded-pill bg-ink" />

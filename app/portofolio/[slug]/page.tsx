@@ -157,7 +157,7 @@ export default async function CaseStudyPage({
             </dl>
           </section>
 
-          <div className="mt-12 rounded-card border-2 border-ink bg-yellow/50 p-6">
+          <div className="mt-12 rounded-card border-2 border-ink bg-yellow p-6">
             <h2 className="font-display text-lg font-bold">
               Ingin hasil seperti ini untuk usahamu?
             </h2>
