@@ -13,7 +13,8 @@ export function Portfolio() {
     <section id="portofolio" aria-labelledby="portofolio-heading" className="container bg-cream py-16 md:py-24">
       <ScrollReveal>
         <SectionHeading
-          eyebrow="Portofolio"
+          id="portofolio-heading"
+          eyebrow="Preview"
           title="Contoh hasil pengerjaan."
           description="Semua contoh di bawah adalah konsep desain — acuan bentuk hasil pengerjaan sebelum kami menampilkan proyek klien."
         />

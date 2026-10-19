@@ -32,7 +32,7 @@ export const faqItems: FAQItem[] = [
   {
     question: "Apakah website bisa diupdate sendiri?",
     answer:
-      "Untuk paket dengan CMS ya. Untuk paket statis, update konten bisa melalui jasa maintenance.",
+      "Untuk Paket Layanan dengan CMS ya. Untuk paket statis, update konten bisa melalui jasa maintenance.",
   },
   {
     question: "Apakah bisa custom di luar paket?",

@@ -48,6 +48,7 @@ export function PriceSimulator() {
     <section id="simulasi" aria-labelledby="simulasi-heading" className="container py-16 md:py-24">
       <ScrollReveal>
         <SectionHeading
+          id="simulasi-heading"
           eyebrow="Simulasi Harga"
           title="Coba hitung sendiri, realtime."
           description="Geser pilihan dan centang kebutuhan — estimasinya langsung muncul. Harga final ditetapkan setelah kebutuhan diperiksa saat konsultasi."
@@ -64,12 +65,12 @@ export function PriceSimulator() {
           >
             <div className="flex items-center gap-2">
               <Package aria-hidden="true" className="h-5 w-5" />
-              <h3 className="font-display text-lg font-bold">Paket &amp; Tambahkan</h3>
+              <h3 className="font-display text-lg font-bold">Paket Layanan &amp; Tambahkan</h3>
             </div>
 
             <Select
               id="sim-paket"
-              label="Paket utama"
+              label="Paket Layanan utama"
               value={state.packageId}
               onChange={(e) =>
                 update("packageId", e.target.value as typeof state.packageId)

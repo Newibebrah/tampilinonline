@@ -40,7 +40,7 @@ export function Hero() {
           <div className="order-4 flex flex-col items-center gap-3 sm:order-none sm:flex-row sm:items-center">
             <WhatsAppButton size="lg" />
             <ButtonLink href="#paket" variant="secondary" size="lg">
-              Lihat Paket
+              Lihat Paket Layanan
             </ButtonLink>
           </div>
 

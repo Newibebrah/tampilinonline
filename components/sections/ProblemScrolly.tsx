@@ -79,7 +79,7 @@ const BEATS: Beat[] = [
     key: "m4",
     num: "04",
     headline: "Tampilin.online hadir sebagai solusinya.",
-    sub: "Desain tegas, harga transparan, proses jelas. Tinggal pilih paket — kami yang kerjakan dari nol sampai website Anda live.",
+    sub: "Desain tegas, harga transparan, proses jelas. Tinggal pilih Paket Layanan — kami yang kerjakan dari nol sampai website Anda live.",
     scheme: "cta",
     visual: "cta",
   },
@@ -154,14 +154,19 @@ export function ProblemScrolly() {
   return (
     <section
       id="masalah"
-      aria-labelledby="masalah-heading"
-      className="container bg-cream py-16 md:py-24"
+      aria-labelledby="problem-solver-heading"
+      className="container bg-cream pb-8 pt-16 md:pb-8 md:pt-24"
     >
+      {/* Heading gabungan "Problem Solver" — menggantikan dua heading lama
+          (Masalah & Solusi) sesuai permintaan user. Konten tetap utuh:
+          heading masalah punya H2 sendiri, solution section ikut di bawah
+          tanpa heading terpisah dan disambung narasi perantara. */}
       <ScrollReveal>
         <SectionHeading
-          eyebrow="Masalah"
+          id="problem-solver-heading"
+          eyebrow="Problem Solver"
           title="Usaha bagus yang tak ditemukan itu rugi peluang."
-          description="Empat fakta yang bikin bisnis tanpa website ketinggalan terus — dibedah satu per satu."
+          description="Empat fakta yang bikin bisnis tanpa website ketinggalan terus — dibedah satu per satu, lalu dituntaskan lewat keunggulan yang kami bangun."
         />
       </ScrollReveal>
 
@@ -297,6 +302,18 @@ export function ProblemScrolly() {
           ))}
         </div>
       </div>
+
+      {/* --- NARASI PENYAMBUNG Masalah → Solusi (bagian dari unit "Problem Solver") --- */}
+      <ScrollReveal className="mx-auto mt-12 max-w-2xl px-4 text-center md:mt-16">
+        <p className="text-balance font-display text-lg font-medium leading-snug text-ink/80 md:text-xl">
+          Keempat masalah itu nyata setiap hari —{" "}
+          <span className="bg-orange px-1 font-bold text-ink">
+            tapi semuanya bisa dituntaskan dari satu hal
+          </span>{" "}
+          — satu website yang dikelola dengan benar. Di bawah ini cara kami
+          menuntaskannya, satu per satu.
+        </p>
+      </ScrollReveal>
     </section>
   );
 }
@@ -339,7 +356,7 @@ function BeatVisual({ beat, compact }: { beat: Beat; compact: boolean }) {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <WhatsAppButton size={compact ? "md" : "lg"} />
           <ButtonLink href="#paket" variant="secondary" size={compact ? "md" : "lg"}>
-            Lihat Paket
+            Lihat Paket Layanan
             <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </ButtonLink>
         </div>

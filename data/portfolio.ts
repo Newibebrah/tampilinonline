@@ -16,11 +16,11 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: "portfolio",
-    title: "Portofolio Personal",
+    title: "Website Preview Pribadi",
     category: "Personal",
     label: "Demo Concept",
     image: "/images/portfolio/portfolio-personal.svg",
-    alt: "Contoh website portofolio personal dengan galeri proyek dan profil",
+    alt: "Contoh website preview pribadi dengan galeri proyek dan profil",
   },
   {
     id: "sales",

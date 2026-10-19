@@ -25,7 +25,7 @@ export const testimonials: Testimonial[] = [
   {
     id: "demo-freelancer",
     quote:
-      "Profil pengguna demo — freelancer yang ingin website portofolio sederhana supaya klien potensial bisa melihat hasil kerja dan cara menghubungi dalam satu halaman.",
+      "Profil pengguna demo — freelancer yang ingin website preview pribadi sederhana supaya klien potensial bisa melihat hasil kerja dan cara menghubungi dalam satu halaman.",
     authorRole: "Desainer lepas",
     demo: true,
   },

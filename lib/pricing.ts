@@ -36,7 +36,7 @@ export const SINGLE_PAGE_PACKAGES: PackageId[] = ["sales", "portfolio"];
 /** Nama tampilan untuk pesan WhatsApp & opsi select. */
 export const PACKAGE_NAMES: Record<PackageId, string> = {
   sales: "Sales Landing Page",
-  portfolio: "Portofolio Personal",
+  portfolio: "Website Preview Pribadi",
   umkm: "Website UMKM",
   company: "Company Profile",
   catalog: "Katalog Online",

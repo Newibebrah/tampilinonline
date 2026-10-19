@@ -3,7 +3,6 @@
 import { Globe, Smartphone, MessageCircle, LayoutGrid } from "lucide-react";
 import Image from "next/image";
 import { Card } from "@/components/ui/Card";
-import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { SwipeCarousel } from "@/components/ui/SwipeCarousel";
@@ -43,17 +42,16 @@ const SOLUTION_HIGHLIGHT = {
   caption: "Satu pusat, semua terhubung: produk, promosi, dan pesanan.",
 };
 
-/** Solusi: 4 alasan + ilustrasi kantor digital. */
+/** 4 alasan + ilustrasi kantor digital — bagian BAWAH unit "Problem Solver".
+ * Heading tersendiri dihapus (digabung ke heading "Problem Solver" di atas);
+ * section saling menyambung: masalah dulu, solusi langsung mengikuti. */
 export function Solution() {
   return (
-    <section id="solusi" aria-labelledby="solusi-heading" className="container py-16 md:py-24">
-      <ScrollReveal>
-        <SectionHeading
-          eyebrow="Solusi"
-          title="Kantor digital untuk bisnis Anda."
-          description="Website bukan sekadar pajangan — dia bekerja merepresentasikan usaha Anda setiap hari."
-        />
-      </ScrollReveal>
+    <section
+      id="solusi"
+      aria-label="Solusi dari Tampilin.online"
+      className="container bg-cream pb-16 pt-2 md:pb-24 md:pt-4"
+    >
 
       {/* --- MOBILE (<768px): swipe carousel 4 card + sweetener card di bawah --- */}
       <div className="mt-10 md:hidden">
@@ -127,6 +125,19 @@ export function Solution() {
           </Card>
         </ScrollReveal>
       </div>
+
+      {/* --- NARASI PENUTUP unit "Problem Solver": masalah → sudah dijawab --- */}
+      <ScrollReveal className="mx-auto mt-12 max-w-2xl px-4 text-center md:mt-16">
+        <p className="text-balance font-display text-lg font-medium leading-snug text-ink/80 md:text-xl">
+          Itulah jawabannya: satu website yang kini{" "}
+          <span className="bg-yellow px-1 font-bold text-ink">
+            bekerja untuk usaha Anda 24/7
+          </span>{" "}
+          — bukan sekadar pajangan di internet. Masalah sudah terpetakan,
+          solusinya sudah siap — tinggal tahap apa yang paling pas untuk
+          memulainya.
+        </p>
+      </ScrollReveal>
     </section>
   );
 }

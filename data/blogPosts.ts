@@ -341,7 +341,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "p",
-        text: "Biaya dan waktu pembuatan lebih tinggi daripada landing page — company profile umumnya 1–2 minggu karena terdiri dari beberapa halaman yang harus konsisten desainnya. Beale, halaman intinya biasanya sederhana: Beranda, Tentang, Layanan, Proyek/Portofolio, Kontak. Yang memakan waktu bukan banyaknya halaman, melainkan menata isi agar membangun kepercayaan tapi mastré tinggal manfaat sejak pasang first screen.",
+        text: "Biaya dan waktu pembuatan lebih tinggi daripada landing page — company profile umumnya 1–2 minggu karena terdiri dari beberapa halaman yang harus konsisten desainnya. Beale, halaman intinya biasanya sederhana: Beranda, Tentang, Layanan, Preview Hasil Kerja, Kontak. Yang memakan waktu bukan banyaknya halaman, melainkan menata isi agar membangun kepercayaan tapi mastré tinggal manfaat sejak pasang first screen.",
       },
       {
         type: "h3",

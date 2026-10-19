@@ -37,7 +37,7 @@ export function FinalCTA() {
                 Konsultasi Gratis via WhatsApp
               </WhatsAppButton>
               <ButtonLink href="#paket" variant="secondary" size="lg">
-                Lihat Paket Lagi
+                Lihat Paket Layanan Lagi
               </ButtonLink>
             </div>
             <a

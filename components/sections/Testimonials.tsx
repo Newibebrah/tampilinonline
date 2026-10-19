@@ -17,6 +17,7 @@ export function Testimonials() {
     >
       <ScrollReveal>
         <SectionHeading
+          id="testimoni-heading"
           eyebrow="Kata Mereka"
           title="Kepada siapa layanan ini ditujukan?"
           description="Belum ada klien, belum ada testimoni. Sebagai gantinya, ini profil pengguna yang cocok dengan setiap paket — gugus data yang akan diganti testimoni nyata setelah klien pertama."

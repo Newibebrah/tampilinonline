@@ -77,7 +77,7 @@ export function SiteMapContent() {
       <SitePageList>
         <li>
           <a href="/#paket" className="underline-offset-4 hover:underline">
-            Paket &amp; Harga
+            Paket Layanan
           </a>{" "}
           — 6 paket layanan dari Rp499.000
         </li>
@@ -89,7 +89,7 @@ export function SiteMapContent() {
         </li>
         <li>
           <a href="/#portofolio" className="underline-offset-4 hover:underline">
-            Portofolio
+            Preview
           </a>{" "}
           — contoh konsep desain (Demo Concept)
         </li>

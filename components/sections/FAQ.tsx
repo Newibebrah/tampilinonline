@@ -9,6 +9,7 @@ export function FAQ() {
     <section id="faq" aria-labelledby="faq-heading" className="container py-16 md:py-24">
       <ScrollReveal>
         <SectionHeading
+          id="faq-heading"
           eyebrow="FAQ"
           title="Masih ada pertanyaan?"
           description="Yang paling sering ditanyakan. Belum terjawab? Langsung tanya via WhatsApp — gratis."

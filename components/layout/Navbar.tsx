@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, MessageCircle } from "lucide-react";
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS, NAV_PAGE_LINKS } from "@/lib/constants";
 import { buildWhatsAppUrl, DEFAULT_WA_MESSAGE } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
@@ -23,7 +23,10 @@ export function Navbar() {
   const resolveHref = (href: string) =>
     href.startsWith("#") && !isHome ? `/${href}` : href;
   const activeId = useScrollSpy(
-    NAV_LINKS.map((link) => link.href.replace("#", "")),
+    // ScrollSpy hanya untuk anchor section (skip "/blog" dsb.)
+    NAV_LINKS.map((link) => link.href.replace("#", "")).filter(
+      (id) => !id.includes("/"),
+    ),
   );
 
   useEffect(() => {
@@ -56,7 +59,12 @@ export function Navbar() {
 
         {/* Nav desktop */}
         <ul className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => {
+          {/* Anchor section (homepage) + page link (Blog).
+              Di /about: page link disembunyikan (fokus pengalaman game). */}
+          {(pathname === "/about"
+            ? NAV_LINKS
+            : [...NAV_LINKS, ...NAV_PAGE_LINKS]
+          ).map((link) => {
             const isActive = activeId === link.href.replace("#", "");
             return (
               <li key={link.href}>

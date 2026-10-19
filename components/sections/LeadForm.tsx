@@ -115,6 +115,7 @@ export function LeadForm() {
     >
       <ScrollReveal>
         <SectionHeading
+          id="konsultasi-form-heading"
           eyebrow="Isi Formulir"
           title="Ceritakan kebutuhanmu — 1 menit saja."
           description="Tiga langkah singkat. Hasilnya dikirim sebagai ringkasan rapi — pilih dikirim lewat WhatsApp, atau lewat email bila kamu lebih nyaman."
@@ -177,7 +178,7 @@ export function LeadForm() {
               <fieldset className="flex flex-col gap-5" aria-label="Langkah 2 — kebutuhan">
                 <Select
                   id="lead-paket"
-                  label="Paket yang menarik"
+                  label="Paket Layanan yang menarik"
                   required
                   value={data.paket}
                   onChange={(event) => set("paket")(event.target.value)}

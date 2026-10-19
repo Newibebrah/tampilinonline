@@ -23,7 +23,8 @@ export function PackagesBento() {
     <section id="paket" aria-labelledby="paket-heading" className="container py-16 md:py-24">
       <ScrollReveal>
         <SectionHeading
-          eyebrow="Paket & Harga"
+          id="paket-heading"
+          eyebrow="Paket Layanan"
           title="Pilih paket yang pas untuk tahap usaha Anda."
           description="Semua paket sudah termasuk desain responsif dan pengerjaan sesuai kesepakatan. Perlu fitur custom? Bisa dibahas setelah paket."
         />

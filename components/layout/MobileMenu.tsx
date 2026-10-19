@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { X, MessageCircle } from "lucide-react";
-import { NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS, NAV_PAGE_LINKS } from "@/lib/constants";
 import { buildWhatsAppUrl, DEFAULT_WA_MESSAGE } from "@/lib/whatsapp";
 
 /**
@@ -69,7 +69,11 @@ export function MobileMenu({
         </button>
 
         <ul className="mt-8 flex flex-col gap-1 px-4">
-          {NAV_LINKS.map((link, index) => (
+          {/* Di /about: page link disembunyikan (fokus pengalaman game). */}
+          {(pathname === "/about"
+            ? NAV_LINKS
+            : [...NAV_LINKS, ...NAV_PAGE_LINKS]
+          ).map((link, index) => (
             <li key={link.href}>
               <a
                 ref={index === 0 ? firstLinkRef : undefined}

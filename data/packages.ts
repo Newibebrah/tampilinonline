@@ -23,12 +23,12 @@ export const packages: Package[] = [
   },
   {
     id: "portfolio",
-    name: "Portofolio Personal",
+    name: "Website Preview Pribadi",
     price: 499000,
     priceLabel: "Mulai dari Rp499.000",
     target: "Fresh graduate, freelancer",
     features: [
-      "Portofolio 1 halaman",
+      "Website preview 1 halaman",
       "Profil & pengalaman",
       "Galeri max 6 proyek",
       "Tombol unduh CV",
@@ -63,7 +63,7 @@ export const packages: Package[] = [
     target: "Perusahaan, agensi, organisasi",
     features: [
       "Max 5 halaman",
-      "Beranda, Tentang, Layanan, Portofolio, Kontak",
+      "Beranda, Tentang, Layanan, Preview Hasil Kerja, Kontak",
       "Profil & visi misi",
       "Form kontak + Google Maps",
       "SEO on-page per halaman",

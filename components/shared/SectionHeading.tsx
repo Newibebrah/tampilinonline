@@ -12,12 +12,18 @@ export function SectionHeading({
   eyebrow,
   title,
   description,
-  align = "left",
+  /** id untuk <h2> — pasangkan dengan aria-labelledby section (a11y). */
+  id,
+  // v2 (permintaan review): semua section heading CENTER — narasi awal tiap
+  // section dibaca terpusat. Pass align="left" bila benar-benar butuh rata kiri.
+  align = "center",
   invert = false,
 }: {
   eyebrow: string;
   title: string;
   description?: string;
+  /** id untuk <h2> — pasangkan dengan aria-labelledby section (a11y). */
+  id?: string;
   align?: "left" | "center";
   /** Putih teks untuk section berlatar gelap. */
   invert?: boolean;
@@ -33,6 +39,7 @@ export function SectionHeading({
     >
       <Badge variant={invert ? "yellow" : "orange"}>{eyebrow}</Badge>
       <h2
+        id={id}
         className={cn(
           "font-display font-bold",
           invert ? "text-cream" : "text-ink",
@@ -45,7 +52,7 @@ export function SectionHeading({
         <p
           className={cn(
             "text-balance font-display text-lg font-medium leading-snug md:text-xl",
-            "max-w-md md:max-w-xl",
+            "mx-auto max-w-md md:max-w-xl",
             invert ? "text-cream/80" : "text-ink/80",
           )}
         >

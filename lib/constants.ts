@@ -14,16 +14,26 @@ export const BRAND = {
   tiktokUrl: "https://www.tiktok.com/@tampilinonline",
 } as const;
 
-/** Anchor navigation — urutan sama dengan urutan section di homepage. */
+/**
+ * Anchor navigation — urutan sama dengan urutan section di homepage.
+ * Catatan v2:
+ * - "Problem Solver" menggabungkan dua section lama (Masalah + Solusi) —
+ *   link menuju #masalah (awal gabungan section).
+ * - FAQ dihapus dari nav (section tetap ada di halaman).
+ * - Blog jadi link page penuh (bukan anchor).
+ */
 export const NAV_LINKS = [
-  { label: "Masalah", href: "#masalah" },
-  { label: "Solusi", href: "#solusi" },
-  { label: "Paket", href: "#paket" },
+  { label: "Problem Solver", href: "#masalah" },
+  { label: "Paket Layanan", href: "#paket" },
   { label: "Proses", href: "#proses" },
-  { label: "Portofolio", href: "#portofolio" },
+  { label: "Preview", href: "#portofolio" },
   { label: "Simulasi", href: "#simulasi" },
   // Tentang → teaser "Kenalan Sama Ananta" (section di atas FAQ — runtut
   // dengan urutan konten homepage). Dari teaser, tombol menuju /about.
   { label: "Tentang", href: "#tentang" },
-  { label: "FAQ", href: "#faq" },
+] as const;
+
+/** Link page penuh (bukan anchor) — tampil di nav + hamburger menu. */
+export const NAV_PAGE_LINKS = [
+  { label: "Blog", href: "/blog" },
 ] as const;
