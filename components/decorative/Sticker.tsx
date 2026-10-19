@@ -20,6 +20,7 @@ export function Sticker({
   className,
   rotate = 6,
   tone = "yellow",
+  tapeTone,
   floatDelay = 0,
 }: {
   text: string;
@@ -27,7 +28,9 @@ export function Sticker({
   className?: string;
   /** Rotasi dasar stiker (derajat). */
   rotate?: number;
-  tone?: "yellow" | "pink" | "blue" | "lavender" | "surface" | "red";
+  tone?: "yellow" | "pink" | "blue" | "lavender" | "surface" | "red" | "green";
+  /** Override warna selotip (default: warna kontras dari tone). */
+  tapeTone?: "yellow" | "pink" | "blue" | "lavender" | "surface" | "red" | "green";
   /** Delay mulai float (detik) agar beberapa stiker tidak sinkron. */
   floatDelay?: number;
 }) {
@@ -42,8 +45,11 @@ export function Sticker({
     lavender: "bg-mint",
     red: "bg-yellow",
     surface: "bg-blue",
+    green: "bg-yellow",
   };
-  const tape = TAPE[tone] ?? "bg-yellow";
+  // Override eksplisit (tapeTone) memakai warna tone itu sendiri;
+  // default = warna kontras dari tone stiker.
+  const tape = tapeTone ? `bg-${tapeTone}` : (TAPE[tone] ?? "bg-yellow");
 
   return (
     <motion.span
@@ -91,6 +97,7 @@ export function Sticker({
             tone === "lavender" && "bg-lavender text-ink",
             tone === "surface" && "bg-surface text-ink",
             tone === "red" && "bg-red text-ink",
+            tone === "green" && "bg-green text-ink",
           )}
         >
           {text}

@@ -7,6 +7,7 @@ import { TextReveal } from "@/components/shared/TextReveal";
 import { Magnetic } from "@/components/decorative/Magnetic";
 import { Sticker } from "@/components/decorative/Sticker";
 import { BoldShapes } from "@/components/decorative/BoldShapes";
+import { PaperConfetti } from "@/components/decorative/PaperConfetti";
 import { TapePair } from "@/components/decorative/TapePair";
 
 /**
@@ -31,6 +32,10 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative isolate flex min-h-[80vh] flex-col items-center justify-center overflow-hidden bg-pink text-center"
     >
+      {/* Confetti kertas kartunis — STATIS (tanpa animasi), lapisan paling
+          bawah (z-0). Teks/CTA/ilustrasi di atasnya (z-10). */}
+      <PaperConfetti />
+
       {/* Elemen grafis melayang ala Gumroad (kiri & kanan teks) */}
       <BoldShapes
         shapes={[
@@ -44,10 +49,11 @@ export function Hero() {
       />
 
       {/* Revisi user: padding ATAS dipangkas & center bias ke atas —
-          ruang kosong di top hero tidak berlebihan */}
-      <TapePair className="left-6 bottom-16" tone="bg-yellow" tone2="bg-mint" />
+          ruang kosong di top hero tidak berlebihan.
+          Selotip (tape) paling atas hero → warna HIJAU TUA (token green). */}
+      <TapePair className="left-4 top-3" tone="bg-green" tone2="bg-green" />
 
-      <div className="container flex flex-col items-center gap-6 pb-16 pt-8 md:pb-20 md:pt-10">
+      <div className="relative z-10 container flex flex-col items-center gap-6 pb-16 pt-8 md:pb-20 md:pt-10">
         {/* Teks + CTA — semuanya center sekarang */}
         <ScrollReveal className="flex flex-col items-center gap-6">
           <TextReveal
@@ -107,6 +113,7 @@ export function Hero() {
             text="100% Custom"
             rotate={7}
             tone="yellow"
+            tapeTone="green"
             className="-left-10 -top-4 hidden md:block"
             floatDelay={0.4}
           />
