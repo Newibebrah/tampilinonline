@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { NewsletterForm } from "@/components/sections/NewsletterForm";
+import { TapePair } from "@/components/decorative/TapePair";
 import { RelatedArticles } from "@/components/sections/RelatedArticles";
 import { getBlogPost, getRelatedPosts, blogPosts } from "@/data/blogPosts";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
@@ -132,7 +133,8 @@ export default async function BlogPostPage({
       />
 
       <main id="konten" className="bg-canvas">
-        <article className="container max-w-3xl py-16 md:py-20">
+        <article className="container relative max-w-3xl py-16 md:py-20">
+          <TapePair className="left-2 top-8" tone="bg-yellow" tone2="bg-lavender" />
           {/* Breadcrumb visual */}
           <nav aria-label="Breadcrumb" className="text-sm text-ink/60">
             <ol className="flex flex-wrap items-center gap-1.5">

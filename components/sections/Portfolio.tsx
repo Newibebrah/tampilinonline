@@ -5,6 +5,7 @@ import { portfolioItems } from "@/data/portfolio";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionArt } from "@/components/decorative/SectionArt";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * Portofolio v1: grid placeholder berlabel "Demo Concept" (README 6.6).
@@ -14,6 +15,7 @@ export function Portfolio() {
   return (
     <section id="portofolio" aria-labelledby="portofolio-heading" className="container relative isolate bg-blueLite py-16 md:py-24">
       <SectionArt src="/asset_decor_context/asset_preview.png" className="top-0 right-0 w-32 lg:block lg:w-40" />
+    <TapePair className="left-8 bottom-14" tone="bg-blue" tone2="bg-mint" />
       <ScrollReveal>
         <SectionHeading
           id="portofolio-heading"

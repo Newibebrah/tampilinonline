@@ -25,6 +25,7 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 import { processSteps, processContent } from "@/data/process";
 import { SectionArt } from "@/components/decorative/SectionArt";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * Section Proses v3 — konsep "Sticky Story Viewer" (SAMA dengan section
@@ -75,6 +76,7 @@ export function Process() {
       className="relative isolate bg-lavenderLite py-16 md:py-24"
     >
       <SectionArt src="/asset_decor_context/asset_proses.png" className="top-0 right-0 w-32 lg:block lg:w-44" />
+      <TapePair className="left-8 bottom-14" tone="bg-lavender" tone2="bg-yellow" />
       <div className="container">
         <ScrollReveal>
           <SectionHeading

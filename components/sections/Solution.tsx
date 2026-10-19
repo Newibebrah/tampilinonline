@@ -7,6 +7,7 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
 import { SwipeCarousel } from "@/components/ui/SwipeCarousel";
 import { SectionArt } from "@/components/decorative/SectionArt";
+import { TapePair } from "@/components/decorative/TapePair";
 
 const SOLUTIONS = [
   {
@@ -55,6 +56,7 @@ export function Solution() {
     >
 
       <SectionArt src="/asset_decor/asset_character_idea.png" className="bottom-0 left-2 w-36 lg:block lg:w-48" />
+      <TapePair className="right-8 top-10" tone="bg-mint" tone2="bg-blue" />
       {/* --- MOBILE (<768px): swipe carousel 4 card + sweetener card di bawah --- */}
       <div className="mt-10 md:hidden">
         <SwipeCarousel

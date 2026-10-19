@@ -8,6 +8,7 @@ import { Magnetic } from "@/components/decorative/Magnetic";
 import { Sticker } from "@/components/decorative/Sticker";
 import { BoldShapes } from "@/components/decorative/BoldShapes";
 import { SectionArt } from "@/components/decorative/SectionArt";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * CTA final — headline besar + 2 tombol di atas panel kuning (README Phase 8).
@@ -15,6 +16,7 @@ import { SectionArt } from "@/components/decorative/SectionArt";
 export function FinalCTA() {
   return (
     <section aria-labelledby="cta-final-heading" className="relative isolate overflow-hidden border-y-4 border-ink bg-yellow py-16 md:py-24">
+      <TapePair className="right-8 top-14" tone="bg-pink" tone2="bg-blue" />
       <ScrollReveal>
         <div className="container relative p-8 text-center md:p-14">
           <SectionArt src="/asset_decor_context/asset_hasil_growth.png" className="rotate-2 -bottom-10 -right-6 w-32 md:block lg:w-44" />

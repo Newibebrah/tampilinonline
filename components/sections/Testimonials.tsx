@@ -3,6 +3,7 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { Card } from "@/components/ui/Card";
 import { testimonials } from "@/data/testimonials";
 import { SectionArt } from "@/components/decorative/SectionArt";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * Testimoni v1 — SEMUA kartu berlabel "Demo" (aturan jujur README 6.5).
@@ -17,6 +18,7 @@ export function Testimonials() {
       className="container relative isolate bg-canvas py-16 md:py-24"
     >
       <SectionArt src="/asset_decor_context/asset_target_audience.png" className="top-0 left-0 w-32 lg:block lg:w-44" />
+    <TapePair className="right-8 bottom-14" tone="bg-pink" tone2="bg-yellow" />
       <ScrollReveal>
         <SectionHeading
           id="testimoni-heading"

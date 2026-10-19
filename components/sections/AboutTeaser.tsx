@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SectionArt } from "@/components/decorative/SectionArt";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * Teaser halaman About (visual novel) di homepage — center, mobile-first.
@@ -15,6 +16,7 @@ export function AboutTeaser() {
   return (
     <section id="tentang" aria-label="Kenalan sama pembuat" className="relative isolate bg-pinkLite py-16 md:py-24">
       <SectionArt src="/asset_decor_context/asset_tentang.png" className="-rotate-2 bottom-0 right-2 w-32 lg:block lg:w-44" />
+    <TapePair className="left-8 top-12" tone="bg-red" tone2="bg-yellow" />
       <div className="container">
         <ScrollReveal className="flex flex-col items-center gap-6 text-center">
           <SectionHeading

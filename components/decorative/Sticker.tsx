@@ -33,6 +33,18 @@ export function Sticker({
 }) {
   const reduced = useReducedMotion();
 
+  // Warna selotip (tape) mengikuti stiker tapi dalam warna LAIN agar tape
+  // tetap terlihat sebagai potongan kertas yang menempel — bukan putih polos.
+  const TAPE: Record<string, string> = {
+    yellow: "bg-pink",
+    pink: "bg-yellow",
+    blue: "bg-yellow",
+    lavender: "bg-mint",
+    red: "bg-yellow",
+    surface: "bg-blue",
+  };
+  const tape = TAPE[tone] ?? "bg-yellow";
+
   return (
     <motion.span
       aria-hidden="true"
@@ -56,9 +68,19 @@ export function Sticker({
       }
     >
       <span className="relative inline-block">
-        {/* Selotip kertas — dua potongan transparan di ujung atas */}
-        <span className="absolute -top-2 left-3 h-4 w-9 -rotate-12 bg-surface" />
-        <span className="absolute -top-2 right-3 h-4 w-9 rotate-12 bg-surface" />
+        {/* Selotip kertas — dua potongan berwarna (revisi user: bukan putih) */}
+        <span
+          className={cn(
+            "absolute -top-2 left-3 h-4 w-9 -rotate-12 border-2 border-ink",
+            tape,
+          )}
+        />
+        <span
+          className={cn(
+            "absolute -top-2 right-3 h-4 w-9 rotate-12 border-2 border-ink",
+            tape,
+          )}
+        />
 
         <span
           className={cn(

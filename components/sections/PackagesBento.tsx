@@ -13,6 +13,7 @@ import { packages } from "@/data/packages";
 import type { Package } from "@/types";
 import { SectionArt } from "@/components/decorative/SectionArt";
 import { BoldShapes } from "@/components/decorative/BoldShapes";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * Bento Grid paket (README 10):
@@ -26,6 +27,7 @@ import { BoldShapes } from "@/components/decorative/BoldShapes";
 export function PackagesBento() {
   return (
     <section id="paket" aria-labelledby="paket-heading" className="container relative isolate bg-surface py-16 md:py-24">
+      <TapePair className="left-8 bottom-16" tone="bg-red" tone2="bg-mint" />
       <ScrollReveal>
         <SectionHeading
           id="paket-heading"

@@ -9,6 +9,7 @@ import { Select } from "@/components/ui/Select";
 import { packages } from "@/data/packages";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { SectionArt } from "@/components/decorative/SectionArt";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * LeadForm — diversifikasi konversi (jangan 100% WhatsApp).
@@ -115,6 +116,7 @@ export function LeadForm() {
       className="container relative isolate bg-canvas py-16 md:py-24"
     >
       <SectionArt src="/asset_decor/asset_character_monster.png" className="rotate-3 bottom-0 right-4 w-44 sm:block lg:w-56" />
+      <TapePair className="left-8 top-12" tone="bg-green" tone2="bg-pink" />
       <ScrollReveal>
         <SectionHeading
           id="konsultasi-form-heading"

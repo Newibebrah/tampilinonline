@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { TextReveal } from "@/components/shared/TextReveal";
 import { Sticker } from "@/components/decorative/Sticker";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * PageHero v3 (prompt bold-pastel v3.0 & revisi user) — header halaman
@@ -37,6 +38,7 @@ export function PageHero({
 }) {
   return (
     <div className="relative isolate flex flex-col items-center gap-2 text-center">
+      <TapePair className="-left-6 top-2" tone="bg-yellow" tone2="bg-pink" />
       {/* Eyebrow chip merah — kontras aman (ink di atas merah) */}
       <p className="bg-red px-2 py-0.5 font-display text-xs font-bold uppercase tracking-wide text-ink">
         {eyebrow}

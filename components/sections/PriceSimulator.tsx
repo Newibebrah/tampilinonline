@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { TapePair } from "@/components/decorative/TapePair";
 import { usePriceCalculator } from "@/hooks/usePriceCalculator";
 import {
   ADDON_PRICES,
@@ -64,6 +65,7 @@ export function PriceSimulator({
           : "container relative isolate pb-16 pt-6 md:pb-24 md:pt-10"
       }
     >
+      <TapePair className="right-8 top-16" tone="bg-green" tone2="bg-yellow" />
       {!showHeading ? null : (
         <ScrollReveal>
           <SectionHeading

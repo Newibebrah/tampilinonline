@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * Shell halaman informatif (Privacy Policy / Terms of Use / Site Map):
@@ -18,7 +19,8 @@ export function SitePage({
   children: ReactNode;
 }) {
   return (
-    <main id="konten" className="container py-12 md:py-16">
+    <main id="konten" className="container relative py-12 md:py-16">
+      <TapePair className="right-4 top-8" tone="bg-pink" tone2="bg-mint" />
       <article className="mx-auto max-w-2xl">
         <Badge variant="blue">{eyebrow}</Badge>
         <h1 className="mt-4 font-display text-[clamp(1.75rem,6vw,2.5rem)] font-extrabold leading-tight tracking-tight">

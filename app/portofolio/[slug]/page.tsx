@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/shared/JsonLd";
+import { TapePair } from "@/components/decorative/TapePair";
 import { getCaseStudy, caseStudies } from "@/data/caseStudies";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 
@@ -64,7 +65,8 @@ export default async function CaseStudyPage({
         ])}
       />
 
-      <main id="konten" className="bg-surface">
+      <main id="konten" className="relative bg-surface">
+        <TapePair className="left-6 top-16" tone="bg-blue" tone2="bg-yellow" />
         <article className="container max-w-3xl py-16 md:py-20">
           <nav aria-label="Breadcrumb" className="text-sm text-ink/60">
             <ol className="flex flex-wrap items-center gap-1.5">

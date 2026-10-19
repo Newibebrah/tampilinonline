@@ -7,6 +7,7 @@ import { TextReveal } from "@/components/shared/TextReveal";
 import { Magnetic } from "@/components/decorative/Magnetic";
 import { Sticker } from "@/components/decorative/Sticker";
 import { BoldShapes } from "@/components/decorative/BoldShapes";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * Hero v3 — BOLD CENTER-FOCUSED (prompt bold-pastel v3.0 FASE 3):
@@ -44,6 +45,8 @@ export function Hero() {
 
       {/* Revisi user: padding ATAS dipangkas & center bias ke atas —
           ruang kosong di top hero tidak berlebihan */}
+      <TapePair className="left-6 bottom-16" tone="bg-yellow" tone2="bg-mint" />
+
       <div className="container flex flex-col items-center gap-6 pb-16 pt-8 md:pb-20 md:pt-10">
         {/* Teks + CTA — semuanya center sekarang */}
         <ScrollReveal className="flex flex-col items-center gap-6">

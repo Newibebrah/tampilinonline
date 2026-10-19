@@ -13,6 +13,7 @@ import { SwipeCarousel } from "@/components/ui/SwipeCarousel";
 import { Magnetic } from "@/components/decorative/Magnetic";
 import { cn } from "@/lib/utils";
 import { SectionArt } from "@/components/decorative/SectionArt";
+import { TapePair } from "@/components/decorative/TapePair";
 
 /**
  * Scrollytelling "Sticky Story Viewer + Narrative Cards" (schema v2).
@@ -169,6 +170,7 @@ export function ProblemScrolly() {
       className="container relative isolate bg-surface pb-8 pt-16 md:pb-8 md:pt-24"
     >
       <SectionArt src="/asset_decor_context/asset_problem_solver.png" className="top-0 right-0 w-32 lg:block lg:w-44" />
+      <TapePair className="left-8 bottom-12" tone="bg-yellow" tone2="bg-pink" />
       {/* Heading gabungan "Problem Solver" — menggantikan dua heading lama
           (Masalah & Solusi) sesuai permintaan user. Konten tetap utuh:
           heading masalah punya H2 sendiri, solution section ikut di bawah

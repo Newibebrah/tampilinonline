@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AboutGame } from "@/components/about/AboutGame";
 import { JsonLd } from "@/components/shared/JsonLd";
+import { TapePair } from "@/components/decorative/TapePair";
 import { personSchema } from "@/lib/schema";
 
 // Metadata page-level: title + description + canonical. Description unik
@@ -28,7 +29,8 @@ export default function AboutPage() {
   return (
     // cursor-pixel & crt-scanlines (prompt visionary 3.3): kursor pixel arrow
     // + garis scanline CRT — hanya halaman ini; tombol tetap cursor-pointer.
-    <main id="konten" className="crt-scanlines cursor-pixel bg-pinkLite">
+    <main id="konten" className="crt-scanlines cursor-pixel relative bg-pinkLite">
+      <TapePair className="right-6 top-24" tone="bg-yellow" tone2="bg-blue" />
       <JsonLd
         data={personSchema({
           name: "Ananta",
