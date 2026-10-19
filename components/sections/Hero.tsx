@@ -103,7 +103,7 @@ export function Hero() {
           <Sticker
             text="100% Custom"
             rotate={7}
-            tone="red"
+            tone="yellow"
             className="-left-10 -top-4 hidden md:block"
             floatDelay={0.4}
           />
