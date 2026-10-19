@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, MessageCircle } from "lucide-react";
-import { NAV_LINKS, NAV_PAGE_LINKS } from "@/lib/constants";
+import { NAV_LINKS, NAV_PAGE_LINKS, resolveNavHref } from "@/lib/constants";
 import { buildWhatsAppUrl, DEFAULT_WA_MESSAGE } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
@@ -18,10 +18,9 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // Anchor "#…" hanya valid dari homepage — dari halaman lain harus "/#…".
+  // resolveNavHref juga mengarahkan "Tentang" ke /about saat sudah di /about.
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const resolveHref = (href: string) =>
-    href.startsWith("#") && !isHome ? `/${href}` : href;
+  const resolveHref = (href: string) => resolveNavHref(href, pathname);
   const activeId = useScrollSpy(
     // ScrollSpy hanya untuk anchor section (skip "/blog" dsb.)
     NAV_LINKS.map((link) => link.href.replace("#", "")).filter(
@@ -50,22 +49,24 @@ export function Navbar() {
         className="container flex h-16 items-center justify-between gap-4 md:h-20"
       >
         <a
-          href={isHome ? "#" : "/"}
+          href={pathname === "/" ? "#" : "/"}
           aria-label="Tampilin.online — kembali ke atas"
           className="rounded-sm"
         >
           <Wordmark className="text-2xl md:text-3xl" />
         </a>
 
-        {/* Nav desktop */}
         <ul className="hidden items-center gap-1 md:flex">
-          {/* Anchor section (homepage) + page link (Blog).
-              Di /about: page link disembunyikan (fokus pengalaman game). */}
-          {(pathname === "/about"
-            ? NAV_LINKS
-            : [...NAV_LINKS, ...NAV_PAGE_LINKS]
-          ).map((link) => {
-            const isActive = activeId === link.href.replace("#", "");
+          {/* Anchor section (homepage) + page link (Harga, Blog).
+              Lengkap di SEMUA halaman, termasuk /about (revisi user: nav
+              tidak boleh tidak lengkap). */}
+          {[...NAV_LINKS, ...NAV_PAGE_LINKS].map((link) => {
+            // Page link aktif = path saat ini; anchor aktif = section di
+            // viewport (atau halaman profil saat sudah di /about).
+            const resolved = resolveHref(link.href);
+            const isActive = link.href.startsWith("/")
+              ? pathname === resolved
+              : resolved === pathname || activeId === link.href.replace("#", "");
             return (
               <li key={link.href}>
                 <a

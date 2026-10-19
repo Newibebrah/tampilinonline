@@ -39,3 +39,16 @@ export const NAV_PAGE_LINKS = [
   { label: "Harga", href: "/harga" },
   { label: "Blog", href: "/blog" },
 ] as const;
+
+/**
+ * Resolusi href nav sesuai halaman aktif.
+ * - Anchor "#…" hanya valid di homepage → dari halaman lain jadi "/#…".
+ * - Di /about, link "Tentang" (yang menuju teaser di homepage) diarahkan ke
+ *   /about itu sendiri — user sudah ada di halaman profil, tidak perlu
+ *   dilompat ke section teaser.
+ */
+export function resolveNavHref(href: string, pathname: string): string {
+  if (pathname === "/about" && href === "#tentang") return "/about";
+  if (href.startsWith("#") && pathname !== "/") return `/${href}`;
+  return href;
+}

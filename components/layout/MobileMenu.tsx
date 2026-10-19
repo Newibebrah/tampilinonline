@@ -3,8 +3,9 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { X, MessageCircle } from "lucide-react";
-import { NAV_LINKS, NAV_PAGE_LINKS } from "@/lib/constants";
+import { NAV_LINKS, NAV_PAGE_LINKS, resolveNavHref } from "@/lib/constants";
 import { buildWhatsAppUrl, DEFAULT_WA_MESSAGE } from "@/lib/whatsapp";
+import { cn } from "@/lib/utils";
 
 /**
  * Drawer menu mobile (<768px). Esc & backdrop menutup, fokus tetap aman.
@@ -20,10 +21,9 @@ export function MobileMenu({
 }) {
   const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
   // Anchor "#…" hanya valid dari homepage — dari halaman lain harus "/#…".
+  // resolveNavHref juga mengarahkan "Tentang" ke /about saat sudah di /about.
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const resolveHref = (href: string) =>
-    href.startsWith("#") && !isHome ? `/${href}` : href;
+  const resolveHref = (href: string) => resolveNavHref(href, pathname);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -70,22 +70,31 @@ export function MobileMenu({
         </button>
 
         <ul className="mt-8 flex flex-col gap-1 px-4">
-          {/* Di /about: page link disembunyikan (fokus pengalaman game). */}
-          {(pathname === "/about"
-            ? NAV_LINKS
-            : [...NAV_LINKS, ...NAV_PAGE_LINKS]
-          ).map((link, index) => (
-            <li key={link.href}>
-              <a
-                ref={index === 0 ? firstLinkRef : undefined}
-                href={resolveHref(link.href)}
-                onClick={onClose}
-                className="block rounded-card border-2 border-transparent px-4 py-3 font-display text-lg font-bold hover:border-ink hover:bg-yellow"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {/* Anchor section + page link (Harga, Blog) — LENGKAP di semua
+              halaman, termasuk /about (revisi user: nav tidak boleh
+              tidak lengkap). */}
+          {[...NAV_LINKS, ...NAV_PAGE_LINKS].map((link, index) => {
+            const resolved = resolveHref(link.href);
+            const isActive = link.href.startsWith("/")
+              ? pathname === resolved
+              : resolved === pathname;
+            return (
+              <li key={link.href}>
+                <a
+                  ref={index === 0 ? firstLinkRef : undefined}
+                  href={resolveHref(link.href)}
+                  onClick={onClose}
+                  aria-current={isActive ? "page" : undefined}
+                  className={cn(
+                    "block rounded-card border-2 border-transparent px-4 py-3 font-display text-lg font-bold hover:border-ink hover:bg-yellow",
+                    isActive && "border-ink bg-yellow",
+                  )}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <a
