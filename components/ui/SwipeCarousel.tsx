@@ -196,7 +196,7 @@ export function SwipeCarousel<T>({
                 !reducedMotion && "transition-all duration-200",
                 finalIndex === index
                   ? "w-6 bg-ink"
-                  : "w-2 bg-transparent hover:bg-ink/20",
+                  : "w-2 bg-transparent hover:bg-ink",
               )}
             />
           ))}

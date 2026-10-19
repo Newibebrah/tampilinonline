@@ -45,7 +45,7 @@ export function NewsletterForm() {
   if (!mounted) return null;
 
   return (
-    <aside className="rounded-card border-2 border-ink bg-yellow/60 p-6 shadow-brutal md:p-8">
+    <aside className="rounded-card border-2 border-ink bg-yellow p-6 shadow-brutal md:p-8">
       <h2 className="font-display text-xl font-bold">
         Dapatkan tips website gratis via email.
       </h2>

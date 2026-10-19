@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Press_Start_2P, Space_Grotesk } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Outfit,
+  Press_Start_2P,
+} from "next/font/google";
 import "./globals.css";
 import { SITE, DEFAULT_KEYWORDS, BRAND_ICONS } from "@/lib/seo";
 import { PALETTE } from "@/lib/colors";
@@ -9,18 +13,19 @@ import { CanvasTexture } from "@/components/decorative/CanvasTexture";
 import { ScrollProgress } from "@/components/decorative/ScrollProgress";
 
 // Font via next/font — self-hosted otomatis & dioptimasi Next.
-// --font-space-grotesk: display (heading), --font-inter: body.
-const spaceGrotesk = Space_Grotesk({
+// --font-bricolage: display (heading) — geometric & quirky, nuansa neo-brutalism;
+// --font-outfit: body — geometric, modern, jauh lebih bold dari Inter.
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-bricolage",
   display: "swap",
 });
 
-const inter = Inter({
+const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
+  variable: "--font-outfit",
   display: "swap",
 });
 
@@ -105,7 +110,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${spaceGrotesk.variable} ${inter.variable} ${pressStart2P.variable}`}>
+    <html lang="id" className={`${bricolage.variable} ${outfit.variable} ${pressStart2P.variable}`}>
       <body>
         {/* Layer dekoratif global (fixed, pointer-events-none — prompt visionary):
             ScrollProgress di atas semuanya, CanvasTexture di bawah navbar. */}

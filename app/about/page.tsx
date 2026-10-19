@@ -28,7 +28,7 @@ export default function AboutPage() {
   return (
     // cursor-pixel & crt-scanlines (prompt visionary 3.3): kursor pixel arrow
     // + garis scanline CRT — hanya halaman ini; tombol tetap cursor-pointer.
-    <main id="konten" className="crt-scanlines cursor-pixel bg-surface">
+    <main id="konten" className="crt-scanlines cursor-pixel bg-pink/20">
       <JsonLd
         data={personSchema({
           name: "Ananta",

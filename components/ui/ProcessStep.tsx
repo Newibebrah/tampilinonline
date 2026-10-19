@@ -21,7 +21,7 @@ export function ProcessStepCard({
       className={cn(
         "relative z-10 rounded-card border-2 border-ink bg-surface p-6 shadow-brutal",
         // Highlight step pertama
-        step.step === 1 && "bg-mint/20",
+        step.step === 1 && "bg-mint",
         // Hover neo-brutalist — desktop only
         "md:hover:translate-x-[2px] md:hover:translate-y-[2px] md:hover:shadow-brutal-sm",
         "transition-[transform,box-shadow] duration-200 ease-out",

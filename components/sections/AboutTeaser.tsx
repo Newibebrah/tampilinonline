@@ -13,7 +13,7 @@ import { SectionArt } from "@/components/decorative/SectionArt";
  */
 export function AboutTeaser() {
   return (
-    <section id="tentang" aria-label="Kenalan sama pembuat" className="relative isolate bg-surface py-16 md:py-24">
+    <section id="tentang" aria-label="Kenalan sama pembuat" className="relative isolate bg-pink/20 py-16 md:py-24">
       <SectionArt src="/asset_decor_context/asset_tentang.png" className="-rotate-2 bottom-0 right-2 w-32 lg:block lg:w-44" />
       <div className="container">
         <ScrollReveal className="flex flex-col items-center gap-6 text-center">
@@ -29,7 +29,7 @@ export function AboutTeaser() {
             width={192}
             height={192}
             loading="lazy"
-            className="h-40 w-40 rounded-full border-[3px] border-ink bg-pink/20 p-1 shadow-brutal md:h-48 md:w-48 [image-rendering:pixelated]"
+            className="h-40 w-40 rounded-full border-[3px] border-ink bg-pink p-1 shadow-brutal md:h-48 md:w-48 [image-rendering:pixelated]"
           />
           <ButtonLink href="/about" variant="primary" size="lg">
             Kenal lebih jauh

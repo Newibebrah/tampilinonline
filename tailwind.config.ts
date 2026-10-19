@@ -23,8 +23,8 @@ const config: Config = {
     extend: {
       colors: { ...PALETTE },
       fontFamily: {
-        display: ["var(--font-space-grotesk)", "sans-serif"],
-        sans: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-bricolage)", "sans-serif"],
+        sans: ["var(--font-outfit)", "sans-serif"],
         pixel: ["var(--font-press-start)", "monospace"],
       },
       borderRadius: {

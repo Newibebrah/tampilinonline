@@ -212,7 +212,7 @@ export function AboutGame() {
                 width={96}
                 height={96}
                 loading={s.id === 1 ? "eager" : "lazy"}
-                className="h-12 w-12 shrink-0 rounded-full border-2 border-ink bg-pink/20 [image-rendering:pixelated] md:h-16 md:w-16"
+                className="h-12 w-12 shrink-0 rounded-full border-2 border-ink bg-pink [image-rendering:pixelated] md:h-16 md:w-16"
               />
               <div className="min-w-0 flex-1 rounded-card rounded-tl-none border-[3px] border-ink bg-surface p-4 shadow-brutal md:p-5">
                 <p className="text-base leading-relaxed text-ink/85 md:text-lg">
@@ -254,7 +254,7 @@ export function AboutGame() {
             animate={{ opacity: 1, y: 0 }}
             exit={reducedMotion ? undefined : { opacity: 0, y: -20 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="max-h-full w-auto max-w-[280px] rounded-full border-[3px] border-ink bg-pink/20 p-1 shadow-brutal md:max-w-[380px] [image-rendering:pixelated]"
+            className="max-h-full w-auto max-w-[280px] rounded-full border-[3px] border-ink bg-pink p-1 shadow-brutal md:max-w-[380px] [image-rendering:pixelated]"
           />
         </AnimatePresence>
       </div>

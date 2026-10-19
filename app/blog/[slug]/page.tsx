@@ -75,7 +75,7 @@ function Block({ block }: { block: BlogBlock }) {
       return (
         <nav
           aria-label="Tautan terkait"
-          className="rounded-card border-2 border-ink bg-lavender/30 p-5"
+          className="rounded-card border-2 border-ink bg-lavender p-5"
         >
           <p className="mb-3 font-display text-sm font-bold uppercase tracking-wide">
             Tautan penting
@@ -174,7 +174,7 @@ export default async function BlogPostPage({
           />
 
           {/* Jawaban atomik 40–60 kata untuk featured snippet / AI */}
-          <div className="mt-8 rounded-card border-2 border-ink bg-lavender/30 p-6">
+          <div className="mt-8 rounded-card border-2 border-ink bg-lavender p-6">
             <h2 className="font-display text-base font-bold uppercase tracking-wide">
               Jawaban singkat
             </h2>

@@ -71,7 +71,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-card border-2 border-canvas/30 bg-surface/5 text-canvas transition-all duration-200 hover:-translate-y-0.5 hover:border-yellow hover:bg-yellow hover:text-ink"
+                  className="flex h-11 w-11 items-center justify-center rounded-card border-2 border-ink bg-canvas text-ink transition-all duration-200 hover:-translate-y-0.5 hover:border-yellow hover:bg-yellow hover:text-ink"
                 >
                   <social.icon className="h-5 w-5" />
                 </a>

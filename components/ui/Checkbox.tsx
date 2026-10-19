@@ -25,8 +25,8 @@ export function Checkbox({ label, hint, id, className, checked, ...rest }: Check
         htmlFor={id}
         className={cn(
           "flex cursor-pointer items-center gap-3 rounded-card border-2 border-ink bg-surface p-3",
-          "transition-colors hover:bg-mint/20",
-          isChecked && "bg-mint/30",
+          "transition-colors hover:bg-mint",
+          isChecked && "bg-mint",
           rest.disabled && "cursor-not-allowed opacity-50 hover:bg-surface",
         )}
       >

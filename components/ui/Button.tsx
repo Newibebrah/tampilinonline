@@ -36,9 +36,9 @@ function buttonClasses(variant: Variant = "primary", size: Size = "md", classNam
     variant === "primary" &&
       "border-2 border-ink bg-yellow text-ink shadow-brutal hover:-translate-y-0.5 hover:shadow-brutal-lg active:translate-y-0 active:shadow-brutal-sm",
     variant === "secondary" &&
-      "border-2 border-ink bg-surface text-ink shadow-brutal-sm hover:-translate-y-0.5 hover:bg-lavender/20 hover:shadow-brutal active:translate-y-0 active:shadow-brutal-sm",
+      "border-2 border-ink bg-surface text-ink shadow-brutal-sm hover:-translate-y-0.5 hover:bg-lavender hover:shadow-brutal active:translate-y-0 active:shadow-brutal-sm",
     variant === "ghost" &&
-      "border-2 border-transparent bg-transparent text-ink hover:bg-lavender/20 active:bg-lavender/30",
+      "border-2 border-transparent bg-transparent text-ink hover:bg-lavender active:bg-lavender",
     size === "sm" && "px-4 py-2 text-sm",
     size === "md" && "px-6 py-3 text-base",
     size === "lg" && "px-8 py-4 text-lg",

@@ -72,8 +72,8 @@ export function Navbar() {
                   href={resolveHref(link.href)}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "rounded-pill px-3 py-2 font-display text-sm font-bold transition-colors hover:bg-yellow",
-                    isActive && "bg-yellow",
+                    "rounded-pill border-2 border-transparent px-3 py-2 font-display text-sm font-bold transition-colors hover:bg-yellow",
+                    isActive && "border-2 border-ink bg-yellow shadow-brutal-sm",
                   )}
                 >
                   {link.label}

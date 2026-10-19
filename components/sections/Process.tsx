@@ -72,7 +72,7 @@ export function Process() {
     <section
       id="proses"
       aria-label="Proses kerja Tampilin.online"
-      className="relative isolate py-16 md:py-24"
+      className="relative isolate bg-lavender/20 py-16 md:py-24"
     >
       <SectionArt src="/asset_decor_context/asset_proses.png" className="top-0 right-0 w-32 lg:block lg:w-44" />
       <div className="container">
@@ -194,7 +194,7 @@ export function Process() {
                 data-index={index}
                 className={cn(
                   "rounded-card border-2 border-ink bg-surface p-6 md:p-8 shadow-brutal transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-brutal-lg lg:flex lg:min-h-[55vh] lg:flex-col lg:justify-center",
-                  s.step === 1 && "bg-mint/20",
+                  s.step === 1 && "bg-mint",
                   active === index ? "opacity-100" : "lg:opacity-80",
                 )}
               >

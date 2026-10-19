@@ -181,7 +181,7 @@ export function PriceSimulator({
         <ScrollReveal delay={0.1} className="lg:col-span-2">
           <aside
             aria-label="Estimasi biaya"
-            className="lg:sticky lg:top-28 rounded-card border-[3px] border-ink bg-surface p-6 shadow-brutal"
+            className="lg:sticky lg:top-28 rounded-card border-2 border-ink bg-mint p-6 shadow-brutal"
           >
             <h3 className="font-display text-lg font-bold">Estimasi biaya</h3>
 

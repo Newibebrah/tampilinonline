@@ -6,6 +6,7 @@ import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { TextReveal } from "@/components/shared/TextReveal";
 import { Magnetic } from "@/components/decorative/Magnetic";
 import { Sticker } from "@/components/decorative/Sticker";
+import { BoldShapes } from "@/components/decorative/BoldShapes";
 import { SectionArt } from "@/components/decorative/SectionArt";
 
 /**
@@ -13,12 +14,12 @@ import { SectionArt } from "@/components/decorative/SectionArt";
  */
 export function FinalCTA() {
   return (
-    <section aria-labelledby="cta-final-heading" className="px-5 pb-20 md:pb-28">
+    <section aria-labelledby="cta-final-heading" className="relative isolate overflow-hidden border-y-4 border-ink bg-yellow py-16 md:py-24">
       <ScrollReveal>
-        <div className="container relative isolate overflow-hidden rounded-card border-[3px] border-ink bg-yellow p-8 text-center shadow-brutal md:p-14">
+        <div className="container relative p-8 text-center md:p-14">
           <SectionArt src="/asset_decor_context/asset_hasil_growth.png" className="rotate-2 -bottom-10 -right-6 w-32 md:block lg:w-44" />
           {/* dekorasi sudut */}
-          <span aria-hidden="true" className="absolute -left-10 -top-10 h-28 w-28 rounded-card border-[3px] border-ink bg-pink/40" />
+          <span aria-hidden="true" className="absolute -left-10 -top-10 h-28 w-28 rounded-card border-[3px] border-ink bg-pink" />
 
           <div className="relative flex flex-col items-center gap-6">
             {/* Sticker bombing di panel kuning (prompt visionary 2.1) */}

@@ -12,6 +12,7 @@ import { buildWhatsAppUrl, packageMessage } from "@/lib/whatsapp";
 import { packages } from "@/data/packages";
 import type { Package } from "@/types";
 import { SectionArt } from "@/components/decorative/SectionArt";
+import { BoldShapes } from "@/components/decorative/BoldShapes";
 
 /**
  * Bento Grid paket (README 10):
@@ -97,6 +98,16 @@ export function PackagesBento() {
   );
 }
 
+/** Peta warna kartu paket v3.0 — pastel SOLID per id (FASE 4 prompt). */
+const CARD_BG: Record<Package["id"], string> = {
+  sales: "bg-blue",
+  portfolio: "bg-surface",
+  umkm: "bg-yellow",
+  company: "bg-pink",
+  catalog: "bg-mint",
+  ecommerce: "bg-lavender",
+};
+
 function PackageCard({ pkg }: { pkg: Package }) {
   return (
     // gridArea diteruskan wrapper TiltCard di desktop grid (lihat pemanggil);
@@ -105,8 +116,9 @@ function PackageCard({ pkg }: { pkg: Package }) {
       className={cn(
         "flex h-full flex-col rounded-card p-6 shadow-brutal transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-brutal-lg",
         pkg.featured
-          ? "border-[3px] border-ink bg-yellow"
-          : "border-2 border-ink bg-surface",
+          ? "border-[3px] border-ink hover:scale-[1.02]"
+          : "border-2 border-ink",
+        CARD_BG[pkg.id],
       )}
     >
       <header className="flex flex-wrap items-center gap-2">
