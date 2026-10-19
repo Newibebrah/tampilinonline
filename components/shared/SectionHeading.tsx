@@ -1,12 +1,19 @@
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/Badge";
 
 /**
- * Heading konsisten untuk semua section: badge (eyebrow) + H2 + subjudul.
+ * SectionHeading v3 — "Sticker + Underline" (hasil acc user).
  *
- * Subjudul v2 (permintaan review): lebih besar (text-lg → text-xl),
- * TIDAK memanjang ke lebar penuh — block-nya hug konten & dibatasi ukuran
- * supaya barisnya pendek-rapi, dan text-balance bikin panjang baris rata.
+ * Perubahan dari v2:
+ * - Eyebrow bukan lagi Badge pill besar, melainkan STIKER: kotak kuning
+ *   miring -1°, border ink, shadow keras kecil, uppercase — bahasa visual
+ *   yang sama dengan label/tombol di kartu-kartu section.
+ * - "Anchor visual": garis pendek orange di bawah title menyatukan judul
+ *   dengan stiker (sebelumnya title & badge terasa lepas).
+ * - Deskripsi lebih tenang: Inter biasa text-base md:text-lg, ink/70 —
+ *   bukan font-display besar yang "bersaing" dengan title.
+ *
+ * Semua section center secara default (keputusan v2 tetap berlaku);
+ * align="left" tersedia bila ada section yang butuh rata kiri.
  */
 export function SectionHeading({
   eyebrow,
@@ -14,30 +21,34 @@ export function SectionHeading({
   description,
   /** id untuk <h2> — pasangkan dengan aria-labelledby section (a11y). */
   id,
-  // v2 (permintaan review): semua section heading CENTER — narasi awal tiap
-  // section dibaca terpusat. Pass align="left" bila benar-benar butuh rata kiri.
   align = "center",
+  /** Putih teks untuk section berlatar gelap. */
   invert = false,
 }: {
   eyebrow: string;
   title: string;
   description?: string;
-  /** id untuk <h2> — pasangkan dengan aria-labelledby section (a11y). */
   id?: string;
   align?: "left" | "center";
-  /** Putih teks untuk section berlatar gelap. */
   invert?: boolean;
 }) {
   return (
     <div
       className={cn(
-        // items-start: badge & teks shrink-to-fit (hug konten), BUKAN stretch
-        // selebar kontainer — tanpa ini badge align-kiri jadi |solusi…lebar…|
-        "flex flex-col items-start gap-4",
-        align === "center" && "items-center text-center",
+        "flex flex-col gap-4",
+        align === "center" ? "items-center text-center" : "items-start",
       )}
     >
-      <Badge variant={invert ? "yellow" : "orange"}>{eyebrow}</Badge>
+      {/* Stiker eyebrow — miring -1° agar terasa "ditempel" */}
+      <span
+        className={cn(
+          "inline-block -rotate-1 rounded-card border-2 border-ink bg-yellow px-3.5 py-1.5",
+          "font-display text-sm font-bold uppercase tracking-wider text-ink shadow-brutal-sm",
+        )}
+      >
+        {eyebrow}
+      </span>
+
       <h2
         id={id}
         className={cn(
@@ -48,12 +59,22 @@ export function SectionHeading({
       >
         {title}
       </h2>
+
+      {/* Garis anchor pendek — penghubung stiker → title → narasi */}
+      <span
+        aria-hidden="true"
+        className={cn(
+          "h-1.5 w-16 rounded-pill bg-orange",
+          align === "center" && "mx-auto",
+        )}
+      />
+
       {description ? (
         <p
           className={cn(
-            "text-balance font-display text-lg font-medium leading-snug md:text-xl",
+            "text-balance text-base leading-relaxed md:text-lg",
             "mx-auto max-w-md md:max-w-xl",
-            invert ? "text-cream/80" : "text-ink/80",
+            invert ? "text-cream/70" : "text-ink/70",
           )}
         >
           {description}
