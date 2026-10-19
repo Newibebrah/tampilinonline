@@ -1,11 +1,11 @@
 import { SitePage, SitePageH2, SitePageList } from "@/components/pages/SitePage";
 
-/** Konten Terms of Use — singkat & sesuai layanan yang benar-benar ada. */
+/** Konten syarat & ketentuan — singkat & sesuai layanan yang benar-benar ada. */
 export function TermsContent() {
   return (
     <SitePage
       eyebrow="Informasi"
-      title="Terms of Use"
+      title="Syarat & Ketentuan"
       updated="18 Oktober 2026"
     >
       <p>

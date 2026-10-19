@@ -1,12 +1,14 @@
-import { JsonLd } from "@/components/seo/JsonLd";
+import { JsonLd } from "@/components/shared/JsonLd";
 import { Hero } from "@/components/sections/Hero";
 import { ProblemScrolly } from "@/components/sections/ProblemScrolly";
 import { Solution } from "@/components/sections/Solution";
 import { PackagesBento } from "@/components/sections/PackagesBento";
 import { Process } from "@/components/sections/Process";
 import { Portfolio } from "@/components/sections/Portfolio";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { PriceSimulator } from "@/components/sections/PriceSimulator";
 import { FAQ } from "@/components/sections/FAQ";
+import { LeadForm } from "@/components/sections/LeadForm";
 import { AboutTeaser } from "@/components/sections/AboutTeaser";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import {
@@ -19,10 +21,10 @@ import { faqItems } from "@/data/faq";
 
 /** Metadata page-level homepage — override title & canonical saja.
  * PERHATIAN: field object (mis. openGraph) di level page MENGGANTIKAN seluruh
- * object level layout, jeda jangan set key parsial di sini jika ingin isian
+ * object level layout, jadi jangan set key parsial di sini jika ingin isian
  * layout tetap dipakai. */
 export const metadata = {
-  title: "Tampilin.online — Semua Usaha Harus Punya Website",
+  title: "Jasa Pembuatan Website UMKM & Bisnis — Tampilin.online",
   alternates: {
     canonical: "/",
   },
@@ -31,12 +33,12 @@ export const metadata = {
 /**
  * Homepage one-page. HANYA compose — tanpa logic (aturan README 4.1).
  * Urutan = alur narasi: Hero → Masalah → Solusi → Paket → Proses →
- * Portofolio → Simulasi Harga → FAQ → CTA Final.
+ * Portofolio → Testimoni → Simulasi → Tentang → FAQ → Formulir → CTA Final.
  */
 export default function HomePage() {
   return (
     <>
-      {/* JSON-LD sebagai <script> native — data terstructural untuk Google, BUKAN di metadata. */}
+      {/* JSON-LD sebagai <script> native — data terstruktur untuk Google, BUKAN di metadata. */}
       <JsonLd data={organizationSchema} />
       <JsonLd data={websiteSchema} />
       <JsonLd data={serviceSchema} />
@@ -49,9 +51,11 @@ export default function HomePage() {
         <PackagesBento />
         <Process />
         <Portfolio />
+        <Testimonials />
         <PriceSimulator />
         <AboutTeaser />
         <FAQ />
+        <LeadForm />
         <FinalCTA />
       </main>
     </>

@@ -1,6 +1,8 @@
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { portfolioItems } from "@/data/portfolio";
+import Image from "next/image";
+import Link from "next/link";
 
 /**
  * Portofolio v1: grid placeholder berlabel "Demo Concept" (README 6.6).
@@ -24,13 +26,11 @@ export function Portfolio() {
               key={item.id}
               className="overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal transition-transform hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={item.image}
                 alt={item.alt}
                 width={800}
                 height={600}
-                loading="lazy"
                 className="aspect-[4/3] w-full border-b-2 border-ink bg-cream object-cover"
               />
               <div className="flex flex-wrap items-center gap-2 p-5">
@@ -47,6 +47,15 @@ export function Portfolio() {
             </li>
           ))}
         </ul>
+        {/* Link studi kasus — tambahan di bawah grid, layout card final tidak diubah. */}
+        <p className="mt-6 font-display text-sm font-bold">
+          <Link
+            href="/portofolio/katalog-online"
+            className="underline decoration-2 underline-offset-4 hover:text-orange"
+          >
+            Baca studi kasus cara kerja kami (konsep katalog online) →
+          </Link>
+        </p>
       </ScrollReveal>
     </section>
   );

@@ -75,3 +75,104 @@ export function faqSchema(
     })),
   } as const;
 }
+
+/** BreadcrumbList — semua halaman selain homepage (home → parent → halaman). */
+export function breadcrumbSchema(
+  items: ReadonlyArray<{ name: string; path: string }>,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Beranda", item: SITE.url },
+      ...items.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 2,
+        name: item.name,
+        item: siteUrl(item.path),
+      })),
+    ],
+  };
+}
+
+type ArticleInput = {
+  headline: string;
+  description: string;
+  /** ISO 8601. */
+  datePublished: string;
+  /** ISO 8601. */
+  dateModified: string;
+  /** Path relatif, mis. /blog/slug. */
+  path: string;
+  /** Path gambar relatif, mis. /images/.... */
+  image: string;
+  authorName: string;
+};
+
+/** Article — blog post & studi kasus (author merujuk Person @id). */
+export function articleSchema(input: ArticleInput) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${siteUrl(input.path)}#article`,
+    headline: input.headline,
+    description: input.description,
+    datePublished: input.datePublished,
+    dateModified: input.dateModified,
+    image: siteUrl(input.image),
+    inLanguage: "id-ID",
+    author: {
+      "@type": "Person",
+      name: input.authorName,
+      url: siteUrl("/about"),
+      sameAs: [SITE.instagram],
+    },
+    publisher: { "@id": SITE.brandId },
+    mainEntityOfPage: siteUrl(input.path),
+  };
+}
+
+/**
+ * Person — halaman /about (E-E-A-T).
+ * alumniOf & linkedin sengaja BELUM diisi: belum ada data verifikasinya dari
+ * pemilik (jangan memalsukan kredensial). Isi di data/aboutFacts.ts saat
+ * data asli tersedia, lalu aktifkan di builder ini.
+ */
+export function personSchema(input: {
+  name: string;
+  jobTitle: string;
+  /** Deskripsi schema.org (bukan meta description halaman). */
+  bio: string;
+  knowsAbout: string[];
+  image: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${siteUrl("/about")}#person`,
+    name: input.name,
+    jobTitle: input.jobTitle,
+    description: input.bio,
+    knowsAbout: input.knowsAbout,
+    image: siteUrl(input.image),
+    url: siteUrl("/about"),
+    worksFor: { "@id": SITE.brandId },
+    sameAs: [SITE.instagram],
+  };
+}
+
+/** CollectionPage / Blog — index /blog. */
+export function blogIndexSchema(totalPosts: number) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": `${siteUrl("/blog")}#blog`,
+    url: siteUrl("/blog"),
+    name: "Blog Tampilin.online",
+    description:
+      "Artikel praktis tentang pembuatan website untuk UMKM, sales, dan bisnis.",
+    publisher: { "@id": SITE.brandId },
+    inLanguage: "id-ID",
+    numberOfItems: totalPosts,
+  };
+}

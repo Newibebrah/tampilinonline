@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Play, SkipForward, ChevronRight, Flag } from "lucide-react";
 import { WhatsAppButton } from "@/components/shared/WhatsAppButton";
@@ -68,8 +69,7 @@ function HighlightedSpans({ tokens }: { tokens: HighlightToken[] }) {
 function StoryBait() {
   return (
     <header className="flex flex-col items-center gap-7 text-center md:flex-row md:items-center md:gap-10 md:text-left">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src="/images/aboutme_pixel/profile.png"
         alt="Ananta, pembuat Tampilin.online, sedang menikmati kopi"
         width={240}
@@ -204,8 +204,7 @@ export function AboutGame() {
             >
               {/* Avatar di kolom samping — LUAR bubble, align top sinkron
                   dengan baris pertama narasi */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={s.image}
                 alt={`Ananta — ilustrasi bagian ${s.id}`}
                 width={96}

@@ -1,11 +1,11 @@
 import { SitePage, SitePageH2, SitePageList } from "@/components/pages/SitePage";
 
-/** Konten Privacy Policy — jujur & sesuai kondisi situs saat ini. */
+/** Konten kebijakan privasi — jujur & sesuai kondisi situs saat ini. */
 export function PrivacyContent() {
   return (
     <SitePage
       eyebrow="Informasi"
-      title="Privacy Policy"
+      title="Kebijakan Privasi"
       updated="18 Oktober 2026"
     >
       <p>

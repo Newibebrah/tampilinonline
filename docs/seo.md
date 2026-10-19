@@ -19,8 +19,16 @@
 | Twitter Card (`summary_large_image`, `@anandcaprio`) | ✅ | layout |
 | robots meta (`index, follow`, `max-image-preview: large`) | ✅ | layout |
 | `robots.txt` (AI crawlers eksplisit) | ✅ | `app/robots.ts` |
-| `sitemap.xml` (tanpa anchor) | ✅ | `app/sitemap.ts` + `generateSitemapEntries()` |
-| JSON-LD (Organization, WebSite, Service, FAQPage) | ✅ | `lib/schema.ts` → `components/seo/JsonLd.tsx` |
+| `sitemap.xml` (tanpa anchor) | ✅ | `app/sitemap.ts` + `generateSitemapEntries()` — otomatis dari `data/blogPosts.ts` & `data/caseStudies.ts` |
+| JSON-LD (Organization, WebSite, Service, FAQPage) | ✅ | `lib/schema.ts` → `components/shared/JsonLd.tsx` |
+| JSON-LD (Article, BreadcrumbList, Person, Blog) | ✅ | `lib/schema.ts` → halaman blog, studi kasus, `/about` |
+| Blog `/blog` + `/blog/[slug]` (3 artikel SSG) | ✅ | `data/blogPosts.ts` |
+| Studi kasus `/portofolio/[slug]` | ✅ | `data/caseStudies.ts` |
+| Person schema (E-E-A-T) | ✅ | `app/about/page.tsx` |
+| LeadForm multi-step (WA + email env-gated) | ✅ | `components/sections/LeadForm.tsx` |
+| Testimoni berlabel demo (tanpa nama palsu) | ✅ | `data/testimonials.ts` |
+| Newsletter (localStorage) | ✅ | `components/sections/NewsletterForm.tsx` |
+| Validasi meta otomatis | ✅ | `node scripts/check-meta.mjs` + `node scripts/wordcount.mjs` |
 | Favicon (ico multi-size) + apple-touch-icon | ✅ | `public/brand/` |
 | Security headers (`nosniff`, `DENY`, Referrer-Policy) | ✅ | `next.config.js` |
 | `verification.google` | ⏳ placeholder — isi SETELAH verifikasi (lihat § 2) | `app/layout.tsx` (komentar) |
@@ -128,17 +136,25 @@ Lokasi schema di kode: `lib/schema.ts`. Semua node `@id` absolut + referensi
 ## 9. File SEO lalu Apa Artinya
 | File | Fungsi |
 |---|---|
-| `lib/seo.ts` | `SITE`, `DEFAULT_KEYWORDS`, `siteUrl()`, `generateSitemapEntries()` |
-| `lib/schema.ts` | builders `organizationSchema`, `websiteSchema`, `serviceSchema`, `faqSchema()` |
-| `components/seo/JsonLd.tsx` | renderer `<script type="application/ld+json">` native |
+| `lib/seo.ts` | `SITE`, `DEFAULT_KEYWORDS`, `siteUrl()`, `generateSitemapEntries()` (blog & studi kasus ikut otomatis) |
+| `lib/schema.ts` | builders `organizationSchema`, `websiteSchema`, `serviceSchema`, `faqSchema()`, `breadcrumbSchema()`, `articleSchema()`, `personSchema()`, `blogIndexSchema()` |
+| `components/shared/JsonLd.tsx` | renderer `<script type="application/ld+json">` native |
 | `app/layout.tsx` | root metadata + `viewport` terpisah |
 | `app/page.tsx` | metadata page-level (title/canonical saja — jangan set key parsial openGraph di sini!) |
 | `app/robots.ts` | robots.txt + AI crawlers |
 | `app/sitemap.ts` | generator sitemap via helper |
 | `app/opengraph-image.tsx` | OG image dinamis (1200×630, satori) |
+| `data/blogPosts.ts` | artikel blog — metaTitle absolut 50–60 & metaDescription unik 150–160 |
+| `data/caseStudies.ts` | studi kasus `/portofolio/[slug]` |
+| `scripts/check-meta.mjs` | validasi otomatis batas & duplikasi meta title/description |
+| `scripts/wordcount.mjs` | validasi panjang artikel (800–1500 kata) |
 | `next.config.js` | security headers global |
 | `public/brand/` | `favicon.ico` (16/32/48), `apple-touch-icon.png` (180), `logo-horizontal.svg` |
 
 > **⚠️ Pitfall tercatat:** field meta bersifat **replace-whole-object** antara layout
 > & page. Page `openGraph: { url }` menghapus `type/locale/siteName/title` dari
-> layout — jadi di `app/page.tsx` hanya set `title` + `alternates.canonical`.
+> layout — jadi di `app/page.tsx` hanya set `title` + `alternates.canonical` (+ `description` string-level yang aman).
+
+> ** Emails / Formspree:** LeadForm "kirim via email" aktif HANYA bila env
+> `NEXT_PUBLIC_FORMSPREE_ID` (POST ke Formspree) atau `NEXT_PUBLIC_CONTACT_EMAIL`
+> (mailto fallback) tersedia — tanpa env mana pun, hanya jalankan WhatsApp.

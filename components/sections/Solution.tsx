@@ -1,6 +1,7 @@
 "use client";
 
 import { Globe, Smartphone, MessageCircle, LayoutGrid } from "lucide-react";
+import Image from "next/image";
 import { Card } from "@/components/ui/Card";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
@@ -77,8 +78,7 @@ export function Solution() {
         {/* Card 5 — closing visual, TIDAK di dalam carousel */}
         <ScrollReveal className="mx-auto mt-8 max-w-[340px]">
           <Card className="flex flex-col items-center gap-3 border-2 border-ink bg-yellow p-6 text-center shadow-brutal">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={SOLUTION_HIGHLIGHT.illustration.src}
               alt={SOLUTION_HIGHLIGHT.illustration.alt}
               width={SOLUTION_HIGHLIGHT.illustration.width}
@@ -113,8 +113,7 @@ export function Solution() {
         {/* Ilustrasi sebagai card visual */}
         <ScrollReveal delay={0.32}>
           <Card className="flex h-full flex-col items-center justify-center gap-4 bg-cream">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/images/solution/solution-illustration.svg"
               alt="Ilustrasi website sebagai pusat digital bisnis yang terhubung dengan berbagai kanal"
               width={800}

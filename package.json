@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:meta": "node scripts/check-meta.mjs",
+    "check:wordcount": "node scripts/wordcount.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

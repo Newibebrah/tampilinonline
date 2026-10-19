@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/ui/Button";
+import Image from "next/image";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
@@ -20,8 +21,7 @@ export function AboutTeaser() {
             title="Kenalan Sama Ananta"
             description="Orang di balik layar Tampilin.online."
           />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/aboutme_pixel/profile.png"
             alt="Ananta, pembuat Tampilin.online, sedang minum kopi"
             width={192}

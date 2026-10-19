@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Camera,
@@ -288,8 +289,7 @@ export function Process() {
 
             <li className="flex flex-col overflow-hidden rounded-card border-2 border-ink bg-white shadow-brutal">
               <div className="flex flex-1 items-center justify-center bg-white p-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src="/images/solution/solution-illustration.svg"
                   alt="Ilustrasi website sebagai kantor digital bisnis yang selalu terhubung"
                   width={800}

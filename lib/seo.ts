@@ -3,16 +3,18 @@
  * Semua URL harus absolut (https://www.tampilin.online) untuk schema & canonical.
  * Catatan: situs diserve di www (apex redirect 308 → www, urutan Vercel).
  */
+import { blogPosts } from "@/data/blogPosts";
+import { caseStudies } from "@/data/caseStudies";
 
 const BASE_URL = "https://www.tampilin.online";
 
 export const SITE = {
   name: "Tampilin.online",
   url: BASE_URL,
-  title:
-    "Tampilin.online — Jasa Pembuatan Website untuk UMKM, Profesional, dan Bisnis",
+  // Homepage title — 54 karakter (target 50–60, lihat scripts/check-meta.mjs).
+  title: "Jasa Pembuatan Website UMKM & Bisnis — Tampilin.online",
   description:
-    "Semua usaha harus punya website. Mulai dari landing page Rp499.000, portofolio, UMKM, company profile, hingga e-commerce. Konsultasi gratis via WhatsApp.",
+    "Semua usaha harus punya website. Landing page Rp499.000 sampai company profile & e-commerce — untuk UMKM, sales, freelancer, dan pemilik bisnis online.",
   shortDescription: "Semua usaha harus punya website.",
   locale: "id_ID",
   ogImage: "/images/og/og-image.png",
@@ -27,6 +29,8 @@ export const SITE = {
 /** Kata kunci utama — meta keywords (Google abaikan, tapi tetap disiapkan). */
 export const DEFAULT_KEYWORDS = [
   "jasa pembuatan website",
+  "jasa pembuatan website umkm",
+  "jasa pembuatan website untuk sales",
   "website UMKM",
   "landing page murah",
   "website company profile",
@@ -55,7 +59,8 @@ export const BRAND_ICONS = {
 /**
  * Helper sitemap — tambahkan halaman baru HANYA di sini.
  * Anchor (#paket, #faq) sengaja TIDAK dimasukkan: Google tidak mengindeks
- * fragment sebagai halaman terpisah.
+ * fragment sebagai halaman terpisah. lastModified pakai ISO 8601 (Date object
+ * → Next serialisasi otomatis ke ISO).
  */
 export function generateSitemapEntries(): Array<{
   url: string;
@@ -97,5 +102,29 @@ export function generateSitemapEntries(): Array<{
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    // Blog (OE index + artikel) — lastModified dari tanggal artikel sendiri.
+    {
+      url: siteUrl("/blog"),
+      lastModified: new Date(
+        Math.max(
+          ...blogPosts.map((post) => new Date(post.dateModified).getTime()),
+        ),
+      ),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    ...blogPosts.map((post) => ({
+      url: siteUrl(`/blog/${post.slug}`),
+      lastModified: new Date(post.dateModified),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    // Studi kasus (/portofolio/[slug])
+    ...caseStudies.map((study) => ({
+      url: siteUrl(`/portofolio/${study.slug}`),
+      lastModified: new Date(study.datePublished),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
   ];
 }

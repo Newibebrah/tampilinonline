@@ -18,13 +18,45 @@ export function SiteMapContent() {
           — halaman utama, semua informasi layanan
         </li>
         <li>
+          <a href="/about" className="underline-offset-4 hover:underline">
+            Tentang Ananta
+          </a>{" "}
+          — cerita visual novel pembuat Tampilin.online
+        </li>
+        <li>
+          <a href="/blog" className="underline-offset-4 hover:underline">
+            Blog
+          </a>{" "}
+          — panduan website untuk UMKM, sales, dan bisnis
+        </li>
+        <li>
+          <a href="/blog/cara-memilih-jasa-website-umkm" className="underline-offset-4 hover:underline">
+            Cara Memilih Jasa Pembuatan Website untuk UMKM (2026)
+          </a>
+        </li>
+        <li>
+          <a href="/blog/biaya-membuat-website-2026" className="underline-offset-4 hover:underline">
+            Berapa Biaya Membuat Website di 2026?
+          </a>
+        </li>
+        <li>
+          <a href="/blog/landing-page-company-profile-ecommerce" className="underline-offset-4 hover:underline">
+            Landing Page, Company Profile, dan E-Commerce: Bedanya
+          </a>
+        </li>
+        <li>
+          <a href="/portofolio/katalog-online" className="underline-offset-4 hover:underline">
+            Studi Kasus (Demo) — Website Katalog Online untuk UMKM
+          </a>
+        </li>
+        <li>
           <a href="/privacy" className="underline-offset-4 hover:underline">
-            Privacy Policy
+            Kebijakan Privasi
           </a>
         </li>
         <li>
           <a href="/terms" className="underline-offset-4 hover:underline">
-            Terms of Use
+            Syarat &amp; Ketentuan
           </a>
         </li>
         <li>

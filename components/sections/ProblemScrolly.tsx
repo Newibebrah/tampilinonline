@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -308,7 +309,7 @@ function BeatVisual({ beat, compact }: { beat: Beat; compact: boolean }) {
     case "image":
       return (
         // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={beat.image!.src}
           alt={beat.image!.alt}
           width={beat.image!.width}
