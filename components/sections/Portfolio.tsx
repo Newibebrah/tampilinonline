@@ -13,59 +13,61 @@ import { TapePair } from "@/components/decorative/TapePair";
  */
 export function Portfolio() {
   return (
-    <section id="portofolio" aria-labelledby="portofolio-heading" className="container relative isolate bg-blueLite py-16 md:py-24">
-      <SectionArt src="/asset_decor_context/asset_preview.png" className="top-0 right-0 w-32 lg:block lg:w-40" />
-    <TapePair className="left-8 bottom-14" tone="bg-blue" tone2="bg-mint" />
-      <ScrollReveal>
-        <SectionHeading
-          id="portofolio-heading"
-          eyebrow="Preview"
-          title="Contoh hasil pengerjaan."
-          description="Semua contoh di bawah adalah konsep desain — acuan bentuk hasil pengerjaan sebelum kami menampilkan proyek klien."
-        />
-      </ScrollReveal>
+    <section id="portofolio" aria-labelledby="portofolio-heading" className="relative isolate bg-blueLite py-16 md:py-24">
+      <div className="container relative">
+        <SectionArt src="/asset_decor_context/asset_preview.png" className="top-0 right-0 w-32 lg:block lg:w-40" />
+      <TapePair className="left-8 bottom-14" tone="bg-blue" tone2="bg-mint" />
+        <ScrollReveal>
+          <SectionHeading
+            id="portofolio-heading"
+            eyebrow="Preview"
+            title="Contoh hasil pengerjaan."
+            description="Semua contoh di bawah adalah konsep desain — acuan bentuk hasil pengerjaan sebelum kami menampilkan proyek klien."
+          />
+        </ScrollReveal>
 
-      <ScrollReveal className="mt-10 md:mt-14">
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {portfolioItems.map((item) => (
-            // li → TiltCard (as="li", markup semantik tetap): hover translate
-            // digantikan 3D tilt desktop only (prompt visionary 3.2); mobile statis.
-            <TiltCard
-              key={item.id}
-              as="li"
-              className="overflow-hidden rounded-card border-2 border-ink bg-canvas shadow-brutal"
+        <ScrollReveal className="mt-10 md:mt-14">
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {portfolioItems.map((item) => (
+              // li → TiltCard (as="li", markup semantik tetap): hover translate
+              // digantikan 3D tilt desktop only (prompt visionary 3.2); mobile statis.
+              <TiltCard
+                key={item.id}
+                as="li"
+                className="overflow-hidden rounded-card border-2 border-ink bg-canvas shadow-brutal"
+              >
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  width={800}
+                  height={600}
+                  className="aspect-[4/3] w-full border-b-2 border-ink bg-canvas object-cover"
+                />
+                <div className="flex flex-wrap items-center gap-2 p-5">
+                  <h3 className="mr-auto font-display text-lg font-bold">
+                    {item.title}
+                  </h3>
+                  <span className="rounded-pill border-2 border-ink bg-surface px-2.5 py-0.5 text-xs font-medium text-ink/60">
+                    {item.category}
+                  </span>
+                  <span className="rounded-pill border-2 border-ink bg-blue px-2.5 py-0.5 font-display text-xs font-bold">
+                    {item.label}
+                  </span>
+                </div>
+              </TiltCard>
+            ))}
+          </ul>
+          {/* Link studi kasus — tambahan di bawah grid, layout card final tidak diubah. */}
+          <p className="mt-6 font-display text-sm font-bold">
+            <Link
+              href="/portofolio/katalog-online"
+              className="underline decoration-2 underline-offset-4 hover:text-pink"
             >
-              <Image
-                src={item.image}
-                alt={item.alt}
-                width={800}
-                height={600}
-                className="aspect-[4/3] w-full border-b-2 border-ink bg-canvas object-cover"
-              />
-              <div className="flex flex-wrap items-center gap-2 p-5">
-                <h3 className="mr-auto font-display text-lg font-bold">
-                  {item.title}
-                </h3>
-                <span className="rounded-pill border-2 border-ink bg-surface px-2.5 py-0.5 text-xs font-medium text-ink/60">
-                  {item.category}
-                </span>
-                <span className="rounded-pill border-2 border-ink bg-blue px-2.5 py-0.5 font-display text-xs font-bold">
-                  {item.label}
-                </span>
-              </div>
-            </TiltCard>
-          ))}
-        </ul>
-        {/* Link studi kasus — tambahan di bawah grid, layout card final tidak diubah. */}
-        <p className="mt-6 font-display text-sm font-bold">
-          <Link
-            href="/portofolio/katalog-online"
-            className="underline decoration-2 underline-offset-4 hover:text-pink"
-          >
-            Baca studi kasus cara kerja kami (konsep katalog online) →
-          </Link>
-        </p>
-      </ScrollReveal>
+              Baca studi kasus cara kerja kami (konsep katalog online) →
+            </Link>
+          </p>
+        </ScrollReveal>
+      </div>
     </section>
   );
 }

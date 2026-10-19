@@ -52,96 +52,98 @@ export function Solution() {
     <section
       id="solusi"
       aria-label="Solusi dari Tampilin.online"
-      className="container relative isolate bg-canvas pb-16 pt-2 md:pb-24 md:pt-4"
+      className="relative isolate bg-canvas pb-16 pt-2 md:pb-24 md:pt-4"
     >
+      <div className="container relative">
 
-      <SectionArt src="/asset_decor/asset_character_idea.png" className="bottom-0 left-2 w-36 lg:block lg:w-48" />
-      <TapePair className="right-8 top-10" tone="bg-mint" tone2="bg-blue" />
-      {/* --- MOBILE (<768px): swipe carousel 4 card + sweetener card di bawah --- */}
-      <div className="mt-10 md:hidden">
-        <SwipeCarousel
-          items={SOLUTIONS}
-          ariaLabel="Keunggulan website buatan Tampilin.online"
-          cardWidthClass="w-[85vw] max-w-[380px]"
-          renderItem={(item) => (
-            <div className="flex h-full rounded-card border-2 border-ink bg-surface p-6 shadow-brutal">
-              <div>
+        <SectionArt src="/asset_decor/asset_character_idea.png" className="bottom-0 left-2 w-36 lg:block lg:w-48" />
+        <TapePair className="right-8 top-10" tone="bg-mint" tone2="bg-blue" />
+        {/* --- MOBILE (<768px): swipe carousel 4 card + sweetener card di bawah --- */}
+        <div className="mt-10 md:hidden">
+          <SwipeCarousel
+            items={SOLUTIONS}
+            ariaLabel="Keunggulan website buatan Tampilin.online"
+            cardWidthClass="w-[85vw] max-w-[380px]"
+            renderItem={(item) => (
+              <div className="flex h-full rounded-card border-2 border-ink bg-surface p-6 shadow-brutal">
+                <div>
+                  <item.icon
+                    aria-hidden="true"
+                    className="h-9 w-9 rounded-card border-2 border-ink bg-blue p-1.5"
+                  />
+                  <h3 className="mt-4 font-display text-lg font-bold">{item.title}</h3>
+                  <p className="mt-2 text-base leading-relaxed text-ink/80">{item.desc}</p>
+                </div>
+              </div>
+            )}
+          />
+
+          {/* Card 5 — closing visual, TIDAK di dalam carousel */}
+          <ScrollReveal className="mx-auto mt-8 max-w-[340px]">
+            <Card className="flex flex-col items-center gap-3 border-2 border-ink bg-yellow p-6 text-center shadow-brutal">
+              <Image
+                src={SOLUTION_HIGHLIGHT.illustration.src}
+                alt={SOLUTION_HIGHLIGHT.illustration.alt}
+                width={SOLUTION_HIGHLIGHT.illustration.width}
+                height={SOLUTION_HIGHLIGHT.illustration.height}
+                loading="lazy"
+                className="w-full rounded-sm"
+              />
+              <p className="font-display text-lg font-bold leading-snug">
+                {SOLUTION_HIGHLIGHT.headline}
+              </p>
+              <p className="text-sm italic text-ink/70">{SOLUTION_HIGHLIGHT.caption}</p>
+              <WhatsAppButton size="md" className="mt-1" />
+            </Card>
+          </ScrollReveal>
+        </div>
+
+        {/* --- DESKTOP (≥768px): grid — TIDAK DIUBAH --- */}
+        <div className="mt-10 hidden gap-6 md:mt-14 md:grid md:grid-cols-2 lg:grid-cols-3">
+          {SOLUTIONS.map((item, index) => (
+            <ScrollReveal key={item.title} delay={index * 0.08}>
+              <Card interactive className="h-full">
                 <item.icon
                   aria-hidden="true"
                   className="h-9 w-9 rounded-card border-2 border-ink bg-blue p-1.5"
                 />
                 <h3 className="mt-4 font-display text-lg font-bold">{item.title}</h3>
-                <p className="mt-2 text-base leading-relaxed text-ink/80">{item.desc}</p>
-              </div>
-            </div>
-          )}
-        />
+                <p className="mt-2 text-ink/70">{item.desc}</p>
+              </Card>
+            </ScrollReveal>
+          ))}
 
-        {/* Card 5 — closing visual, TIDAK di dalam carousel */}
-        <ScrollReveal className="mx-auto mt-8 max-w-[340px]">
-          <Card className="flex flex-col items-center gap-3 border-2 border-ink bg-yellow p-6 text-center shadow-brutal">
-            <Image
-              src={SOLUTION_HIGHLIGHT.illustration.src}
-              alt={SOLUTION_HIGHLIGHT.illustration.alt}
-              width={SOLUTION_HIGHLIGHT.illustration.width}
-              height={SOLUTION_HIGHLIGHT.illustration.height}
-              loading="lazy"
-              className="w-full rounded-sm"
-            />
-            <p className="font-display text-lg font-bold leading-snug">
-              {SOLUTION_HIGHLIGHT.headline}
-            </p>
-            <p className="text-sm italic text-ink/70">{SOLUTION_HIGHLIGHT.caption}</p>
-            <WhatsAppButton size="md" className="mt-1" />
-          </Card>
-        </ScrollReveal>
-      </div>
-
-      {/* --- DESKTOP (≥768px): grid — TIDAK DIUBAH --- */}
-      <div className="mt-10 hidden gap-6 md:mt-14 md:grid md:grid-cols-2 lg:grid-cols-3">
-        {SOLUTIONS.map((item, index) => (
-          <ScrollReveal key={item.title} delay={index * 0.08}>
-            <Card interactive className="h-full">
-              <item.icon
-                aria-hidden="true"
-                className="h-9 w-9 rounded-card border-2 border-ink bg-blue p-1.5"
+          {/* Ilustrasi sebagai card visual */}
+          <ScrollReveal delay={0.32}>
+            <Card className="flex h-full flex-col items-center justify-center gap-4 bg-surface">
+              <Image
+                src="/images/solution/solution-illustration.svg"
+                alt="Ilustrasi website sebagai pusat digital bisnis yang terhubung dengan berbagai kanal"
+                width={800}
+                height={600}
+                loading="lazy"
+                className="w-full rounded-sm"
               />
-              <h3 className="mt-4 font-display text-lg font-bold">{item.title}</h3>
-              <p className="mt-2 text-ink/70">{item.desc}</p>
+              <p className="text-center text-ink/70">
+                Satu pusat, semua terhubung: produk, promosi, dan pesanan.
+              </p>
             </Card>
           </ScrollReveal>
-        ))}
+        </div>
 
-        {/* Ilustrasi sebagai card visual */}
-        <ScrollReveal delay={0.32}>
-          <Card className="flex h-full flex-col items-center justify-center gap-4 bg-surface">
-            <Image
-              src="/images/solution/solution-illustration.svg"
-              alt="Ilustrasi website sebagai pusat digital bisnis yang terhubung dengan berbagai kanal"
-              width={800}
-              height={600}
-              loading="lazy"
-              className="w-full rounded-sm"
-            />
-            <p className="text-center text-ink/70">
-              Satu pusat, semua terhubung: produk, promosi, dan pesanan.
-            </p>
-          </Card>
+        {/* --- NARASI PENUTUP unit "Problem Solver": masalah → sudah dijawab --- */}
+        <ScrollReveal className="mx-auto mt-12 max-w-2xl px-4 text-center md:mt-16">
+          <p className="text-balance font-display text-lg font-medium leading-snug text-ink/80 md:text-xl">
+            Itulah jawabannya: satu website yang kini{" "}
+            <span className="bg-yellow px-1 font-bold text-ink">
+              bekerja untuk usaha Anda 24/7
+            </span>{" "}
+            — bukan sekadar pajangan di internet. Masalah sudah terpetakan,
+            solusinya sudah siap — tinggal tahap apa yang paling pas untuk
+            memulainya.
+          </p>
         </ScrollReveal>
       </div>
-
-      {/* --- NARASI PENUTUP unit "Problem Solver": masalah → sudah dijawab --- */}
-      <ScrollReveal className="mx-auto mt-12 max-w-2xl px-4 text-center md:mt-16">
-        <p className="text-balance font-display text-lg font-medium leading-snug text-ink/80 md:text-xl">
-          Itulah jawabannya: satu website yang kini{" "}
-          <span className="bg-yellow px-1 font-bold text-ink">
-            bekerja untuk usaha Anda 24/7
-          </span>{" "}
-          — bukan sekadar pajangan di internet. Masalah sudah terpetakan,
-          solusinya sudah siap — tinggal tahap apa yang paling pas untuk
-          memulainya.
-        </p>
-      </ScrollReveal>
     </section>
   );
 }

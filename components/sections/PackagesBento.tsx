@@ -26,76 +26,78 @@ import { TapePair } from "@/components/decorative/TapePair";
  */
 export function PackagesBento() {
   return (
-    <section id="paket" aria-labelledby="paket-heading" className="container relative isolate bg-surface py-16 md:py-24">
-      <TapePair className="left-8 bottom-16" tone="bg-red" tone2="bg-mint" />
-      <ScrollReveal>
-        <SectionHeading
-          id="paket-heading"
-          eyebrow="Paket Layanan"
-          title="Pilih paket yang pas untuk tahap usaha Anda."
-          description="Semua paket sudah termasuk desain responsif dan pengerjaan sesuai kesepakatan. Perlu fitur custom? Bisa dibahas setelah paket."
-        />
-      </ScrollReveal>
-
-      {/* --- MOBILE (<768px): swipe carousel 6 paket --- */}
-      <div className="mt-10 md:hidden">
+    <section id="paket" aria-labelledby="paket-heading" className="relative isolate bg-surface py-16 md:py-24">
+      <div className="container relative">
+        <TapePair className="left-8 bottom-16" tone="bg-red" tone2="bg-mint" />
         <ScrollReveal>
-          <SwipeCarousel
-            items={packages}
-            ariaLabel="Daftar paket layanan pembuatan website"
-            cardWidthClass="w-[85vw] max-w-[380px]"
-            renderItem={(pkg) => <PackageCard pkg={pkg} />}
+          <SectionHeading
+            id="paket-heading"
+            eyebrow="Paket Layanan"
+            title="Pilih paket yang pas untuk tahap usaha Anda."
+            description="Semua paket sudah termasuk desain responsif dan pengerjaan sesuai kesepakatan. Perlu fitur custom? Bisa dibahas setelah paket."
           />
         </ScrollReveal>
-      </div>
 
-      {/* --- TABLET & DESKTOP (≥768px): bento grid — TIDAK DIUBAH --- */}
-      <ScrollReveal className="mt-10 hidden md:block md:mt-14">
-        <div className="bento-grid">
-          {packages.map((pkg) => (
-            // TiltCard = wrapper additive (3D tilt desktop only, prompt 3.2);
-            // grid-area pindah ke wrapper, area grid tidak berubah.
-            <TiltCard key={pkg.id} style={{ gridArea: pkg.gridArea }} className="h-full">
-              <PackageCard pkg={pkg} />
-            </TiltCard>
-          ))}
+        {/* --- MOBILE (<768px): swipe carousel 6 paket --- */}
+        <div className="mt-10 md:hidden">
+          <ScrollReveal>
+            <SwipeCarousel
+              items={packages}
+              ariaLabel="Daftar paket layanan pembuatan website"
+              cardWidthClass="w-[85vw] max-w-[380px]"
+              renderItem={(pkg) => <PackageCard pkg={pkg} />}
+            />
+          </ScrollReveal>
         </div>
-      </ScrollReveal>
 
-      {/* --- Banner CTA ke /harga (revisi user): simulator pindah halaman
-          sendiri. Gaya MIRIP banner CTA final: panel kuning, border 3px,
-          shadow brutal, dekorasi sudut pastel. Bagian dari section Paket
-          Layanan — muncul di bawah grid/carousel. --- */}
-      <ScrollReveal className="mt-10 md:mt-14">
-        <div
-          aria-labelledby="paket-harga-banner"
-          className="relative isolate overflow-hidden rounded-card border-[3px] border-ink bg-yellow p-8 text-center shadow-brutal md:p-12"
-        >
-          {/* dekorasi sudut — sama dengan banner CTA final */}
-          <SectionArt src="/asset_decor_context/asset_paket_layanan.png" className="-bottom-8 -left-6 w-36 md:block lg:w-48" />
-          <span aria-hidden="true" className="absolute -bottom-10 -right-8 h-28 w-28 rotate-12 rounded-card border-[3px] border-ink bg-blue" />
-
-          <div className="relative flex flex-col items-center gap-5">
-            <h3
-              id="paket-harga-banner"
-              className="text-balance font-display text-[clamp(1.5rem,4.5vw,2.25rem)] font-extrabold leading-tight"
-            >
-              Masih bingung{" "}
-              <span className="bg-surface px-2 shadow-brutal-sm">soal harga?</span>
-            </h3>
-            <p className="max-w-xl text-base leading-relaxed text-ink/80 md:text-lg">
-              Tidak perlu menebak — buka simulator, geser pilihan, dan lihat
-              estimasinya muncul langsung. Gratis, tanpa perlu chat dulu.
-            </p>
-            <Magnetic>
-              <ButtonLink href="/harga" variant="primary" size="lg">
-                <Calculator aria-hidden="true" className="h-5 w-5" />
-                Hitung Estimasi Sendiri
-              </ButtonLink>
-            </Magnetic>
+        {/* --- TABLET & DESKTOP (≥768px): bento grid — TIDAK DIUBAH --- */}
+        <ScrollReveal className="mt-10 hidden md:block md:mt-14">
+          <div className="bento-grid">
+            {packages.map((pkg) => (
+              // TiltCard = wrapper additive (3D tilt desktop only, prompt 3.2);
+              // grid-area pindah ke wrapper, area grid tidak berubah.
+              <TiltCard key={pkg.id} style={{ gridArea: pkg.gridArea }} className="h-full">
+                <PackageCard pkg={pkg} />
+              </TiltCard>
+            ))}
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+
+        {/* --- Banner CTA ke /harga (revisi user): simulator pindah halaman
+            sendiri. Gaya MIRIP banner CTA final: panel kuning, border 3px,
+            shadow brutal, dekorasi sudut pastel. Bagian dari section Paket
+            Layanan — muncul di bawah grid/carousel. --- */}
+        <ScrollReveal className="mt-10 md:mt-14">
+          <div
+            aria-labelledby="paket-harga-banner"
+            className="relative isolate overflow-hidden rounded-card border-[3px] border-ink bg-yellow p-8 text-center shadow-brutal md:p-12"
+          >
+            {/* dekorasi sudut — sama dengan banner CTA final */}
+            <SectionArt src="/asset_decor_context/asset_paket_layanan.png" className="-bottom-8 -left-6 w-36 md:block lg:w-48" />
+            <span aria-hidden="true" className="absolute -bottom-10 -right-8 h-28 w-28 rotate-12 rounded-card border-[3px] border-ink bg-blue" />
+
+            <div className="relative flex flex-col items-center gap-5">
+              <h3
+                id="paket-harga-banner"
+                className="text-balance font-display text-[clamp(1.5rem,4.5vw,2.25rem)] font-extrabold leading-tight"
+              >
+                Masih bingung{" "}
+                <span className="bg-surface px-2 shadow-brutal-sm">soal harga?</span>
+              </h3>
+              <p className="max-w-xl text-base leading-relaxed text-ink/80 md:text-lg">
+                Tidak perlu menebak — buka simulator, geser pilihan, dan lihat
+                estimasinya muncul langsung. Gratis, tanpa perlu chat dulu.
+              </p>
+              <Magnetic>
+                <ButtonLink href="/harga" variant="primary" size="lg">
+                  <Calculator aria-hidden="true" className="h-5 w-5" />
+                  Hitung Estimasi Sendiri
+                </ButtonLink>
+              </Magnetic>
+            </div>
+          </div>
+        </ScrollReveal>
+      </div>
     </section>
   );
 }

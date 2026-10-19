@@ -167,204 +167,206 @@ export function ProblemScrolly() {
     <section
       id="masalah"
       aria-labelledby="problem-solver-heading"
-      className="container relative isolate bg-surface pb-8 pt-16 md:pb-8 md:pt-24"
+      className="relative isolate bg-surface pb-8 pt-16 md:pb-8 md:pt-24"
     >
-      <SectionArt src="/asset_decor_context/asset_problem_solver.png" className="top-0 right-0 w-32 lg:block lg:w-44" />
-      <TapePair className="left-8 bottom-12" tone="bg-yellow" tone2="bg-pink" />
-      {/* Heading gabungan "Problem Solver" — menggantikan dua heading lama
-          (Masalah & Solusi) sesuai permintaan user. Konten tetap utuh:
-          heading masalah punya H2 sendiri, solution section ikut di bawah
-          tanpa heading terpisah dan disambung narasi perantara. */}
-      <ScrollReveal>
-        <SectionHeading
-          id="problem-solver-heading"
-          eyebrow="Problem Solver"
-          title="Usaha bagus yang tak ditemukan itu"
-          titleParts={[
-            { text: "Usaha bagus yang tak ditemukan itu" },
-            { br: true },
-            {
-              text: "rugi peluang.",
-              className: "border-2 border-ink bg-red px-2 shadow-brutal-sm",
-            },
-          ]}
-          description="Empat fakta yang bikin bisnis tanpa website ketinggalan terus — dibedah satu per satu, lalu dituntaskan lewat keunggulan yang kami bangun."
-        />
-      </ScrollReveal>
+      <div className="container relative">
+        <SectionArt src="/asset_decor_context/asset_problem_solver.png" className="top-0 right-0 w-32 lg:block lg:w-44" />
+        <TapePair className="left-8 bottom-12" tone="bg-yellow" tone2="bg-pink" />
+        {/* Heading gabungan "Problem Solver" — menggantikan dua heading lama
+            (Masalah & Solusi) sesuai permintaan user. Konten tetap utuh:
+            heading masalah punya H2 sendiri, solution section ikut di bawah
+            tanpa heading terpisah dan disambung narasi perantara. */}
+        <ScrollReveal>
+          <SectionHeading
+            id="problem-solver-heading"
+            eyebrow="Problem Solver"
+            title="Usaha bagus yang tak ditemukan itu"
+            titleParts={[
+              { text: "Usaha bagus yang tak ditemukan itu" },
+              { br: true },
+              {
+                text: "rugi peluang.",
+                className: "border-2 border-ink bg-red px-2 shadow-brutal-sm",
+              },
+            ]}
+            description="Empat fakta yang bikin bisnis tanpa website ketinggalan terus — dibedah satu per satu, lalu dituntaskan lewat keunggulan yang kami bangun."
+          />
+        </ScrollReveal>
 
-      {/* --- MOBILE (<768px): swipe carousel — card geser, bukan vertical stack --- */}
-      <div className="mt-10 md:hidden">
-        <SwipeCarousel
-          items={BEATS}
-          ariaLabel="Masalah yang bisa diselesaikan dengan website"
-          cardWidthClass="w-[85vw] max-w-[380px]"
-          renderItem={(b) => (
-            <article
-              className={cn(
-                "flex h-full flex-col rounded-card border-2 border-ink p-6 shadow-brutal",
-                CARD_CLS[b.scheme],
-              )}
-            >
-              <span
+        {/* --- MOBILE (<768px): swipe carousel — card geser, bukan vertical stack --- */}
+        <div className="mt-10 md:hidden">
+          <SwipeCarousel
+            items={BEATS}
+            ariaLabel="Masalah yang bisa diselesaikan dengan website"
+            cardWidthClass="w-[85vw] max-w-[380px]"
+            renderItem={(b) => (
+              <article
                 className={cn(
-                  "inline-flex h-10 w-10 self-start items-center justify-center rounded-full border-2 border-ink font-display text-sm font-extrabold",
-                  NUM_CLS[b.scheme],
+                  "flex h-full flex-col rounded-card border-2 border-ink p-6 shadow-brutal",
+                  CARD_CLS[b.scheme],
                 )}
               >
-                {b.num}
-              </span>
-              <h3 className="mt-4 font-display text-2xl font-extrabold leading-tight">
-                {b.headline}
-              </h3>
-              <p className={cn("mt-3 text-base leading-relaxed", SUB_CLS[b.scheme])}>
-                {b.sub}
-              </p>
-              {/* Tinggi visual dibikin seragam supaya semua card saatnya sama & terasa identik */}
-              <div className="mt-6 flex h-56 items-center justify-center">
-                <BeatVisual beat={b} compact />
-              </div>
-            </article>
-          )}
-        />
-      </div>
+                <span
+                  className={cn(
+                    "inline-flex h-10 w-10 self-start items-center justify-center rounded-full border-2 border-ink font-display text-sm font-extrabold",
+                    NUM_CLS[b.scheme],
+                  )}
+                >
+                  {b.num}
+                </span>
+                <h3 className="mt-4 font-display text-2xl font-extrabold leading-tight">
+                  {b.headline}
+                </h3>
+                <p className={cn("mt-3 text-base leading-relaxed", SUB_CLS[b.scheme])}>
+                  {b.sub}
+                </p>
+                {/* Tinggi visual dibikin seragam supaya semua card saatnya sama & terasa identik */}
+                <div className="mt-6 flex h-56 items-center justify-center">
+                  <BeatVisual beat={b} compact />
+                </div>
+              </article>
+            )}
+          />
+        </div>
 
-      {/* --- DESKTOP (≥768px): scrollytelling — TIDAK DIUBAH --- */}
-      <div className="mt-10 grid gap-8 md:mt-14 lg:grid-cols-2 lg:gap-12">
-        {/* Panel sticky (hanya desktop ≥1024) */}
-        <aside className="relative hidden lg:block">
-          <div className="sticky top-24">
-            <div className="overflow-hidden rounded-card border-[3px] border-ink bg-yellowLite shadow-brutal">
-              <span
-                aria-hidden="true"
-                className={cn("block h-3 w-full transition-colors duration-300", STRIP_CLS[beat.scheme])}
-              />
-              <div className="flex min-h-[520px] flex-col p-8">
-                {/* Nomor beat besar + judul beat */}
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.div
-                    key={beat.key}
-                    className="flex-1"
-                    initial={reducedMotion ? false : { opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={reducedMotion ? undefined : { opacity: 0, y: -16 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                  >
-                    <span
-                      className={cn(
-                        "font-display text-[7rem] font-extrabold leading-none tracking-tight",
-                        ACCENT_NUM_CLS[beat.scheme],
-                      )}
+        {/* --- DESKTOP (≥768px): scrollytelling — TIDAK DIUBAH --- */}
+        <div className="mt-10 grid gap-8 md:mt-14 lg:grid-cols-2 lg:gap-12">
+          {/* Panel sticky (hanya desktop ≥1024) */}
+          <aside className="relative hidden lg:block">
+            <div className="sticky top-24">
+              <div className="overflow-hidden rounded-card border-[3px] border-ink bg-yellowLite shadow-brutal">
+                <span
+                  aria-hidden="true"
+                  className={cn("block h-3 w-full transition-colors duration-300", STRIP_CLS[beat.scheme])}
+                />
+                <div className="flex min-h-[520px] flex-col p-8">
+                  {/* Nomor beat besar + judul beat */}
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div
+                      key={beat.key}
+                      className="flex-1"
+                      initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={reducedMotion ? undefined : { opacity: 0, y: -16 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
                     >
-                      {beat.num}
-                    </span>
-                    <p className="mt-2 max-w-sm font-display text-xl font-bold text-ink">
-                      {beat.headline}
-                    </p>
-
-                    <div className="mt-6 flex h-56 items-center justify-center">
-                      <BeatVisual beat={beat} compact={false} />
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Progress segments */}
-                <div className="mt-6 border-t-2 border-dashed border-ink pt-4">
-                  <div aria-hidden="true" className="flex gap-1.5">
-                    {BEATS.map((b, index) => (
                       <span
-                        key={b.key}
                         className={cn(
-                          "h-2.5 flex-1 rounded-pill border-2 border-ink bg-surface transition-colors duration-300",
-                          index <= active ? "bg-red" : "bg-surface",
+                          "font-display text-[7rem] font-extrabold leading-none tracking-tight",
+                          ACCENT_NUM_CLS[beat.scheme],
                         )}
-                      />
-                    ))}
+                      >
+                        {beat.num}
+                      </span>
+                      <p className="mt-2 max-w-sm font-display text-xl font-bold text-ink">
+                        {beat.headline}
+                      </p>
+
+                      <div className="mt-6 flex h-56 items-center justify-center">
+                        <BeatVisual beat={beat} compact={false} />
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {/* Progress segments */}
+                  <div className="mt-6 border-t-2 border-dashed border-ink pt-4">
+                    <div aria-hidden="true" className="flex gap-1.5">
+                      {BEATS.map((b, index) => (
+                        <span
+                          key={b.key}
+                          className={cn(
+                            "h-2.5 flex-1 rounded-pill border-2 border-ink bg-surface transition-colors duration-300",
+                            index <= active ? "bg-red" : "bg-surface",
+                          )}
+                        />
+                      ))}
+                    </div>
+                    <p className="mt-2 text-xs font-medium text-ink/50">
+                      Bagian {active + 1} dari {BEATS.length} — ikuti kartu di kanan
+                    </p>
                   </div>
-                  <p className="mt-2 text-xs font-medium text-ink/50">
-                    Bagian {active + 1} dari {BEATS.length} — ikuti kartu di kanan
-                  </p>
                 </div>
               </div>
             </div>
-          </div>
-        </aside>
+          </aside>
 
-        {/* Kartu narasi sebagai trigger scrollytelling — tersembunyi di mobile
-            (mobile memakai SwipeCarousel di atas). Konten md+ tetap identik. */}
-        <div className="hidden flex-col gap-6 md:flex">
-          {BEATS.map((b, index) => (
-            <article
-              key={b.key}
-              data-problem-card
-              data-index={index}
-              className={cn(
-                "rounded-card border-2 border-ink p-6 shadow-brutal transition-transform duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm md:p-8 lg:min-h-[70vh] lg:flex lg:flex-col lg:justify-center",
-                CARD_CLS[b.scheme],
-                active === index ? "opacity-100" : "lg:opacity-80",
-              )}
-            >
-              <span
+          {/* Kartu narasi sebagai trigger scrollytelling — tersembunyi di mobile
+              (mobile memakai SwipeCarousel di atas). Konten md+ tetap identik. */}
+          <div className="hidden flex-col gap-6 md:flex">
+            {BEATS.map((b, index) => (
+              <article
+                key={b.key}
+                data-problem-card
+                data-index={index}
                 className={cn(
-                  "inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink font-display text-sm font-extrabold",
-                  NUM_CLS[b.scheme],
+                  "rounded-card border-2 border-ink p-6 shadow-brutal transition-transform duration-200 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-brutal-sm md:p-8 lg:min-h-[70vh] lg:flex lg:flex-col lg:justify-center",
+                  CARD_CLS[b.scheme],
+                  active === index ? "opacity-100" : "lg:opacity-80",
                 )}
               >
-                {b.num}
-              </span>
-              <h3 className="mt-4 font-display text-2xl font-extrabold leading-tight md:text-3xl">
-                {b.headline}
-              </h3>
-              <p className={cn("mt-3 max-w-xl", SUB_CLS[b.scheme])}>{b.sub}</p>
-
-              {/* Visual & CTA ikut di dalam kartu (mobile), desktop ada di panel kiri */}
-              <div className="mt-6 lg:hidden">
-                <BeatVisual beat={b} compact />
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-
-      {/* --- NARASI PENYAMBUNG Masalah → Solusi (bagian dari unit "Problem Solver") --- */}
-      <ScrollReveal className="mx-auto mt-12 max-w-2xl px-4 md:mt-16">
-        <div className="rounded-card border-2 border-ink bg-yellowLite p-5 shadow-brutal md:p-7">
-          {/* Konsep baru: PEMETAAN masalah → penawar, baris demi baris
-              (apple-to-apple sesuai permintaan user). */}
-          <p className="text-balance text-center font-display text-lg font-medium leading-snug text-ink md:text-xl">
-            Keempat kenyataan di atas menyerang akar yang sama:{" "}
-            <span className="bg-red px-1 font-bold text-ink">
-              belum ada website yang kerja
-            </span>{" "}
-            untuk usaha Anda.
-          </p>
-          <p className="mt-2 text-center text-base text-ink/70">
-            Solusinya cuma satu, tapi menuntaskan semuanya sekaligus — ini
-            pemetaannya:
-          </p>
-          <ul className="mt-4 flex flex-col gap-2.5">
-            {FIXES.map((fix) => (
-              <li
-                key={fix.problem}
-                className="flex flex-wrap items-center gap-x-2 gap-y-1 bg-surface px-3 py-2"
-              >
-                <span className="min-w-[10rem] flex-1 text-sm font-medium text-ink/80">
-                  {fix.problem}
+                <span
+                  className={cn(
+                    "inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink font-display text-sm font-extrabold",
+                    NUM_CLS[b.scheme],
+                  )}
+                >
+                  {b.num}
                 </span>
-                <ArrowRight
-                  aria-hidden="true"
-                  className="h-4 w-4 shrink-0 text-red"
-                />
-                <span className="border-2 border-ink bg-red px-2 py-0.5 font-display text-sm font-bold text-ink">
-                  {fix.cure}
-                </span>
-              </li>
+                <h3 className="mt-4 font-display text-2xl font-extrabold leading-tight md:text-3xl">
+                  {b.headline}
+                </h3>
+                <p className={cn("mt-3 max-w-xl", SUB_CLS[b.scheme])}>{b.sub}</p>
+
+                {/* Visual & CTA ikut di dalam kartu (mobile), desktop ada di panel kiri */}
+                <div className="mt-6 lg:hidden">
+                  <BeatVisual beat={b} compact />
+                </div>
+              </article>
             ))}
-          </ul>
-          <p className="mt-4 text-center font-display text-base font-bold text-ink">
-            Satu website — keempatnya tuntas.
-          </p>
+          </div>
         </div>
-      </ScrollReveal>
+
+        {/* --- NARASI PENYAMBUNG Masalah → Solusi (bagian dari unit "Problem Solver") --- */}
+        <ScrollReveal className="mx-auto mt-12 max-w-2xl px-4 md:mt-16">
+          <div className="rounded-card border-2 border-ink bg-yellowLite p-5 shadow-brutal md:p-7">
+            {/* Konsep baru: PEMETAAN masalah → penawar, baris demi baris
+                (apple-to-apple sesuai permintaan user). */}
+            <p className="text-balance text-center font-display text-lg font-medium leading-snug text-ink md:text-xl">
+              Keempat kenyataan di atas menyerang akar yang sama:{" "}
+              <span className="bg-red px-1 font-bold text-ink">
+                belum ada website yang kerja
+              </span>{" "}
+              untuk usaha Anda.
+            </p>
+            <p className="mt-2 text-center text-base text-ink/70">
+              Solusinya cuma satu, tapi menuntaskan semuanya sekaligus — ini
+              pemetaannya:
+            </p>
+            <ul className="mt-4 flex flex-col gap-2.5">
+              {FIXES.map((fix) => (
+                <li
+                  key={fix.problem}
+                  className="flex flex-wrap items-center gap-x-2 gap-y-1 bg-surface px-3 py-2"
+                >
+                  <span className="min-w-[10rem] flex-1 text-sm font-medium text-ink/80">
+                    {fix.problem}
+                  </span>
+                  <ArrowRight
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 text-red"
+                  />
+                  <span className="border-2 border-ink bg-red px-2 py-0.5 font-display text-sm font-bold text-ink">
+                    {fix.cure}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-center font-display text-base font-bold text-ink">
+              Satu website — keempatnya tuntas.
+            </p>
+          </div>
+        </ScrollReveal>
+      </div>
     </section>
   );
 }
